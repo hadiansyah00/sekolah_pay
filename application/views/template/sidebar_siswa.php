@@ -1,0 +1,102 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('siswa') ?>">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">siswa</sup></div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="<?= base_url('ppdb/dashboard') ?>">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Menu
+    </div>
+
+    <li class="nav-item <?= ($this->uri->segment(2) == 'biodata') ? 'active' : '' ?>">
+        <a class="nav-link" href="<?= base_url('ppdb/biodata'); ?>">
+            <i class="fas fa-fw  fa-file-contract"></i>
+            <span> Pendaftaran <strong>PMB</strong> </span>
+        </a>
+    </li>
+
+    <!-- <?php if ($menu == 'pembayaran') : ?>
+        <li class="nav-item active">
+        <?php else : ?>
+        <li class="nav-item">
+        <?php endif; ?>
+        <a class="nav-link" href="<?= base_url('ppdb/pembayaran'); ?>">
+            <i class="fas fa-fw fa-comments"></i>
+            <span>Pembayaran</span> &nbsp;
+        </a>
+        </li> -->
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- <?php if ($menu == 'pendaftaran') : ?>
+            <li class="nav-item active">
+            <?php else : ?>
+            <li class="nav-item">
+            <?php endif; ?>
+            <a class="nav-link" href="<?= base_url('ppdb/status_ppdb') ?>">
+                <i class="fas fa-fw fa-sticky-note"></i>
+                <span>Status Pendaftaran</span> &nbsp;
+            </a>
+            </li> -->
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+
+        <a class=" nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-fw fa-sign-out-alt"></i>
+            <span>Keluar</span> &nbsp;
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+<!-- End of Sidebar -->
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Yakin ingin meninggalkan dashboard?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Pilih <b>Keluar</b> jika kamu ingin keluar dari dashboard</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                <a class="btn btn-danger" href="<?= base_url('ppdb/logout') ?>"><i class="bi bi-box-arrow-right"></i> Keluar</a>
+            </div>
+        </div>
+    </div>
+</div>
