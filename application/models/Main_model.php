@@ -3,17 +3,17 @@
 class Main_model extends CI_Model
 {
     // Fetch siswa
-    function getsiswa($id,$searchTerm = "")
+    function getsiswa($id, $searchTerm = "")
     {
 
         // Fetch siswa
         $data_kelas = $this->db->get_where('data_kelas', ['id_peng' => $id])->result_array();
         $data_kar = $this->db->get_where('karyawan', ['id' => $id])->row_array();
-        
-        $id_kelas = array_column($data_kelas,"id");
+
+        $id_kelas = array_column($data_kelas, "id");
         if ($data_kar['role_id'] !== '1') {
-        $this->db->where_in('id_kelas', $id_kelas);
-        }else{
+            $this->db->where_in('id_kelas', $id_kelas);
+        } else {
             $this->db->select('*');
         }
 
@@ -28,7 +28,11 @@ class Main_model extends CI_Model
         }
         return $data;
     }
-
+    public function getAktif()
+    {
+        $data = "SELECT *FROM ta WHERE status_ta = 1";
+        return $this->db->query($data);
+    }
     // Fetch Karyawan
     function getKaryawan($searchTerm = "")
     {

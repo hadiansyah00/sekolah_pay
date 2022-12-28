@@ -12,7 +12,7 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
         <div class="sidebar-brand-icon">
             <i class="fas fa-home"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Sekretariat</div>
+        <div class="sidebar-brand-text mx-3">PMB</div>
     </a>
 
     <!-- Divider -->
@@ -60,13 +60,14 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Pilih menu:</h6>
-                    <a class="collapse-item" href="<?= base_url('admin/daftar_siswa'); ?>">Data siswa</a>
+                    <!-- <a class="collapse-item" href="<?= base_url('admin/daftar_siswa'); ?>">Data siswa</a> -->
                     <a class="collapse-item" href="<?= base_url('admin/tambah_siswa'); ?>">Pendaftaran siswa</a>
+
                 </div>
             </div>
             </li>
 
-            <?php if ($menu == 'menu-9') : ?>
+            <!-- <?php if ($menu == 'menu-9') : ?>
                 <li class="nav-item active">
                 <?php else : ?>
                 <li class="nav-item">
@@ -100,10 +101,10 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                             <a class="collapse-item" href="<?= base_url('admin/absen_pegawai'); ?>">Absensi Pegawai</a>
                         </div>
                     </div>
-                    </li>
+                    </li> -->
 
-                <!-- Nav Item - Utilities Collapse Menu -->
-                <?php if ($menu == 'menu-3') : ?>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- <?php if ($menu == 'menu-3') : ?>
                     <li class="nav-item active">
                     <?php else : ?>
                     <li class="nav-item">
@@ -124,39 +125,40 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                             </div>
                         </div>
                     </li>
-                    
+                     -->
 
-                        <!-- Nav Item - Utilities Collapse Menu -->
-                        <?php if ($menu == 'menu-4') : ?>
-                            <li class="nav-item active">
-                            <?php else : ?>
-                            <li class="nav-item">
-                            <?php endif; ?>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                                <i class="fas fa-fw fa-cogs"></i>
-                                <span>Master Data</span>
-                            </a>
-                            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                                <div class="bg-white py-2 collapse-inner rounded">
-                                    <h6 class="collapse-header">Pilih Menu:</h6>
-                                    <a class="collapse-item" href="<?= base_url('admin/data_pendidikan'); ?>">Data Pendidikan</a>
-                                    <a class="collapse-item" href="<?= base_url('admin/data_jurusan'); ?>">Data Jurusan</a>
-                                    <a class="collapse-item" href="<?= base_url('admin/kelas'); ?>">Data Kelas</a>
-                                    <a class="collapse-item" href="<?= base_url('admin/data_kursi'); ?>">Data Kursi</a>
-                                    <a class="collapse-item" href="<?= base_url('admin/data_pelanggaran'); ?>">Data Pelanggaran</a>
-                                    <a class="collapse-item" href="<?= base_url('admin/data_perizinan'); ?>">Data Perizinan</a>
-                                </div>
-                            </div>
-                            </li>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <?php if ($menu == 'menu-4') : ?>
+                <li class="nav-item active">
+                <?php else : ?>
+                <li class="nav-item">
+                <?php endif; ?>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-cogs"></i>
+                    <span>Master Data</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Pilih Menu:</h6>
+                        <a class="collapse-item" href="<?= base_url('admin/data_pendidikan'); ?>">Data Pendidikan</a>
+                        <a class="collapse-item" href="<?= base_url('admin/data_jurusan'); ?>">Data Jurusan</a>
+                        <a class="collapse-item" href="<?= base_url('admin/data_ta'); ?>">Tahun Ajaran</a>
+                        <!-- <a class="collapse-item" href="<?= base_url('admin/kelas'); ?>">Data Kelas</a>
+                        <a class="collapse-item" href="<?= base_url('admin/data_kursi'); ?>">Data Kursi</a>
+                        <a class="collapse-item" href="<?= base_url('admin/data_pelanggaran'); ?>">Data Pelanggaran</a>
+                        <a class="collapse-item" href="<?= base_url('admin/data_perizinan'); ?>">Data Perizinan</a> -->
+                    </div>
+                </div>
+                </li>
 
-                            <!-- Divider -->
-                            <hr class="sidebar-divider">
+                <!-- Divider -->
+                <hr class="sidebar-divider">
 
-                            <div class="sidebar-heading">
+                <!-- <div class="sidebar-heading">
                                 Keuangan
                             </div>
-                           
-                            <li class="nav-item <?= ($this->uri->segment(1) == 'payout') ? 'active' : '' ?>">
+                            -->
+                <!-- <li class="nav-item <?= ($this->uri->segment(1) == 'payout') ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= base_url('payout'); ?>">
                                 <i class="fas fa-fw fa-money-bill"></i>
                                 <span>Transaksi Siswa </span>
@@ -174,8 +176,8 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                                         <a class="collapse-item" href="<?= site_url('manage/keluaran') ?>"><i class="fa  <?= ($this->uri->segment(2) == 'keluaran') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Pengeluaran</a>
                                     </div>
                                 </div>
-                            </li>
-
+                            </li> -->
+                <!-- 
                             <?php if ($menu == 'gaji') : ?>
                                 <li class="nav-item active">
                                 <?php else : ?>
@@ -194,23 +196,23 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                                         <a class="collapse-item" href="<?= base_url('admin/data_cicilan'); ?>">Cicilan</a>
                                     </div>
                                 </div>
-                                </li>
+                                </li> -->
 
-                                <li class="nav-item <?= ($this->uri->segment(2) == 'pembayaran_ppdb' or $this->uri->segment(2) == 'jenis_pembayaran' or $this->uri->segment(2) == 'pos') ? 'active' : '' ?>">
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pengaturanpemb" aria-expanded="true" aria-controls="pengaturanpemb">
-                                        <i class="fa fa-cog text-stock"></i> <span>Setting Pembayaran</span>
-                                    </a>
-                                    <div id="pengaturanpemb" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                                        <div class="bg-white py-2 collapse-inner rounded">
-                                            <h6 class="collapse-header">Pilih Menu:</h6>
-                                            <a class="collapse-item" href="<?= base_url('manage/pos'); ?>">Data Pembayaran</a>
-                                            <a class="collapse-item" href="<?= site_url('manage/jenis_pembayaran') ?>">☆ Jenis Pembayaran</a>
-                                            <a class="collapse-item" href="<?= base_url('manage/pembayaran_ppdb'); ?>">Pembayaran PPDB</a>
-                                        </div>
-                                    </div>
-                                </li>
+                <li class="nav-item <?= ($this->uri->segment(2) == 'pembayaran_ppdb' or $this->uri->segment(2) == 'jenis_pembayaran' or $this->uri->segment(2) == 'pos') ? 'active' : '' ?>">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pengaturanpemb" aria-expanded="true" aria-controls="pengaturanpemb">
+                        <i class="fa fa-cog text-stock"></i> <span>Setting Pembayaran</span>
+                    </a>
+                    <div id="pengaturanpemb" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Pilih Menu:</h6>
+                            <a class="collapse-item" href="<?= base_url('manage/pos'); ?>">Data Pembayaran</a>
+                            <a class="collapse-item" href="<?= site_url('manage/jenis_pembayaran') ?>">☆ Jenis Pembayaran</a>
+                            <a class="collapse-item" href="<?= base_url('manage/pembayaran_ppdb'); ?>">Pembayaran PPDB</a>
+                        </div>
+                    </div>
+                </li>
 
-                                <li class="nav-item <?= ($this->uri->segment(2) == 'report' or $this->uri->segment(2) == 'report_kelas') ? 'active' : '' ?>">
+                <!-- <li class="nav-item <?= ($this->uri->segment(2) == 'report' or $this->uri->segment(2) == 'report_kelas') ? 'active' : '' ?>">
                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#lappporan" aria-expanded="true" aria-controls="lappporan">
                                         <i class="fa fa-file text-stock"></i> <span>Laporan</span>
                                     </a>
@@ -221,128 +223,128 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                                             <a class="collapse-item" href="<?= site_url('manage/report_kelas') ?>">Laporan Per-kelas</a>
                                         </div>
                                     </div>
+                                </li> -->
+
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Website
+                </div>
+
+
+
+                <!-- Nav Item - Pages Collapse Menu -->
+                <?php if ($menu == 'acara') : ?>
+                    <li class="nav-item active">
+                    <?php else : ?>
+                    <li class="nav-item">
+                    <?php endif; ?>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAcara" aria-expanded="true" aria-controls="collapseAcara">
+                        <i class="fas fa-fw fa-calendar-day"></i>
+                        <span>Acara</span>
+                    </a>
+                    <div id="collapseAcara" class="collapse" aria-labelledby="headingAcara" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Pilih Menu:</h6>
+                            <a class="collapse-item" href="<?= base_url('admin/tambah_acara'); ?>">Tambah Acara</a>
+                            <a class="collapse-item" href="<?= base_url('admin/acara'); ?>">Data Acara</a>
+                            <a class="collapse-item" href="<?= base_url('admin/kategori_acara'); ?>">Data Kategori</a>
+                        </div>
+                    </div>
+                    </li>
+
+
+                    <!-- Nav Item - Pages Collapse Menu -->
+                    <?php if ($menu == 'gallery') : ?>
+                        <li class="nav-item active">
+                        <?php else : ?>
+                        <li class="nav-item">
+                        <?php endif; ?>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGallery" aria-expanded="true" aria-controls="collapseGallery">
+                            <i class="fas fa-fw fa-image"></i>
+                            <span>Gallery</span>
+                        </a>
+                        <div id="collapseGallery" class="collapse" aria-labelledby="headingGallery" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Pilih Menu:</h6>
+                                <a class="collapse-item" href="<?= base_url('admin/tambah_gallery'); ?>">Tambah Gallery</a>
+                                <a class="collapse-item" href="<?= base_url('admin/gallery'); ?>">Data Gallery</a>
+                                <a class="collapse-item" href="<?= base_url('admin/kategori_gallery'); ?>">Data Kategori</a>
+                            </div>
+                        </div>
+                        </li>
+
+
+                        <?php if ($menu == 'kontak') : ?>
+                            <li class="nav-item active">
+                            <?php else : ?>
+                            <li class="nav-item">
+                            <?php endif; ?>
+                            <a class="nav-link" href="<?= base_url('admin/kontak'); ?>">
+                                <i class="fas fa-fw fa-address-book"></i>
+                                <span>Kontak</span>
+                                <?php $notif_kontak; ?>
+                                <?php if ($notif_kontak) : ?>
+                                    <span class="badge badge-danger" style="font-size: 10px;"> <?= $notif_kontak ?></span>
+                                <?php endif ?>
+                            </a>
+                            </li>
+
+
+                            <!-- Nav Item - Pages Collapse Menu -->
+                            <?php if ($menu == 'home') : ?>
+                                <li class="nav-item active">
+                                <?php else : ?>
+                                <li class="nav-item">
+                                <?php endif; ?>
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHome" aria-expanded="true" aria-controls="collapseHome">
+                                    <i class="fas fa-fw fa-home"></i>
+                                    <span>Home</span>
+                                </a>
+                                <div id="collapseHome" class="collapse" aria-labelledby="headingHome" data-parent="#accordionSidebar">
+                                    <div class="bg-white py-2 collapse-inner rounded">
+                                        <h6 class="collapse-header">Pilih Menu:</h6>
+                                        <a class="collapse-item" href="<?= base_url('admin/utama'); ?>">Utama</a>
+                                        <a class="collapse-item" href="<?= base_url('admin/tagline'); ?>">Tagline</a>
+                                    </div>
+                                </div>
                                 </li>
 
 
-                                <!-- Divider -->
-                                <hr class="sidebar-divider">
-                                <!-- Heading -->
-                                <div class="sidebar-heading">
-                                    Website
-                                </div>
-
-
-
                                 <!-- Nav Item - Pages Collapse Menu -->
-                                <?php if ($menu == 'acara') : ?>
+                                <?php if ($menu == 'website') : ?>
                                     <li class="nav-item active">
                                     <?php else : ?>
                                     <li class="nav-item">
                                     <?php endif; ?>
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAcara" aria-expanded="true" aria-controls="collapseAcara">
-                                        <i class="fas fa-fw fa-calendar-day"></i>
-                                        <span>Acara</span>
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                                        <i class="fas fa-fw fa-cogs"></i>
+                                        <span>Website</span>
                                     </a>
-                                    <div id="collapseAcara" class="collapse" aria-labelledby="headingAcara" data-parent="#accordionSidebar">
+                                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                                         <div class="bg-white py-2 collapse-inner rounded">
                                             <h6 class="collapse-header">Pilih Menu:</h6>
-                                            <a class="collapse-item" href="<?= base_url('admin/tambah_acara'); ?>">Tambah Acara</a>
-                                            <a class="collapse-item" href="<?= base_url('admin/acara'); ?>">Data Acara</a>
-                                            <a class="collapse-item" href="<?= base_url('admin/kategori_acara'); ?>">Data Kategori</a>
+                                            <a class="collapse-item" href="<?= base_url('admin/about'); ?>">About</a>
+                                            <a class="collapse-item" href="<?= base_url('admin/faq'); ?>">FAQ</a>
+                                            <a class="collapse-item" href="<?= base_url('admin/website'); ?>">Settings</a>
+                                            <a class="collapse-item" href="<?= base_url('admin/email_sender'); ?>">Email Sender</a>
+                                            <a class="collapse-item" href="<?= base_url('admin/payment'); ?>">Payment</a>
+                                            <a class="collapse-item" href="<?= base_url('admin/wa_gateway'); ?>">WA Gateway</a>
                                         </div>
                                     </div>
                                     </li>
 
+                                    <!-- Divider -->
+                                    <hr class="sidebar-divider">
 
-                                    <!-- Nav Item - Pages Collapse Menu -->
-                                    <?php if ($menu == 'gallery') : ?>
-                                        <li class="nav-item active">
-                                        <?php else : ?>
-                                        <li class="nav-item">
-                                        <?php endif; ?>
-                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGallery" aria-expanded="true" aria-controls="collapseGallery">
-                                            <i class="fas fa-fw fa-image"></i>
-                                            <span>Gallery</span>
-                                        </a>
-                                        <div id="collapseGallery" class="collapse" aria-labelledby="headingGallery" data-parent="#accordionSidebar">
-                                            <div class="bg-white py-2 collapse-inner rounded">
-                                                <h6 class="collapse-header">Pilih Menu:</h6>
-                                                <a class="collapse-item" href="<?= base_url('admin/tambah_gallery'); ?>">Tambah Gallery</a>
-                                                <a class="collapse-item" href="<?= base_url('admin/gallery'); ?>">Data Gallery</a>
-                                                <a class="collapse-item" href="<?= base_url('admin/kategori_gallery'); ?>">Data Kategori</a>
-                                            </div>
-                                        </div>
-                                        </li>
+                                    <!-- Heading -->
+                                    <div class="sidebar-heading">
+                                        Pengaturan
+                                    </div>
 
-
-                                        <?php if ($menu == 'kontak') : ?>
-                                            <li class="nav-item active">
-                                            <?php else : ?>
-                                            <li class="nav-item">
-                                            <?php endif; ?>
-                                            <a class="nav-link" href="<?= base_url('admin/kontak'); ?>">
-                                                <i class="fas fa-fw fa-address-book"></i>
-                                                <span>Kontak</span>
-                                                <?php $notif_kontak; ?>
-                                                <?php if ($notif_kontak) : ?>
-                                                    <span class="badge badge-danger" style="font-size: 10px;"> <?= $notif_kontak ?></span>
-                                                <?php endif ?>
-                                            </a>
-                                            </li>
-
-
-                                            <!-- Nav Item - Pages Collapse Menu -->
-                                            <?php if ($menu == 'home') : ?>
-                                                <li class="nav-item active">
-                                                <?php else : ?>
-                                                <li class="nav-item">
-                                                <?php endif; ?>
-                                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHome" aria-expanded="true" aria-controls="collapseHome">
-                                                    <i class="fas fa-fw fa-home"></i>
-                                                    <span>Home</span>
-                                                </a>
-                                                <div id="collapseHome" class="collapse" aria-labelledby="headingHome" data-parent="#accordionSidebar">
-                                                    <div class="bg-white py-2 collapse-inner rounded">
-                                                        <h6 class="collapse-header">Pilih Menu:</h6>
-                                                        <a class="collapse-item" href="<?= base_url('admin/utama'); ?>">Utama</a>
-                                                        <a class="collapse-item" href="<?= base_url('admin/tagline'); ?>">Tagline</a>
-                                                    </div>
-                                                </div>
-                                                </li>
-
-
-                                                <!-- Nav Item - Pages Collapse Menu -->
-                                                <?php if ($menu == 'website') : ?>
-                                                    <li class="nav-item active">
-                                                    <?php else : ?>
-                                                    <li class="nav-item">
-                                                    <?php endif; ?>
-                                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                                                        <i class="fas fa-fw fa-cogs"></i>
-                                                        <span>Website</span>
-                                                    </a>
-                                                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                                                        <div class="bg-white py-2 collapse-inner rounded">
-                                                            <h6 class="collapse-header">Pilih Menu:</h6>
-                                                            <a class="collapse-item" href="<?= base_url('admin/about'); ?>">About</a>
-                                                            <a class="collapse-item" href="<?= base_url('admin/faq'); ?>">FAQ</a>
-                                                            <a class="collapse-item" href="<?= base_url('admin/website'); ?>">Settings</a>
-                                                            <a class="collapse-item" href="<?= base_url('admin/email_sender'); ?>">Email Sender</a>
-                                                            <a class="collapse-item" href="<?= base_url('admin/payment'); ?>">Payment</a>
-                                                            <a class="collapse-item" href="<?= base_url('admin/wa_gateway'); ?>">WA Gateway</a>
-                                                        </div>
-                                                    </div>
-                                                    </li>
-
-                                                    <!-- Divider -->
-                                                    <hr class="sidebar-divider">
-
-                                                    <!-- Heading -->
-                                                    <div class="sidebar-heading">
-                                                        Pengaturan
-                                                    </div>
-
-                                                    <?php if ($menu == 'menu-2') : ?>
+                                    <!-- <?php if ($menu == 'menu-2') : ?>
                                                         <li class="nav-item active">
                                                         <?php else : ?>
                                                         <li class="nav-item">
@@ -360,34 +362,34 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                                                                 <a class="collapse-item" href="<?= base_url('admin/data_divisi'); ?>">Data Divisi</a>
                                                             </div>
                                                         </div>
-                                                    </li>
+                                                    </li> -->
 
-                                                    <?php if ($menu == 'menu-5') : ?>
-                                                        <li class="nav-item active">
-                                                        <?php else : ?>
-                                                        <li class="nav-item">
-                                                        <?php endif; ?>
-                                                        <a class="nav-link" href="<?= base_url('admin/setting'); ?>">
-                                                            <i class="fas fa-fw fa-cog"></i>
-                                                            <span>Setting Akun</span>
-                                                        </a>
-                                                        </li>
+                                    <?php if ($menu == 'menu-5') : ?>
+                                        <li class="nav-item active">
+                                        <?php else : ?>
+                                        <li class="nav-item">
+                                        <?php endif; ?>
+                                        <a class="nav-link" href="<?= base_url('admin/setting'); ?>">
+                                            <i class="fas fa-fw fa-cog"></i>
+                                            <span>Setting Akun</span>
+                                        </a>
+                                        </li>
 
-                                                        <!-- Nav Item - Tables -->
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" href="" data-toggle="modal" data-target="#logoutModal">
-                                                                <i class="fas fa-fw fa-sign-out-alt"></i>
-                                                                <span>Keluar</span>
-                                                            </a>
-                                                        </li>
+                                        <!-- Nav Item - Tables -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="" data-toggle="modal" data-target="#logoutModal">
+                                                <i class="fas fa-fw fa-sign-out-alt"></i>
+                                                <span>Keluar</span>
+                                            </a>
+                                        </li>
 
-                                                        <!-- Divider -->
-                                                        <hr class="sidebar-divider d-none d-md-block">
+                                        <!-- Divider -->
+                                        <hr class="sidebar-divider d-none d-md-block">
 
-                                                        <!-- Sidebar Toggler (Sidebar) -->
-                                                        <div class="text-center d-none d-md-inline">
-                                                            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                                                        </div>
+                                        <!-- Sidebar Toggler (Sidebar) -->
+                                        <div class="text-center d-none d-md-inline">
+                                            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                                        </div>
 
 </ul>
 <!-- End of Sidebar -->

@@ -265,6 +265,29 @@ class Update extends CI_Controller
         redirect('admin/data_pendidikan');
     }
 
+    public function update_data_ta()
+    {
+        $id    = $this->input->post('id_ta');
+        // $nama = $this->input->post('jurusan');
+        $data = [
+            'tahun' => $this->input->post('tahun'),
+            'periode' => $this->input->post('periode'),
+            'tempat_tes' => $this->input->post('tempat_tes'),
+            'tgl_tes' => date('Y-m-d')
+        ];
+
+        $this->db->where('id_ta', $id);
+        $this->db->update('ta', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Data jurusan <strong> </strong> berhasil diubah
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>');
+        redirect('admin/data_ta');
+    }
+
+
     public function update_data_jurusan()
     {
         $id    = $this->input->post('id');
@@ -945,7 +968,7 @@ class Update extends CI_Controller
 
 Nama : ' . $ppdb['nama'] . '
 Nomor Pendaftaran : ' . $ppdb['no_daftar'] . '
-NIS : ' . $ppdb['nis'] . '
+NISN : ' . $ppdb['nis'] . '
 Email : ' . $ppdb['email'] . '
 
 Untuk pengumuman PPDB akan di infokan melalui website :

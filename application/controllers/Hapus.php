@@ -19,7 +19,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/daftar_siswa');
+    redirect('admin/daftar_siswa');
   }
 
   public function hapus_ppdb()
@@ -48,7 +48,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/ppdb');
+    redirect('admin/ppdb');
   }
 
   public function hapus_pelanggaran()
@@ -76,7 +76,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/pelanggaran');
+    redirect('admin/pelanggaran');
   }
 
   public function hapus_data_pelanggaran()
@@ -104,7 +104,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/daftar_absen');
+    redirect('admin/daftar_absen');
   }
 
   public function hapus_absen_siswa()
@@ -120,7 +120,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/absen/' . $tgl . '?id=' . $absen['role_absen'] . '');
+    redirect('admin/absen/' . $tgl . '?id=' . $absen['role_absen'] . '');
   }
 
   public function hapus_perizinan()
@@ -168,6 +168,18 @@ class Hapus extends CI_Controller
           </button>
           </div>');
     redirect('admin/data_pendidikan');
+  }
+  public function hapus_data_ta()
+  {
+    $id = $this->input->get('id_ta');
+    $this->db->delete('ta', array('id_ta' => $id));
+    $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Data Pendidikan berhasil dihapus
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>');
+    redirect('admin/data_ta');
   }
 
   public function hapus_data_jurusan()
@@ -229,7 +241,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/kelas');
+    redirect('admin/kelas');
   }
 
   public function hapus_konseling()
@@ -272,7 +284,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/view_kelas/' . $id_kelas . '');
+    redirect('admin/view_kelas/' . $id_kelas . '');
   }
 
   public function hapus_karyawan()
@@ -303,7 +315,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/acara');
+    redirect('admin/acara');
   }
 
   public function hapus_kategori_acara()
@@ -316,7 +328,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/kategori_acara');
+    redirect('admin/kategori_acara');
   }
 
   public function hapus_gallery()
@@ -343,7 +355,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/gallery');
+    redirect('admin/gallery');
   }
 
   public function hapus_foto_gallery()
@@ -374,7 +386,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/edit_gallery?id=' . $id);
+    redirect('admin/edit_gallery?id=' . $id);
   }
 
   public function hapus_kategori_gallery()
@@ -387,7 +399,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/kategori_gallery');
+    redirect('admin/kategori_gallery');
   }
 
   public function hapus_kontak()
@@ -400,7 +412,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-      redirect('admin/kontak');
+    redirect('admin/kontak');
   }
 
   public function hapus_data_divisi()
@@ -459,7 +471,7 @@ class Hapus extends CI_Controller
           </div>');
     redirect('admin/absen_pegawai');
   }
-  
+
   public function hapus_data_month()
   {
     $id = $this->input->get('id');
@@ -518,19 +530,19 @@ class Hapus extends CI_Controller
     $this->db->where('payment_id', $id);
     $this->db->delete('pembayaran');
 
-    if($jenis == 'BULAN'){
+    if ($jenis == 'BULAN') {
       $bulan = $this->db->get_where('bulan', ['payment_payment_id' => $id])->result_array();
-     
-      foreach($bulan as $bu){
-      $this->db->where('bulan_bulan_id', $bu['bulan_id']);
-      $this->db->delete('log_trx');
+
+      foreach ($bulan as $bu) {
+        $this->db->where('bulan_bulan_id', $bu['bulan_id']);
+        $this->db->delete('log_trx');
       }
       $this->db->where('payment_payment_id', $id);
       $this->db->delete('bulan');
-    }elseif($jenis == 'BEBAS'){
+    } elseif ($jenis == 'BEBAS') {
       $bebas = $this->db->get_where('bebas', ['payment_payment_id' => $id])->result_array();
 
-      foreach($bebas as $be){
+      foreach ($bebas as $be) {
         $beb_pay = $this->db->get_where('bebas_pay', ['bebas_bebas_id' => $be['bebas_id']])->row_array();
         $this->db->where('bebas_pay_bebas_pay_id', $beb_pay['bebas_pay_id']);
         $this->db->delete('log_trx');
@@ -567,9 +579,9 @@ class Hapus extends CI_Controller
   public function data_payment_bebas()
   {
     $pay = $this->input->post('payment_id');
-    $this->db->where('student_student_id',$this->input->post('student_id'));
-    $this->db->where('payment_payment_id',$pay);
-    $this->db->where('bebas_id',$this->input->post('bebas_id'));
+    $this->db->where('student_student_id', $this->input->post('student_id'));
+    $this->db->where('payment_payment_id', $pay);
+    $this->db->where('bebas_id', $this->input->post('bebas_id'));
     $this->db->delete('bebas');
     $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data pembayaran bebas berhasil dihapus
@@ -577,7 +589,7 @@ class Hapus extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-    redirect('manage/jenis_pembayaran/view_bebas/'.$pay);
+    redirect('manage/jenis_pembayaran/view_bebas/' . $pay);
   }
 
   public function hapus_faq()

@@ -8,6 +8,7 @@ class Ppdb extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('M_payment');
+        $this->load->model('Main_model');
     }
 
     public function index()
@@ -48,11 +49,18 @@ class Ppdb extends CI_Controller
             }
             $nodaftarmax = str_pad($nodaftar, 5, "0", STR_PAD_LEFT);
             $nodaftarjadi = 'MHS' . $nodaftarmax;
+
+            $ta = $this->Main_model->getAktif()->result();
+            foreach ($ta as $t) :
+                $a = $t->id_ta;
+            endforeach;
+
             $data = [
                 'no_daftar' => $nodaftarjadi,
                 'nama' => $nama,
                 'email' => $email,
                 'no_hp' => $this->input->post('no_hp'),
+                'id_ta' => $a,
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'date_created' => $tgl,
                 'status' => '0',

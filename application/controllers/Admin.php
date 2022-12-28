@@ -6,6 +6,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use Box\Spout\Common\Entity\Row;
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
+
 class Admin extends CI_Controller
 {
     public function __construct()
@@ -20,7 +21,7 @@ class Admin extends CI_Controller
         $user = $this->db->get_where('karyawan', ['email' => $users])->row_array();
         if ($user['role_id'] < '1') {
             redirect('auth/blocked');
-        }elseif($user['role_id'] > '6'){
+        } elseif ($user['role_id'] > '6') {
             redirect('auth/blocked');
         }
 
@@ -46,7 +47,7 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
         if ($data['user']['role_id'] == '6') {
             redirect('marketing');
-        }else if ($data['user']['role_id'] == '5') {
+        } else if ($data['user']['role_id'] == '5') {
             redirect('bendahara');
         }
         $data['web'] =  $this->db->get('website')->row_array();
@@ -54,7 +55,7 @@ class Admin extends CI_Controller
         $id_peng = $data['user']['id'];
         $data_kelas = $this->db->get_where('data_kelas', ['id_peng' => $id_peng])->result_array();
 
-        $id_kelas = array_column($data_kelas,"id");
+        $id_kelas = array_column($data_kelas, "id");
 
         $data['kelas'] = $this->db->get("data_kelas")->num_rows();
         $data['pendidikan'] = $this->db->get("data_pendidikan")->result_array();
@@ -64,7 +65,7 @@ class Admin extends CI_Controller
             $this->db->where_in('id_kelas', $id_kelas);
         }
         $data['sum_siswa'] = $this->db->get("siswa")->num_rows();
-        
+
         if ($data['user']['role_id'] !== '1') {
             $data['tot_siswa'] = $this->db->get("siswa")->num_rows();
             $this->db->where('id_peng', $id_peng);
@@ -117,83 +118,83 @@ class Admin extends CI_Controller
         $this->load->view('template/header', $data);
         if ($data['user']['role_id'] !== '1') {
             $this->load->view('template/sidebar_karyawan', $data);
-        }else{
+        } else {
             $this->load->view('template/sidebar_admin', $data);
         }
         $this->load->view('template/topbar_admin', $data);
-        
+
         if ($data['user']['role_id'] !== '1') {
             $this->load->view('karyawan/index', $data);
-        }else{
+        } else {
             $this->load->view('admin/index', $data);
         }
         $this->load->view('template/footer_admin');
     }
 
-    
-	// payment view in list
-	public function index_bendahara()
-	{
+
+    // payment view in list
+    public function index_bendahara()
+    {
         $this->load->model(['Bulan_model', 'Bebas_model', 'Bebas_pay_model', 'Kredit_model', 'Debit_model']);
-		$data['menu'] = '';
+        $data['menu'] = '';
         $data['title'] = 'Dashboard';
         $data['web'] =  $this->db->get('website')->row_array();
         $data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
         $data['about'] = $this->db->get("about")->row_array();
-        
-		$bulan = $this->Bulan_model->get();
-		$free = $this->Bebas_model->get();
 
         $bulan = $this->Bulan_model->get();
-		$free = $this->Bebas_pay_model->get();
-		$kredit = $this->Kredit_model->get();
-		$debit = $this->Debit_model->get();
+        $free = $this->Bebas_model->get();
 
-        $sum_bulan = 0; 
-        foreach ($bulan as $row){
+        $bulan = $this->Bulan_model->get();
+        $free = $this->Bebas_pay_model->get();
+        $kredit = $this->Kredit_model->get();
+        $debit = $this->Debit_model->get();
+
+        $sum_bulan = 0;
+        foreach ($bulan as $row) {
             $sum_bulan += $row['bulan_bill'];
         }
-        $sum_free = 0; 
-        foreach ($free as $row){
+        $sum_free = 0;
+        foreach ($free as $row) {
             $sum_free += $row['bebas_pay_bill'];
         }
-        $sum_kredit = 0; 
-        foreach ($kredit as $row){
+        $sum_kredit = 0;
+        foreach ($kredit as $row) {
             $sum_kredit += $row['kredit_value'];
-        } 
-        $sum_debit = 0; 
-        foreach($debit as $row){
+        }
+        $sum_debit = 0;
+        foreach ($debit as $row) {
             $sum_debit += $row['debit_value'];
         }
 
         $data['tot_msk'] = $sum_bulan + $sum_free + $sum_debit;
         $data['tot_klr'] = $sum_kredit;
 
-	
-		$params['date'] = date('Y-m-d');
 
-		$bulan = $this->Bulan_model->get($params);
-		$free = $this->Bebas_model->get($params);
+        $params['date'] = date('Y-m-d');
 
         $bulan = $this->Bulan_model->get($params);
-		$free = $this->Bebas_pay_model->get($params);
-		$kredit = $this->Kredit_model->get($params);
-		$debit = $this->Debit_model->get($params);
+        $free = $this->Bebas_model->get($params);
 
-        $sum_bulan = 0; 
-        foreach ($bulan as $row){
+        $bulan = $this->Bulan_model->get($params);
+        $free = $this->Bebas_pay_model->get($params);
+        $kredit = $this->Kredit_model->get($params);
+        $debit = $this->Debit_model->get($params);
+
+        $sum_bulan = 0;
+        foreach ($bulan as $row) {
             $sum_bulan += $row['bulan_bill'];
         }
-        $sum_free = 0; 
-        foreach ($free as $row){
+        $sum_free = 0;
+        foreach ($free as $row) {
             $sum_free += $row['bebas_pay_bill'];
         }
-        $sum_kredit = 0; 
-        foreach ($kredit as $row){
+        $sum_kredit = 0;
+        foreach ($kredit as $row) {
             $sum_kredit += $row['kredit_value'];
-        } 
-        $sum_debit = 0; 
-        foreach($debit as $row){
+        }
+        $sum_debit = 0;
+        foreach ($debit as $row) {
             $sum_debit += $row['debit_value'];
         }
 
@@ -205,7 +206,7 @@ class Admin extends CI_Controller
         $this->load->view('template/topbar_admin', $data);
         $this->load->view('karyawan/index_bendahara', $data);
         $this->load->view('template/footer_admin');
-	}
+    }
 
     public function daftar_siswa()
     {
@@ -216,7 +217,7 @@ class Admin extends CI_Controller
         $id_peng = $data['user']['id'];
         $data_kelas = $this->db->get_where('data_kelas', ['id_peng' => $id_peng])->result_array();
 
-        $id_kelas = array_column($data_kelas,"id");
+        $id_kelas = array_column($data_kelas, "id");
 
         $filter   = $this->input->post('filter');
         $id_prov     = $this->input->post('prov');
@@ -254,9 +255,9 @@ class Admin extends CI_Controller
         $data['siswa'] =  $this->db->get('siswa')->result_array();
 
         $this->load->view('template/header', $data);
-                if ($data['user']['role_id'] !== '1') {
+        if ($data['user']['role_id'] !== '1') {
             $this->load->view('template/sidebar_karyawan', $data);
-        }else{
+        } else {
             $this->load->view('template/sidebar_admin', $data);
         }
         $this->load->view('template/topbar_admin', $data);
@@ -295,8 +296,8 @@ class Admin extends CI_Controller
                             $cek_email = $this->db->get_where('siswa', ['email' => $cells[3]]);
                             $arrr = $this->db->get_where('period', ['period_start' => $cells[18]]);
                             $period = $arrr->row_array();
-                            if($arrr->num_rows() !== 1){
-                                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            if ($arrr->num_rows() !== 1) {
+                                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <strong>Error!</strong> Tahun masuk tidak sah.
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -304,9 +305,9 @@ class Admin extends CI_Controller
                                 </div>');
                                 redirect('admin/daftar_siswa');
                             }
-                            if($cek_email->num_rows() == 1){
-                                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>Error!</strong> Siswa dengan Email <b>'.$cells[3].'</b> sudah terdaftar.
+                            if ($cek_email->num_rows() == 1) {
+                                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Error!</strong> Siswa dengan Email <b>' . $cells[3] . '</b> sudah terdaftar.
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -428,11 +429,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/tambah_siswa', $data);
             $this->load->view('template/footer_admin');
@@ -445,9 +446,9 @@ class Admin extends CI_Controller
 
             $provinsi = $this->db->get_where('provinsi', ['id_prov' => $id_prov])->row_array();
             $pend = $this->db->get_where('data_pendidikan', ['id' => $id_pend])->row_array();
-            if($pend['majors'] == 1){
+            if ($pend['majors'] == 1) {
                 $majors = $this->input->post('jurusan');
-            }elseif($pend['majors'] == 0){
+            } elseif ($pend['majors'] == 0) {
                 $majors = '';
             }
 
@@ -503,7 +504,7 @@ class Admin extends CI_Controller
         $id_peng = $data['user']['id'];
         $data_kelas = $this->db->get_where('data_kelas', ['id_peng' => $id_peng])->result_array();
 
-        $id_kelas = array_column($data_kelas,"id");
+        $id_kelas = array_column($data_kelas, "id");
 
         if ($data['user']['role_id'] !== '1') {
             $this->db->where_in('id', $id_kelas);
@@ -511,7 +512,7 @@ class Admin extends CI_Controller
         $data['kelas_data'] =  $this->db->get('data_kelas')->result_array();
 
         $data['pendidikan'] = $this->db->get("data_pendidikan")->result_array();
-        
+
         if ($data['user']['role_id'] !== '1') {
             $this->db->where_in('id_kelas', $id_kelas);
         }
@@ -528,7 +529,7 @@ class Admin extends CI_Controller
             $this->load->view('template/header', $data);
             if ($data['user']['role_id'] !== '1') {
                 $this->load->view('template/sidebar_karyawan', $data);
-            }else{
+            } else {
                 $this->load->view('template/sidebar_admin', $data);
             }
             $this->load->view('template/topbar_admin', $data);
@@ -563,17 +564,17 @@ class Admin extends CI_Controller
                 $cek_kelas = $this->db->get_where('siswa', ['status' => '1', 'id_kelas' => $id_kam])->result_array();
 
                 foreach ($cek_kelas as $a) {
-                $izin  =  $this->db->get_where('perizinan', ['id_siswa' => $a['id'], 'tgl <=' => $tgl, 'expired >=' => $tgl])->row_array();
-                $data_izin  =  $this->db->get_where('data_perizinan', ['id' => $izin['id_izin']])->row_array();
-                
-                if(!empty($izin)){
-                    $status = 'Izin';
-                    $ket = $data_izin['nama'];
-                }else{
-                    $status = 'Belum Absen';
-                    $ket = 'test';
-                }
-                
+                    $izin  =  $this->db->get_where('perizinan', ['id_siswa' => $a['id'], 'tgl <=' => $tgl, 'expired >=' => $tgl])->row_array();
+                    $data_izin  =  $this->db->get_where('data_perizinan', ['id' => $izin['id_izin']])->row_array();
+
+                    if (!empty($izin)) {
+                        $status = 'Izin';
+                        $ket = $data_izin['nama'];
+                    } else {
+                        $status = 'Belum Absen';
+                        $ket = 'test';
+                    }
+
                     $data2 = [
                         'id_siswa' => $a['id'],
                         'tgl' => $tgl,
@@ -604,8 +605,8 @@ class Admin extends CI_Controller
         $kelas     = $this->db->get_where('data_kelas', ['id' => $absen['id_kelas']])->row_array();
         $pend     = $this->db->get_where('data_pendidikan', ['id' => $kelas['id_pend']])->row_array();
         $data_majors     = $this->db->get_where('data_jurusan', ['id' => $kelas['id_jurus']])->row_array();
-        if($pend['majors'] == 1){
-            $majors = ' - '.$data_majors['nama'];
+        if ($pend['majors'] == 1) {
+            $majors = ' - ' . $data_majors['nama'];
         }
 
         $data['id_absen'] = $this->input->get('id');
@@ -623,9 +624,9 @@ class Admin extends CI_Controller
         $data['daftar_absen'] = $this->db->get_where('daftar_absen', ['id' => $id_absen])->row_array();
 
         $this->load->view('template/header', $data);
-                if ($data['user']['role_id'] !== '1') {
+        if ($data['user']['role_id'] !== '1') {
             $this->load->view('template/sidebar_karyawan', $data);
-        }else{
+        } else {
             $this->load->view('template/sidebar_admin', $data);
         }
         $this->load->view('template/topbar_admin', $data);
@@ -653,11 +654,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/kelas', $data);
             $this->load->view('template/footer_admin');
@@ -703,7 +704,7 @@ class Admin extends CI_Controller
         $id_peng = $data['user']['id'];
         $data_kelas = $this->db->get_where('data_kelas', ['id_peng' => $id_peng])->result_array();
 
-        $id_kelas = array_column($data_kelas,"id");
+        $id_kelas = array_column($data_kelas, "id");
 
         if ($data['user']['role_id'] !== '1') {
             $this->db->where_in('id_kelas', $id_kelas);
@@ -718,11 +719,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/pelanggaran', $data);
             $this->load->view('template/footer_admin');
@@ -792,11 +793,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/data/kursi', $data);
             $this->load->view('template/footer_admin');
@@ -854,11 +855,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/data/pelanggaran', $data);
             $this->load->view('template/footer_admin');
@@ -900,11 +901,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/website', $data);
             $this->load->view('template/footer_admin');
@@ -952,11 +953,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/utama', $data);
             $this->load->view('template/footer_admin');
@@ -1002,11 +1003,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/about', $data);
             $this->load->view('template/footer_admin');
@@ -1042,11 +1043,11 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('maps', 'maps', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/website', $data);
             $this->load->view('template/footer_admin');
@@ -1080,11 +1081,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/setting', $data);
             $this->load->view('template/footer_admin');
@@ -1128,11 +1129,11 @@ class Admin extends CI_Controller
         ]);
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/setting', $data);
             $this->load->view('template/footer_admin');
@@ -1200,9 +1201,9 @@ class Admin extends CI_Controller
         $data['kursi_b'] =  $this->db->get_where('data_kursi', ['tipe' => 'Kursi B', 'id_kelas' => $data['kelas']['id']])->result_array();
 
         $this->load->view('template/header', $data);
-                if ($data['user']['role_id'] !== '1') {
+        if ($data['user']['role_id'] !== '1') {
             $this->load->view('template/sidebar_karyawan', $data);
-        }else{
+        } else {
             $this->load->view('template/sidebar_admin', $data);
         }
         $this->load->view('template/topbar_admin', $data);
@@ -1220,7 +1221,7 @@ class Admin extends CI_Controller
         $id_peng = $data['user']['id'];
         $data_kelas = $this->db->get_where('data_kelas', ['id_peng' => $id_peng])->result_array();
 
-        $id_kelas = array_column($data_kelas,"id");
+        $id_kelas = array_column($data_kelas, "id");
 
         if ($data['user']['role_id'] !== '1') {
             $this->db->where_in('id_kelas', $id_kelas);
@@ -1240,11 +1241,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/perizinan', $data);
             $this->load->view('template/footer_admin');
@@ -1291,11 +1292,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/data/perizinan', $data);
             $this->load->view('template/footer_admin');
@@ -1327,7 +1328,7 @@ class Admin extends CI_Controller
         $id_peng = $data['user']['id'];
         $data_kelas = $this->db->get_where('data_kelas', ['id_peng' => $id_peng])->result_array();
 
-        $id_kelas = array_column($data_kelas,"id");
+        $id_kelas = array_column($data_kelas, "id");
 
         if ($data['user']['role_id'] !== '1') {
             $this->db->where_in('id_kelas', $id_kelas);
@@ -1341,11 +1342,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/konseling', $data);
             $this->load->view('template/footer_admin');
@@ -1401,7 +1402,7 @@ class Admin extends CI_Controller
             $this->load->view('template/header', $data);
             if ($data['user']['role_id'] !== '1') {
                 $this->load->view('template/sidebar_karyawan', $data);
-            }else{
+            } else {
                 $this->load->view('template/sidebar_admin', $data);
             }
             $this->load->view('template/topbar_admin', $data);
@@ -1455,11 +1456,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/data/pendidikan', $data);
             $this->load->view('template/footer_admin');
@@ -1480,7 +1481,116 @@ class Admin extends CI_Controller
             redirect('admin/data_pendidikan');
         }
     }
+    public function data_ta()
+    {
+        $data['menu'] = 'menu-11';
+        $data['title'] = 'Data Tahun Ajaran';
+        $data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
+        if ($data['user']['role_id'] !== '1') {
+            redirect('admin');
+        }
+        $data['web'] =  $this->db->get('website')->row_array();
 
+        $data['ta'] =  $this->db->get('ta')->result_array();
+
+        $this->form_validation->set_rules(' periode', 'periode', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('template/header', $data);
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
+            $this->load->view('template/topbar_admin', $data);
+            $this->load->view('admin/data/ta', $data);
+            $this->load->view('template/footer_admin');
+        } else {
+
+            // $nama = $this->input->post('pendidikan');
+            // $majors = $this->input->post('majors');
+            $data = [
+                'ta' => $this->input->post('ta'),
+                'tahun' => $this->input->post('tahun'),
+                'periode' => $this->input->post('periode'),
+                'tempat_tes' => $this->input->post('tempat_tes'),
+                'status_ta' => "0",
+                'tgl_tes' => date('Y-m-d')
+            ];
+
+            $this->db->insert('ta', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Data Ta < berhasil ditambahkan :)
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>');
+            redirect('admin/data_ta');
+        }
+    }
+    private function _validasi()
+    {
+        $this->form_validation->set_rules('periode', 'Periode', 'required|trim');
+    }
+
+    public function add()
+    {
+        $this->_validasi();
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = "";
+        } else {
+            $a = $this->input->post('status_ta', 0);
+            $input = $this->input->post(null, true);
+            $insert = $this->db->insert('ta', $input, $a);
+            if ($insert) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Data Ta  berhasil ditambahkan :)
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>');
+                redirect('admin/data_ta');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Data Ta  Gagal ditambahkan :)
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>', false);
+                redirect('admin/data_ta');
+            }
+        }
+    }
+    public function setTa()
+    {
+        $id    = $this->input->get('id_ta');
+        //reset status tahun akademik
+        $status = array('status_ta' => 0);
+        $this->db->update('ta', $status);
+
+        //Set aktif tahun akademik
+        $where = array('id_ta' => $id);
+        $data = array('status_ta' => 1);
+
+        $this->db->update('ta', $data, $where);
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-block alert-success">
+				<button type="button" class="close" data-dismiss="alert">
+					<i class="ace-icon fa fa-times"></i>
+				</button>
+
+				<i class="ace-icon fa fa-check green"></i>
+
+				Data
+				<strong class="green">
+					Tahun Akademik Telah Aktif!
+				</strong>
+			</div>'
+        );
+        redirect('admin/data_ta');
+    }
 
     public function data_jurusan()
     {
@@ -1500,11 +1610,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/data/jurusan', $data);
             $this->load->view('template/footer_admin');
@@ -1555,11 +1665,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/karyawan', $data);
             $this->load->view('template/footer_admin');
@@ -1618,11 +1728,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/tagline', $data);
             $this->load->view('template/footer_admin');
@@ -1699,9 +1809,9 @@ class Admin extends CI_Controller
         }
 
         $this->load->view('template/header', $data);
-                if ($data['user']['role_id'] !== '1') {
+        if ($data['user']['role_id'] !== '1') {
             $this->load->view('template/sidebar_karyawan', $data);
-        }else{
+        } else {
             $this->load->view('template/sidebar_admin', $data);
         }
         $this->load->view('template/topbar_admin', $data);
@@ -1724,11 +1834,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/acara/tambah_acara', $data);
             $this->load->view('template/footer_admin');
@@ -1808,11 +1918,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/acara/acara', $data);
             $this->load->view('template/footer_admin');
@@ -1850,11 +1960,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/acara/kategori', $data);
             $this->load->view('template/footer_admin');
@@ -1920,11 +2030,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/gallery/gallery', $data);
             $this->load->view('template/footer_admin');
@@ -1962,11 +2072,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/gallery/kategori', $data);
             $this->load->view('template/footer_admin');
@@ -2028,11 +2138,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/gallery/tambah_gallery', $data);
             $this->load->view('template/footer_admin');
@@ -2130,11 +2240,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/email_sender', $data);
             $this->load->view('template/footer_admin');
@@ -2298,11 +2408,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/edit_siswa', $data);
             $this->load->view('template/footer_admin');
@@ -2314,9 +2424,9 @@ class Admin extends CI_Controller
 
             $provinsi = $this->db->get_where('provinsi', ['id_prov' => $id_prov])->row_array();
             $pend = $this->db->get_where('data_pendidikan', ['id' => $id_pend])->row_array();
-            if($pend['majors'] == 1){
+            if ($pend['majors'] == 1) {
                 $majors = $this->input->post('jurusan');
-            }elseif($pend['majors'] == 0){
+            } elseif ($pend['majors'] == 0) {
                 $majors = '';
             }
 
@@ -2378,11 +2488,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/gallery/edit_gallery', $data);
             $this->load->view('template/footer_admin');
@@ -2463,11 +2573,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/acara/edit_acara', $data);
             $this->load->view('template/footer_admin');
@@ -2582,9 +2692,9 @@ class Admin extends CI_Controller
         $data['siswa'] =  $this->db->get('ppdb')->result_array();
 
         $this->load->view('template/header', $data);
-                if ($data['user']['role_id'] !== '1') {
+        if ($data['user']['role_id'] !== '1') {
             $this->load->view('template/sidebar_karyawan', $data);
-        }else{
+        } else {
             $this->load->view('template/sidebar_admin', $data);
         }
         $this->load->view('template/topbar_admin', $data);
@@ -2617,11 +2727,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/ppdb/edit_ppdb', $data);
             $this->load->view('template/footer_admin');
@@ -2631,9 +2741,9 @@ class Admin extends CI_Controller
             $id_pend = $this->input->post('pendidikan');
 
             $pend = $this->db->get_where('data_pendidikan', ['id' => $id_pend])->row_array();
-            if($pend['majors'] == 1){
+            if ($pend['majors'] == 1) {
                 $majors = $this->input->post('jurusan');
-            }elseif($pend['majors'] == 0){
+            } elseif ($pend['majors'] == 0) {
                 $majors = '';
             }
             $provinsi = $this->db->get_where('provinsi', ['id_prov' => $id_prov])->row_array();
@@ -2738,7 +2848,7 @@ class Admin extends CI_Controller
         $id_pend = $siswa['id_pend'];
 
         $cek_siswa = $this->db->get_where('siswa', ['email' => $siswa['email']])->num_rows();
-        if($cek_siswa == 1){
+        if ($cek_siswa == 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
             Data siswa <strong>' . $nama . '</strong> sudah masuk daftar siswa!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -2749,9 +2859,9 @@ class Admin extends CI_Controller
         }
 
         $pend = $this->db->get_where('data_pendidikan', ['id' => $id_pend])->row_array();
-        if($pend['majors'] == 1){
+        if ($pend['majors'] == 1) {
             $majors = $siswa['id_majors'];
-        }elseif($pend['majors'] == 0){
+        } elseif ($pend['majors'] == 0) {
             $majors = '';
         }
 
@@ -2855,9 +2965,9 @@ class Admin extends CI_Controller
             //looping pembacaan data
             foreach ($get->result() as $key) {
                 $thn_msk = $this->db->get_where('period', ['id' => $key->thn_msk])->row_array();
-                if($key->jk == 'L'){
+                if ($key->jk == 'L') {
                     $jenkel = 'Laki-Laki';
-                }elseif($key->jk == 'P'){
+                } elseif ($key->jk == 'P') {
                     $jenkel = 'Perempuan';
                 }
 
@@ -2865,10 +2975,10 @@ class Admin extends CI_Controller
 
                 $pend = $this->db->get_where('data_pendidikan', ['id' => $id_pend])->row_array();
                 $kelas = $this->db->get_where('data_kelas', ['id' => $key->id_kelas])->row_array();
-                if($pend['majors'] == 1){
+                if ($pend['majors'] == 1) {
                     $jur = $this->db->get_where('data_jurusan', ['id' => $key->id_majors])->row_array();
                     $majors = $jur['nama'];
-                }elseif($pend['majors'] == 0){
+                } elseif ($pend['majors'] == 0) {
                     $majors = '';
                 }
                 //masukkan data dari database ke variabel array
@@ -2893,7 +3003,7 @@ class Admin extends CI_Controller
                     WriterEntityFactory::createCell($key->pek_wali),
                     WriterEntityFactory::createCell($key->peng_ortu),
                     WriterEntityFactory::createCell($key->no_telp),
-                    WriterEntityFactory::createCell($thn_msk['period_start'].'/'.$thn_msk['period_end']),
+                    WriterEntityFactory::createCell($thn_msk['period_start'] . '/' . $thn_msk['period_end']),
                     WriterEntityFactory::createCell($key->sekolah_asal),
                     WriterEntityFactory::createCell($key->kelas),
                     WriterEntityFactory::createCell($pend['nama']),
@@ -2931,11 +3041,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/data/divisi', $data);
             $this->load->view('template/footer_admin');
@@ -2989,13 +3099,13 @@ class Admin extends CI_Controller
             $this->load->view('template/header', $data);
             if ($data['user']['role_id'] !== '1') {
                 $this->load->view('template/sidebar_karyawan', $data);
-            }else{
+            } else {
                 $this->load->view('template/sidebar_admin', $data);
             }
             $this->load->view('template/topbar_admin', $data);
             if ($data['user']['role_id'] !== '1' && $data['user']['role_id'] !== '5') {
                 $this->load->view('karyawan/penggajian', $data);
-            }else{
+            } else {
                 $this->load->view('admin/penggajian/penggajian', $data);
             }
             $this->load->view('template/footer_admin');
@@ -3049,11 +3159,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/penggajian/data_cicilan', $data);
             $this->load->view('template/footer_admin');
@@ -3112,11 +3222,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/absen/absen_pegawai', $data);
             $this->load->view('template/footer_admin');
@@ -3267,11 +3377,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/absen/data_absensi', $data);
             $this->load->view('template/footer_admin');
@@ -3318,9 +3428,9 @@ class Admin extends CI_Controller
         $data['daftar_absen'] = $absen;
 
         $this->load->view('template/header', $data);
-                if ($data['user']['role_id'] !== '1') {
+        if ($data['user']['role_id'] !== '1') {
             $this->load->view('template/sidebar_karyawan', $data);
-        }else{
+        } else {
             $this->load->view('template/sidebar_admin', $data);
         }
         $this->load->view('template/topbar_admin', $data);
@@ -3356,11 +3466,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/tambah_karyawan', $data);
             $this->load->view('template/footer_admin');
@@ -3427,11 +3537,11 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
-                    if ($data['user']['role_id'] !== '1') {
-            $this->load->view('template/sidebar_karyawan', $data);
-        }else{
-            $this->load->view('template/sidebar_admin', $data);
-        }
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/edit_karyawan', $data);
             $this->load->view('template/footer_admin');
@@ -3492,7 +3602,7 @@ class Admin extends CI_Controller
         $this->load->view('template/footer_admin');
     }
 
-    
+
     public function payment()
     {
         $data['menu'] = 'website';
@@ -3538,7 +3648,7 @@ class Admin extends CI_Controller
         }
     }
 
-    
+
     public function wa_gateway()
     {
         $data['menu'] = 'website';
@@ -3592,7 +3702,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('pesan', 'Isi Pesan', 'required');
         if ($this->form_validation->run() == false) {
             redirect('admin/wa_gateway');
-        }else{
+        } else {
             $no =  $this->input->post('nomor');
             $pesan = $this->input->post('pesan');
 
@@ -3613,35 +3723,35 @@ class Admin extends CI_Controller
 
     public function faq()
     {
-         $data['menu'] = 'website';
+        $data['menu'] = 'website';
         $data['title'] = 'FAQ';
         $data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
         if ($data['user']['role_id'] !== '1') {
             redirect('admin');
         }
         $data['web'] =  $this->db->get('website')->row_array();
-        
+
         $this->db->order_by('role', 'asc');
         $data['faq'] =  $this->db->get('faq')->result_array();
 
         $this->form_validation->set_rules('pertanyaan', 'Pertanyaan', 'required');
         $this->form_validation->set_rules('jawaban', 'Jawaban', 'required');
-        
-         if ($this->form_validation->run() == false) {
+
+        if ($this->form_validation->run() == false) {
             $this->load->view('template/header', $data);
             $this->load->view('template/sidebar_admin', $data);
             $this->load->view('template/topbar_admin', $data);
             $this->load->view('admin/website/faq', $data);
             $this->load->view('template/footer_admin');
         } else {
-              $data = [
+            $data = [
                 'pertanyaan'    => $this->input->post('pertanyaan'),
                 'jawaban'       => $this->input->post('jawaban'),
                 'role'          => $this->input->post('role')
             ];
 
             $this->db->insert('faq', $data);
-               $this->session->set_flashdata(
+            $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> FAQ berhasil di tambahkan. :)
@@ -3653,5 +3763,4 @@ class Admin extends CI_Controller
             redirect('admin/faq');
         }
     }
-
 }
