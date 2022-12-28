@@ -636,7 +636,8 @@ class Ppdb extends CI_Controller
         }
         $data = [
             'img_bukti' => $img_bukti,
-            'url_inv' => $this->input->post('url_inv')
+            'sts_pmb' => "1",
+            'tgl_insert' => date('y-m-d')
         ];
 
         $this->db->where('id', $id);

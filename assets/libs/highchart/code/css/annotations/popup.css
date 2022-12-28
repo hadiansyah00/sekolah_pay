@@ -32,8 +32,6 @@
   max-width: 600px;
   position: absolute;
   z-index: 100;
-  -webkit-box-shadow: 0px 0px 8px 0px rgba(61, 61, 61, 0.3);
-  -moz-box-shadow: 0px 0px 8px 0px rgba(61, 61, 61, 0.3);
   box-shadow: 0px 0px 8px 0px rgba(61, 61, 61, 0.3);
 }
 
@@ -56,8 +54,7 @@
 
 .highcharts-popup-lhs-col, .highcharts-popup-rhs-col {
   padding: 20px;
-  height: calc(100% - 84px);
-  /* 44px - padding, 40px - tabs*/
+  height: calc(100% - 84px); /* 44px - padding, 40px - tabs*/
   float: left;
 }
 
@@ -228,4 +225,4 @@
 .highcharts-indicator-title {
   float: left;
   padding-bottom: 15px;
-}
+}/*# sourceMappingURL=popup.css.map */

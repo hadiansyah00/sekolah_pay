@@ -6,9 +6,9 @@ $notif_konseling = $this->db->get_where('konseling', ['status' => 'Respon', 'id_
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('siswa') ?>">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon">
+            <i aria-hidden="true"><img src="<?= base_url(); ?>assets/img/logo_sbh().png" width="85"></i>
         </div>
         <div class="sidebar-brand-text mx-3">siswa</sup></div>
     </a>
@@ -30,7 +30,7 @@ $notif_konseling = $this->db->get_where('konseling', ['status' => 'Respon', 'id_
     <div class="sidebar-heading">
         Menu
     </div>
-    
+
     <li class="nav-item <?= ($this->uri->segment(2) == 'payout') ? 'active' : '' ?>">
         <a class="nav-link" href="<?= base_url('siswa/payout'); ?>">
             <i class="fas fa-fw fa-money-bill"></i>

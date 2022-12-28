@@ -1,12 +1,12 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-white sidebar sidebar-light accordion shadow-sm" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('siswa') ?>">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+    <a class="sidebar-brand d-flex text-gardient-warning align-items-center bg-light justify-content-center" href="#">
+        <div class="sidebar-brand-icon">
+            <i aria-hidden="true"><img src="<?= base_url(); ?>assets/img/logo_sbh.png" width="85"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">siswa</sup></div>
+
     </a>
 
     <!-- Divider -->

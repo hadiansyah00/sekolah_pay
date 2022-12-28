@@ -35,11 +35,12 @@
         }
     </style>
 </head>
+
 <body>
     <div style="border: 1px dashed #333333; padding: 5px">
         <div style="border: 1px solid #333333; padding: 5px">
             <header>
-                <div>INVOICE DAFTAR ULANG PPDB</div>
+                <div>INVOICE DAFTAR ULANG</div>
                 <div><strong>"<?= $web['nama'] ?>"</strong></div>
                 <div style="font-size:12px"><?= $web['alamat'] ?></div>
                 <div style="font-size:11px">No Telp : <?= $web['telp'] ?> Email : <?= $web['email'] ?></div>
@@ -50,13 +51,13 @@
                 <tr>
                     <td width="25.8%">Nama Siswa</td>
                     <td><strong><?= $user['nama'] ?></strong></td>
-                    <td colspan="2">Tanggal : <?= mediumdate_indo(date($user['date_inv'])) ?></td>
+                    <td colspan="2">Tanggal : <?= mediumdate_indo(date($user['tgl_insert'])) ?></td>
                 </tr>
                 <tr>
                     <td width="25.8%">Email</td>
                     <td><strong><?= $user['email']; ?></strong></td>
                     <td width="15.8%">Status Pembayaran</td>
-                    <?php if($user['inv'] == 1) : ?>
+                    <?php if ($user['sts_pmb'] == 2) : ?>
                         <td width="15.8%"><strong>LUNAS</strong></td>
                     <?php else : ?>
                         <td width="15.8%"><strong>BELUM LUNAS</strong></td>
@@ -70,7 +71,7 @@
             <div style="padding: 10px 0"><strong>Informasi Pembayaran</strong></div>
             <table>
                 <?php $sum = 0;
-                foreach ($pay as $p) : ?>
+                foreach ($pembayaran as $p) : ?>
                     <?php $sum += $p['jumlah']; ?>
                     <tr>
                         <td colspan="3"><?= $p['nama'] ?></td>

@@ -35,7 +35,7 @@ class Update extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-            redirect('admin/kelas');
+        redirect('admin/kelas');
     }
 
 
@@ -81,7 +81,7 @@ class Update extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-            redirect('admin/pelanggaran');
+        redirect('admin/pelanggaran');
     }
 
 
@@ -102,9 +102,9 @@ class Update extends CI_Controller
           </button>
           </div>');
             if ($seg_daftar == 'daftar_absen') {
-                    redirect('admin/daftar_absen');
+                redirect('admin/daftar_absen');
             } else {
-                    redirect('admin/absen/' . $absen['tgl'] . '?id=' . $id . '');
+                redirect('admin/absen/' . $absen['tgl'] . '?id=' . $id . '');
             }
         } else {
             $data = [
@@ -120,7 +120,7 @@ class Update extends CI_Controller
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>');
-                    redirect('admin/daftar_absen');
+                redirect('admin/daftar_absen');
             } else {
                 $this->session->set_flashdata('messageA', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 Data absen tanggal <strong>' . mediumdate_indo(date($absen['tgl'])) . '</strong> dari kelas <b>' . $kelas['nama'] . '</b> berhasil ditutup.
@@ -128,7 +128,7 @@ class Update extends CI_Controller
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>');
-                    redirect('admin/absen/' . $absen['tgl'] . '?id=' . $id . '');
+                redirect('admin/absen/' . $absen['tgl'] . '?id=' . $id . '');
             }
         }
     }
@@ -186,7 +186,7 @@ class Update extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-            redirect('admin/perizinan');
+        redirect('admin/perizinan');
     }
 
     public function update_proses_izin()
@@ -205,7 +205,7 @@ class Update extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-            redirect('admin/perizinan');
+        redirect('admin/perizinan');
     }
 
     public function update_data_perizinan()
@@ -318,7 +318,7 @@ class Update extends CI_Controller
                         <span aria-hidden="true">&times;</span>
                       </button>
                       </div>');
-                redirect('admin/absen/' . $cek['tgl'] . '?id=' . $cek['role_absen'] . '');
+            redirect('admin/absen/' . $cek['tgl'] . '?id=' . $cek['role_absen'] . '');
         }
 
         $this->db->set('ket', $izin);
@@ -332,7 +332,7 @@ class Update extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-            redirect('admin/absen/' . $cek['tgl'] . '?id=' . $cek['role_absen'] . '');
+        redirect('admin/absen/' . $cek['tgl'] . '?id=' . $cek['role_absen'] . '');
     }
 
     public function tutup_konseling()
@@ -360,7 +360,7 @@ class Update extends CI_Controller
               </div>');
             redirect('admin/konseling');
         } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data Konseling <strong>' . $topik . '</strong> berhasil ditutup.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -487,7 +487,7 @@ class Update extends CI_Controller
             </button>
             </div>'
         );
-            redirect('admin/view_kelas/' . $id_kelas . '');
+        redirect('admin/view_kelas/' . $id_kelas . '');
     }
 
     public function update_konseling()
@@ -742,7 +742,7 @@ class Update extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-            redirect('admin/kategori_acara');
+        redirect('admin/kategori_acara');
     }
 
 
@@ -764,7 +764,7 @@ class Update extends CI_Controller
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-            redirect('admin/kategori_gallery');
+        redirect('admin/kategori_gallery');
     }
 
 
@@ -923,11 +923,11 @@ class Update extends CI_Controller
 
     public function konfirmasi_ppdb()
     {
-        
-        $find = array("https://","http://");
+
+        $find = array("https://", "http://");
         $replace = "www.";
         $arr = site_url();
-        $site = str_replace($find,$replace,$arr);
+        $site = str_replace($find, $replace, $arr);
 
         $id    = $this->input->get('id');
         $staff    = $this->input->get('staff');
@@ -943,10 +943,10 @@ class Update extends CI_Controller
         $no = $ppdb['no_hp'];
         $pesan = 'Pendaftaran PPDB anda telah berhasil dengan data :
 
-Nama : '.$ppdb['nama'].'
-Nomor Pendaftaran : '.$ppdb['no_daftar'].'
-NIS : '.$ppdb['nis'].'
-Email : '.$ppdb['email'].'
+Nama : ' . $ppdb['nama'] . '
+Nomor Pendaftaran : ' . $ppdb['no_daftar'] . '
+NIS : ' . $ppdb['nis'] . '
+Email : ' . $ppdb['email'] . '
 
 Untuk pengumuman PPDB akan di infokan melalui website :
 ' . $site . '
@@ -964,7 +964,7 @@ Terimakasih.';
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-            redirect('admin/edit_ppdb?id=' . $id);
+        redirect('admin/edit_ppdb?id=' . $id);
     }
 
 
@@ -981,7 +981,7 @@ Terimakasih.';
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-            redirect('admin/edit_ppdb?id=' . $id);
+        redirect('admin/edit_ppdb?id=' . $id);
     }
 
     public function tolak_ppdb()
@@ -1001,7 +1001,7 @@ Terimakasih.';
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-            redirect('admin/edit_ppdb?id=' . $id);
+        redirect('admin/edit_ppdb?id=' . $id);
     }
 
     public function update_data_divisi()
@@ -1058,7 +1058,7 @@ Terimakasih.';
             $this->db->where('id', $id);
             $this->db->update('data_cicilan');
         }
-        
+
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data cicilan <strong>' . $nama . '</strong> dengan nama <strong>' . $cek_peng['nama'] . '</strong> berhasil diupdate
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -1088,7 +1088,6 @@ Terimakasih.';
         } else if ($segmen == 'view_absen') {
             redirect('admin/view_absen_pegawai/' . $tgll . '?id=' . $id . '');
         }
-        
     }
 
     public function batal_absen_pegawai()
@@ -1185,10 +1184,10 @@ Terimakasih.';
         $this->db->update('data_cicilan');
 
         $kredit = $this->db->get_where('kredit', ['gaji' => 1, 'user_user_id' => $id])->row_array();
-      
+
         $this->db->where('kredit_id', $kredit['kredit_id']);
         $this->db->delete('kredit');
-        
+
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data penggajian <strong>' . $nama['nama'] . '</strong> berhasil di batalkan.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -1207,7 +1206,7 @@ Terimakasih.';
         //sum hdir
         $get_penggajian = $this->db->get_where('penggajian', ['id' => $id])->row_array();
         $tgl_akhir = $get_penggajian['tgl_akhir'];
-        
+
         $this->db->set('tgl_akhir', $tgl_akhir);
         $this->db->set('status', 1);
         $this->db->where('id', $id);
@@ -1232,20 +1231,20 @@ Terimakasih.';
         $divisi = $this->db->get_where('data_divisi', ['id' => $nama['id_divisi']])->row_array();
         $data_cicilan = $this->db->get_where('data_cicilan', ['id_peng' => $id_peng, 'tenor !=' => 0])->result_array();
         $penggajian = $this->db->get('penggajian')->result_array();
-        foreach($penggajian as $d){
-        $this->db->where('tgl >=', $d['tgl_awal']);
-        $this->db->where('tgl <=', $d['tgl_akhir']);
-        $this->db->where('id_peng', $d['id_peng']);
-        $this->db->where('status', '1');
-        $sum_hadir = $this->db->get('absen_pegawai')->num_rows();
-        //sum Total Jam
-        $this->db->select_sum('sum_jam');
-        $this->db->where('tgl >=', $d['tgl_awal']);
-        $this->db->where('tgl <=', $d['tgl_akhir']);
-        $sum_jam = $this->db->get_where('absen_pegawai', ['id_peng' => $d['id_peng']])->row_array();
+        foreach ($penggajian as $d) {
+            $this->db->where('tgl >=', $d['tgl_awal']);
+            $this->db->where('tgl <=', $d['tgl_akhir']);
+            $this->db->where('id_peng', $d['id_peng']);
+            $this->db->where('status', '1');
+            $sum_hadir = $this->db->get('absen_pegawai')->num_rows();
+            //sum Total Jam
+            $this->db->select_sum('sum_jam');
+            $this->db->where('tgl >=', $d['tgl_awal']);
+            $this->db->where('tgl <=', $d['tgl_akhir']);
+            $sum_jam = $this->db->get_where('absen_pegawai', ['id_peng' => $d['id_peng']])->row_array();
         }
         $sum = 0;
-        foreach($data_cicilan as $c){
+        foreach ($data_cicilan as $c) {
             $sum += $c['nominal'];
         }
         $jumlah_gaji = $divisi['gaji'] + $divisi['tunjangan'] + $guru['intensif'] * $sum_hadir + $guru['nominal_jam'] * $sum_jam['sum_jam'];
@@ -1325,10 +1324,10 @@ Terimakasih.';
     public function update_periode()
     {
         $id    = $this->input->post('id');
-        if(!empty($this->input->post('period_end'))){
+        if (!empty($this->input->post('period_end'))) {
             $period_end = $this->input->post('period_end');
-        }else{
-            $period_end = $this->input->post('period_start')+1;
+        } else {
+            $period_end = $this->input->post('period_start') + 1;
         }
 
         $data = [
@@ -1350,119 +1349,134 @@ Terimakasih.';
 
     public function reset_point()
     {
-      $id = $this->input->get('id');
-      $this->db->set('point', 100);
-      $this->db->where('id', $id);
-      $this->db->update('siswa');
-      $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        $id = $this->input->get('id');
+        $this->db->set('point', 100);
+        $this->db->where('id', $id);
+        $this->db->update('siswa');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
               Reset point ke 100 berhasil.
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-      redirect('admin/daftar_siswa');
+        redirect('admin/daftar_siswa');
     }
 
     public function edit_keluaran()
     {
-    $id = $this->input->post('id');
-    $data = [
-        'kredit_desc' =>  $this->input->post('kredit_desc'),
-        'kredit_value' =>  $this->input->post('kredit_value'),
-        'kredit_last_update' =>  date('Y-m-d H:i:s')
-    ];
-    $this->db->where('kredit_id', $id);
-    $this->db->update('kredit', $data);
-      $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        $id = $this->input->post('id');
+        $data = [
+            'kredit_desc' =>  $this->input->post('kredit_desc'),
+            'kredit_value' =>  $this->input->post('kredit_value'),
+            'kredit_last_update' =>  date('Y-m-d H:i:s')
+        ];
+        $this->db->where('kredit_id', $id);
+        $this->db->update('kredit', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
               Data Pengeluaran berhasil di update.
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-      redirect('manage/keluaran');
+        redirect('manage/keluaran');
     }
 
     public function edit_masukan()
     {
-    $id = $this->input->post('id');
-    $data = [
-        'debit_desc' =>  $this->input->post('debit_desc'),
-        'debit_value' =>  $this->input->post('debit_value'),
-        'debit_last_update' =>  date('Y-m-d H:i:s')
-    ];
-    $this->db->where('debit_id', $id);
-    $this->db->update('debit', $data);
-      $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        $id = $this->input->post('id');
+        $data = [
+            'debit_desc' =>  $this->input->post('debit_desc'),
+            'debit_value' =>  $this->input->post('debit_value'),
+            'debit_last_update' =>  date('Y-m-d H:i:s')
+        ];
+        $this->db->where('debit_id', $id);
+        $this->db->update('debit', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
               Data Pemasukan berhasil di update.
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-      redirect('manage/masukan');
+        redirect('manage/masukan');
     }
 
     public function withdraw()
     {
-    $id = $this->input->post('id');
-    $jumlah = $this->input->post('jumlah');
-    $get_staff = $this->db->get_where('karyawan', ['id' => $id])->row_array();
-    if($jumlah > $get_staff['jumlah_reff']){
-        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        $id = $this->input->post('id');
+        $jumlah = $this->input->post('jumlah');
+        $get_staff = $this->db->get_where('karyawan', ['id' => $id])->row_array();
+        if ($jumlah > $get_staff['jumlah_reff']) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
         Jumlah point referral tidak cukup untuk di Withdraw
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
         </div>');
-        redirect('admin/karyawan');
-    }
-    $total = $get_staff['jumlah_reff'] - $jumlah;
-    
-    $this->db->set('jumlah_reff', $total);
-    $this->db->where('id', $id);
-    $this->db->update('karyawan');
-      $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            redirect('admin/karyawan');
+        }
+        $total = $get_staff['jumlah_reff'] - $jumlah;
+
+        $this->db->set('jumlah_reff', $total);
+        $this->db->where('id', $id);
+        $this->db->update('karyawan');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
               Withdraw point referral berhasil.
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-      redirect('admin/karyawan');
+        redirect('admin/karyawan');
     }
 
     public function update_raport()
     {
-    $id = $this->input->post('id');
-    $rap = $this->input->post('raport');
-    $this->db->set('raport', $rap);
-    $this->db->where('id', $id);
-    $this->db->update('ppdb');
-      $this->session->set_flashdata('messageRap', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        $id = $this->input->post('id');
+        $rap = $this->input->post('sts_pmb');
+        $this->db->set('raport', $rap);
+        $this->db->where('id', $id);
+        $this->db->update('ppdb');
+        $this->session->set_flashdata('messageRap', '<div class="alert alert-success alert-dismissible fade show" role="alert">
               Raport berhasil di update.
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-      redirect('admin/edit_ppdb?id='.$id);
+        redirect('admin/edit_ppdb?id=' . $id);
+    }
+    public function update_pmb()
+    {
+        $id = $this->input->post('id');
+        $p = $this->input->post('sts_pmb');
+        $this->db->set('sts_pmb', $p);
+        $this->db->where('id', $id);
+        $this->db->update('ppdb');
+        $this->session->set_flashdata('messagePmb', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+              Raport berhasil di update.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+        redirect('admin/edit_ppdb?id=' . $id);
     }
 
-    
+
     public function faq()
     {
         $id = $this->input->post('id');
         $data = [
-                'pertanyaan'    => $this->input->post('pertanyaan'),
-                'jawaban'       => $this->input->post('jawaban'),
-                'role'          => $this->input->post('role')
-            ];
-        
+            'pertanyaan'    => $this->input->post('pertanyaan'),
+            'jawaban'       => $this->input->post('jawaban'),
+            'role'          => $this->input->post('role')
+        ];
+
         $this->db->where('id', $id);
         $this->db->update('ppdb', $data);
-          $this->session->set_flashdata('messageRap', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        $this->session->set_flashdata('messageRap', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                   Faq berhasil di update.
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-          redirect('admin/faq');
+        redirect('admin/faq');
     }
 }

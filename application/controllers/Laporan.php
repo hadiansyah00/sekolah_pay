@@ -10,20 +10,21 @@ class Laporan extends CI_Controller
         $this->load->library('Pdf');
     }
 
-    function encode_img_base64($img_path = false, $img_type = 'jpg'){
-        if( $img_path ){
+    function encode_img_base64($img_path = false, $img_type = 'jpg')
+    {
+        if ($img_path) {
             //convert image into Binary data
-            $img_data = fopen ( $img_path, 'rb' );
-            $img_size = filesize ( $img_path );
-            $binary_image = fread ( $img_data, $img_size );
-            fclose ( $img_data );
-    
+            $img_data = fopen($img_path, 'rb');
+            $img_size = filesize($img_path);
+            $binary_image = fread($img_data, $img_size);
+            fclose($img_data);
+
             //Build the src string to place inside your img tag
-            $img_src = "data:image/".$img_type.";base64,".str_replace ("\n", "", base64_encode($binary_image));
-    
+            $img_src = "data:image/" . $img_type . ";base64," . str_replace("\n", "", base64_encode($binary_image));
+
             return $img_src;
         }
-    
+
         return false;
     }
 
@@ -42,15 +43,15 @@ class Laporan extends CI_Controller
         $pendidikan = $this->db->get_where('data_pendidikan', ['id' => $id_rib])->row_array();
         $kelas = $this->db->get_where('data_kelas', ['id' => $id_kam])->row_array();
         $jurus = $this->db->get_where('data_jurusan', ['id_pend' => $pendidikan['id']])->row_array();
-        
+
         $this->db->where('tgl >=', $tgl_awal);
         $this->db->where('tgl <=', $tgl_akhir);
         $this->db->where('id_kelas', $id_kam);
 
         $data['laporan'] = $this->db->get('perizinan')->result_array();
-        if($pendidikan['majors'] == 1){
-            $data['jurus'] = ' - '.$jurus['nama'];
-        }else{
+        if ($pendidikan['majors'] == 1) {
+            $data['jurus'] = ' - ' . $jurus['nama'];
+        } else {
             $data['jurus'] = '';
         }
         $data['tgl_awal'] = $tgl_awal;
@@ -92,9 +93,9 @@ class Laporan extends CI_Controller
         $data['siswa'] = $siswa;
         $data['pendidikan'] = $pendidikan['nama'];
         $data['kelas'] = $kelas['nama'];
-        if($pendidikan['majors'] == 1){
-            $data['jurus'] = ' - '.$jurus['nama'];
-        }else{
+        if ($pendidikan['majors'] == 1) {
+            $data['jurus'] = ' - ' . $jurus['nama'];
+        } else {
             $data['jurus'] = '';
         }
 
@@ -293,7 +294,7 @@ class Laporan extends CI_Controller
 
         $this->pdf->load_view('laporan/laporan_data_absensi_pegawai', $data);
     }
-    
+
     public function cetak_invoice()
     {
         $data['title'] = 'Invoice PPDB';
@@ -301,13 +302,12 @@ class Laporan extends CI_Controller
         $id     = $this->input->get('id');
         $id = $this->secure->decrypt($id);
         $data['user'] = $this->db->get_where('ppdb', ['id' => $id])->row_array();
-
+        $data['pembayaran'] = $this->db->get('data_pembayaran')->result_array();
         $data['pay'] = $this->db->get_where('data_pembayaran', ['jenis' => 'PPDB'])->result_array();
-        
+
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = 'invoice_ppdb_' . $data['user']['nama'] . '.pdf';
 
         $this->pdf->load_view('laporan/invoicePPDB', $data);
     }
-
 }

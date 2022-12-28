@@ -109,10 +109,13 @@
                                         </tr>
                                         <tr>
                                             <td>Daftar Ulang</td>
-                                            <?php if ($user['inv']  !== '1') : ?>
+                                            <?php if ($user['sts_pmb']  == '0') : ?>
                                                 <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Belum Bayar</span></td>
-                                            <?php elseif ($user['inv']  == '1') : ?>
-                                                <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Lunas</span></td>
+                                            <?php elseif ($user['sts_pmb']  == '1') : ?>
+                                                <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Menunggu Verfikasi Staff</span></td>
+                                            <?php elseif ($user['sts_pmb']  == '2   ') : ?>
+                                                <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Pembayaran Telah Verfikasi</span></td>
+
                                             <?php endif ?>
                                         </tr>
                                         <tr>
@@ -134,7 +137,7 @@
                                             <td>: <?= $user['email'] ?></td>
                                         </tr>
                                         <tr>
-                                            <td>NIS</td>
+                                            <td>NISN</td>
                                             <td>: <?= $user['nis'] ?></td>
                                         </tr>
                                     </tbody>
@@ -161,13 +164,13 @@
                                             <?php $sum += $d['jumlah']; ?>
                                             <tr>
                                                 <td><?= $d['nama'] ?></td>
-                                                <td>: <?= 'Rp.' . number_format($d['jumlah'], 0, ',', '.') ?></td>
+                                                <td>: <?= 'Rp. ' . number_format($d['jumlah'], 0, ',', '.') ?></td>
                                             </tr>
                                         <?php endforeach ?>
                                     </tbody>
                                 </table>
                                 <br>
-                                Total pembayaran : <b><?= 'Rp.' . number_format($sum, 0, ',', '.') ?>,-</b>
+                                Total pembayaran : <b><?= 'Rp. ' . number_format($sum, 0, ',', '.') ?>,-</b>
                             </div>
 
                             <div class="col-sm-12">
@@ -188,14 +191,15 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <?php if ($user['inv']  == '1') : ?>
+                                <?php if ($user['sts_pmb']  == '2') : ?>
                                     <a target="_blank" href="<?= base_url('laporan/cetak_invoice?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Invoice</a>
+                                <?php elseif ($user['sts_pmb']  == '1') : ?>
+                                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#" disabled> Menungggu Verfikasi</a>
+                                <?php elseif ($user['sts_pmb']  == '0') : ?>
+
+                                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#payModal">Pembayaran</a>
                                 <?php endif ?>
-                                <?php if ($user['inv']  == '2') : ?>
-                                    <a href="<?= $user['url_inv'] ?>" class="btn btn-primary btn-block"><i class="bi bi-credit-card"></i> Bayar <b><?= 'Rp.' . number_format($sum, 0, ',', '.') ?></b></a>
-                                <?php elseif ($user['inv']  == '0') : ?>
-                                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#payModal"> Upload Bukti Bayar</a>
-                                <?php endif ?>
+
                             </div>
                         </div>
 
@@ -382,7 +386,7 @@
                                             <?= form_error('nik', '<small class="text-danger pl-3">', ' </small>') ?>
                                         </div>
                                         <div class="form-group">
-                                            <label>NIS</label>
+                                            <label>NISN</label>
                                             <input type="text" class="form-control" id="nis" name="nis" placeholder="Nomor Induk siswa" value="<?= $user['nis'] ?>" require>
                                             <?= form_error('nis', '<small class="text-danger pl-3">', ' </small>') ?>
                                         </div>

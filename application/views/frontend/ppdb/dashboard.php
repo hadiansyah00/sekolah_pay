@@ -1,5 +1,82 @@
 <!-- Custom styles for this template-->
 <link href="<?= base_url('assets/'); ?>css/sb-admin-2.min.css" rel="stylesheet">
+<style>
+    /*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+    /* Timeline holder */
+    ul.timeline {
+        list-style-type: none;
+        position: relative;
+        padding-left: 1.5rem;
+    }
+
+    /* Timeline vertical line */
+    ul.timeline:before {
+        content: ' ';
+        background: #fff;
+        display: inline-block;
+        position: absolute;
+        left: 16px;
+        width: 4px;
+        height: 100%;
+        z-index: 400;
+        border-radius: 1rem;
+    }
+
+    li.timeline-item {
+        margin: 20px 0;
+    }
+
+    /* Timeline item arrow */
+    .timeline-arrow {
+        border-top: 0.5rem solid transparent;
+        border-right: 0.5rem solid #fff;
+        border-bottom: 0.5rem solid transparent;
+        display: block;
+        position: absolute;
+        left: 2rem;
+    }
+
+    /* Timeline item circle marker */
+    li.timeline-item::before {
+        content: ' ';
+        background: #ddd;
+        display: inline-block;
+        position: absolute;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        left: 11px;
+        width: 14px;
+        height: 14px;
+        z-index: 400;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+
+    /*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+    body {
+        background: #E8CBC0;
+        background: -webkit-linear-gradient(to right, #E8CBC0, #636FA4);
+        background: linear-gradient(to right, #E8CBC0, #636FA4);
+        min-height: 100vh;
+    }
+
+    .text-gray {
+        color: #999;
+    }
+</style>
 
 <style type="text/css">
     img[src=""] {
@@ -72,79 +149,113 @@
             <!-- Begin Page Content -->
             <div class="container">
                 <div class="row">
-                    <?php if ($user['status'] == 2) : ?>
-                        <div class="col-md-12">
-                            <div class="card-footer bg-info text-white shadow mb-2">
-                                <div class="card-body">
-                                    <strong><i class="bi bi-bell"></i> Informasi Penolakan.</strong><br />
-                                    <span><?= $user['alasan'] ?></span>
+                    <div class="col-lg-8 p0 mx-auto">
+                        <ul class="timeline">
+                            <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                                <div class="timeline-arrow">
                                 </div>
-                            </div>
-                        </div>
-                    <?php endif ?>
-                    <div class="col-lg-6">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-list-alt fa-fw"></i> <b>Informasi Mahasiswa Baru</b></h6>
-                            </div>
-                            <div class="card-body">
-                                <img src="<?php if (!empty($user['img_siswa'])) {
-                                                echo base_url('assets/img/data/' . $user['img_siswa']);
-                                            } ?>" class="img-thumbnail">
-                                <br /><br />
-                                <table style="font-size: 14px;" cellpadding="3">
-                                    <tbody>
-                                        <tr>
-                                            <td>Nomor Daftar</td>
-                                            <td>: <b><?= $user['no_daftar'] ?></b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Nama</td>
-                                            <td>: <?= $user['nama'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Daftar Ulang</td>
-                                            <?php if ($user['inv']  !== '1') : ?>
-                                                <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Belum Bayar</span></td>
-                                            <?php elseif ($user['inv']  == '1') : ?>
-                                                <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Lunas</span></td>
-                                            <?php endif ?>
-                                        </tr>
-                                        <tr>
-                                            <td>Status</td>
-                                            <?php if ($user['status']  == '0') : ?>
-                                                <td>: <span class="badge badge-warning badge-pill disabled" aria-disabled="true">Pending</span></td>
-                                            <?php elseif ($user['status']  == '1') : ?>
-                                                <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Konfirmasi</span></td>
-                                            <?php elseif ($user['status']  == '2') : ?>
-                                                <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Di Tolak</span></td>
-                                            <?php endif ?>
-                                        </tr>
-                                        <tr>
-                                            <td>Tanggal Daftar</td>
-                                            <td>: <?= mediumdate_indo(date($user['date_created'])); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email</td>
-                                            <td>: <?= $user['email'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>NIS</td>
-                                            <td>: <?= $user['nis'] ?></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <h2 class="h5 mb-0 text-primary font-weight-bold">Informasi Mahasiswa Baru</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i></span>
+                                <div class="row">
+                                    <div class="card-body col-md-4 mb-4 mb-md-0">
+                                        <img src="<?php if (!empty($user['img_siswa'])) {
+                                                        echo base_url('assets/img/data/' . $user['img_siswa']);
+                                                    } ?>" class="img-thumbnail rounded mb-2">
+                                        <br /><br />
 
-                            </div>
-                            <div class="card-footer">
+                                    </div>
+                                    <div class="card-body col-md-8 mb-4 mb-md-0">
+                                        <table style="font-size: 14px;" cellpadding="3">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Nomor Daftar</td>
+                                                    <td>: <b><?= $user['no_daftar'] ?></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nama</td>
+                                                    <td>: <?= $user['nama'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Daftar Ulang</td>
+                                                    <?php if ($user['sts_pmb']  == '0') : ?>
+                                                        <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Belum Bayar</span></td>
+                                                    <?php elseif ($user['sts_pmb']  == '1') : ?>
+                                                        <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Menunggu Verfikasi Staff</span></td>
+                                                    <?php elseif ($user['sts_pmb']  == '2') : ?>
+                                                        <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Pembayaran Telah Verfikasi</span></td>
+
+                                                    <?php endif ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>Status</td>
+                                                    <?php if ($user['status']  == '0') : ?>
+                                                        <td>: <span class="badge badge-warning badge-pill disabled" aria-disabled="true">Pending</span></td>
+                                                    <?php elseif ($user['status']  == '1') : ?>
+                                                        <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Konfirmasi</span></td>
+                                                    <?php elseif ($user['status']  == '2') : ?>
+                                                        <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Di Tolak</span></td>
+                                                    <?php endif ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tanggal Daftar</td>
+                                                    <td>: <?= mediumdate_indo(date($user['date_created'])); ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Email</td>
+                                                    <td>: <?= $user['email'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>NISN</td>
+                                                    <td>: <?= $user['nis'] ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <hr>
+                                        <div class="container-fluid">
+                                            <?php if ($user['status'] == 2) : ?>
+                                                <div class="col-md-12">
+                                                    <div class="card-footer bg-danger text-white shadow mb-2">
+                                                        <div class="card-body">
+                                                            <strong><i class="bi bi-bell"></i> Informasi Penolakan.</strong><br />
+                                                            <span><?= $user['alasan'] ?></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endif ?>
+
+                                            <?php if ($user['sts_pmb']  == '2') : ?>
+                                                <a target="_blank" href="<?= base_url('laporan/cetak_invoice?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-primary"><i class="bi bi-printer"></i> Cetak Invoice</a>
+                                            <?php endif ?>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                                <div class="timeline-arrow"></div>
+                                <h2 class="h5 mb-0 text-primary font-weight-bold">Informasi Akademik</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i></span>
+                                <p class="text-small mt-1 font-weight-bold ">Tanggal Tes Akademik :</p>
+                                <p class="text-small mt-1 font-weight-bold ">Lokasi Tes Akademik : </p>
+                                <p class="text-small mt-1 font-weight-normal text-danger"> <strong>Syarat dan Ketentuan Mengikuti Tes Akademik</strong></p>
+                                <hr>
+                                <p>Dokumen Persyaratan Pendaftaran
+                                    <br>
+                                    1. Membawa Berkas berkas
+                                    <br>
+                                    2. Pakain Hitam Putih
+                                    <br>
+                                    3. Membawa Kartu PMB
+
+                                </p>
+                                <br>
                                 <?php if ($user['status']  == '1') : ?>
-                                    <a target="_blank" href="<?= base_url('laporan/cetak_formulir?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Formulir</a>
+                                    <a target="_blank" href="<?= base_url('laporan/cetak_formulir?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-primary"><i class="bi bi-printer"></i> Cetak Formulir</a>
                                 <?php endif ?>
-
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
 
+                </div>
 </main><!-- End #main -->
 
 

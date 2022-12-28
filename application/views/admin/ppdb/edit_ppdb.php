@@ -21,19 +21,19 @@
                     </button>
                 </div>
                 <?= form_open_multipart('update/password_ppdb'); ?>
-                    <form action="<?= base_url('update/password_ppdb') ?>" method="post">
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="">Password Baru</label>
-                                <input type="hidden" name="id" value="<?= $siswa['id'] ?>">
-                                <input type="text" class="form-control" id="password" name="password" placeholder="Password baru">
-                            </div>
+                <form action="<?= base_url('update/password_ppdb') ?>" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Password Baru</label>
+                            <input type="hidden" name="id" value="<?= $siswa['id'] ?>">
+                            <input type="text" class="form-control" id="password" name="password" placeholder="Password baru">
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-redo"></i> Ubah Password</button>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-redo"></i> Ubah Password</button>
+                    </div>
+                </form>
                 <?= form_close() ?>
             </div>
         </div>
@@ -61,9 +61,11 @@
                             </tr>
                             <tr>
                                 <td>Invoice ppdb</td>
-                                <?php if ($siswa['inv']  !== '1') : ?>
+                                <?php if ($siswa['sts_pmb']  == '0') : ?>
                                     <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Belum Bayar</span></td>
-                                <?php elseif ($siswa['inv']  == '1') : ?>
+                                <?php elseif ($siswa['sts_pmb']  == '1') : ?>
+                                    <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Menunggu Verfikasi Staff</span></td>
+                                <?php elseif ($siswa['sts_pmb']  == '2') : ?>
                                     <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Lunas</span></td>
                                 <?php endif ?>
                             </tr>
@@ -78,12 +80,12 @@
                                 <?php endif ?>
                             </tr>
                             <?php if ($user['role_id'] == 1) : ?>
-                            <?php if (!empty($siswa['staff_konfirmasi'])) : ?>
-                                <tr>
-                                    <td>Staff Konfirmasi</td>
-                                    <td>: <?= $staff['nama'] ?></td>
-                                </tr>
-                            <?php endif ?>
+                                <?php if (!empty($siswa['staff_konfirmasi'])) : ?>
+                                    <tr>
+                                        <td>Staff Konfirmasi</td>
+                                        <td>: <?= $staff['nama'] ?></td>
+                                    </tr>
+                                <?php endif ?>
                             <?php endif ?>
                             <tr>
                                 <td>Tanggal Daftar</td>
@@ -149,7 +151,7 @@
 
 
             </div>
-
+            <!-- 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-success"><i class="fa fa-list fa-fw"></i> <b>Raport / Ijazah</b></h6>
@@ -157,33 +159,78 @@
                 <div class="card-body">
                     <?= $this->session->flashdata('messageRap') ?>
 
-                        <div class="form-group row">
-                            <label for="" class="col-sm-4 control-label">Status</label>
-                            <div class="col-sm-8">
-                                <?php if($siswa['raport'] == '1'){
-                                    $stat_rap = 'Diterima';
-                                    $pill_rap = 'success';
-                                }else{
-                                    $stat_rap = 'Belum Diterima';
-                                    $pill_rap = 'danger';
-                                }
-                                ?>
-                                <button class="btn btn-xs btn-<?= $pill_rap ?>"><?= $stat_rap ?></button>
-                            </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-4 control-label">Status</label>
+                        <div class="col-sm-8">
+                            <?php if ($siswa['raport'] == '1') {
+                                $stat_rap = 'Diterima';
+                                $pill_rap = 'success';
+                            } else {
+                                $stat_rap = 'Belum Diterima';
+                                $pill_rap = 'danger';
+                            }
+                            ?>
+                            <button class="btn btn-xs btn-<?= $pill_rap ?>"><?= $stat_rap ?></button>
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="" class="col-sm-4 control-label">Update Status</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" name="raport" id="raport">
-                                    <option value="">-- Pilih Opsi --</option>
-                                    <option <?php if ($siswa['raport'] == "1") {
-                                                    echo "selected='selected'";
-                                                } ?> value="1">Di Terima</option>
-                                    <option value="">Batal</option>
-                                </select>
-                            </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-4 control-label">Update Status</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="raport" id="raport">
+                                <option value="">-- Pilih Opsi --</option>
+                                <option <?php if ($siswa['raport'] == "1") {
+                                            echo "selected='selected'";
+                                        } ?> value="1">Di Terima</option>
+                                <option value="">Batal</option>
+                            </select>
                         </div>
+                    </div>
+
+                </div>
+            </div> -->
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-success"><i class="fa fa-list fa-fw"></i> <b>Status Pembayaran</b></h6>
+                </div>
+                <div class="card-body">
+                    <?= $this->session->flashdata('messagePmb') ?>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-4 control-label">Status</label>
+                        <div class="col-sm-8">
+                            <?php if ($siswa['sts_pmb'] == '2') {
+                                $stat_pmb = 'Diterima';
+                                $pill_pmb = 'success';
+                            } else {
+                                $stat_pmb = 'Belum Diterima';
+                                $pill_pmb = 'danger';
+                            }
+                            if ($siswa['sts_pmb'] == '0') {
+                                $stat_pmb = 'Di Tolak';
+                                $pill_pmb = 'danger';
+                            }
+                            ?>
+                            <button class="btn btn-xs btn-<?= $pill_pmb ?>"><?= $stat_pmb ?></button>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-4 control-label">Update Status</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="sts_pmb" id="sts_pmb">
+                                <option value="">-- Pilih Opsi --</option>
+                                <option <?php if ($siswa['sts_pmb'] == "2") {
+                                            echo "selected='selected'";
+                                        } ?> value="2">Di Terima</option>
+                                <option <?php if ($siswa['sts_pmb'] == "0") {
+                                            echo "selected='selected'";
+                                        } ?> value="0">Di Tolak</option>
+                                <option value="1">Batal</option>
+                            </select>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -271,7 +318,7 @@
             </div>
 
         </div>
-
+        <!-- Data Siswa -->
         <div class="col-md-8">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -387,7 +434,7 @@
                                 <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" placeholder="Nama Orang Tua" value="<?= $siswa['nama_ibu'] ?>">
                                 <?= form_error('nama_ibu', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
-                              
+
                             <div class="form-group">
                                 <label>Nama Wali</label>
                                 <input type="text" class="form-control" id="nama_wali" name="nama_wali" placeholder="Nama Wali" value="<?= $siswa['nama_wali'] ?>">
@@ -397,7 +444,7 @@
                         </div>
 
                         <div class="col-md-6">
-                          
+
                             <div class="form-group">
                                 <label>Pekerjaan Ayah</label>
                                 <select class="form-control" id="pek_ayah" name="pek_ayah" value="<?= $siswa['pek_ayah'] ?>">
@@ -546,7 +593,7 @@
                                 <input type="number" class="form-control" id="thn_lls" name="thn_lls" placeholder="Tahun Lulus" value="<?= $siswa['thn_lls'] ?>">
                                 <?= form_error('thn_lls', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
-                                        
+
                             <hr class="sidebar-divider">
                             <hr class="sidebar-divider">
 
@@ -556,7 +603,7 @@
                                     <option>- Pilih Periode -</option>
                                     <?php foreach ($thn_msk as $row) : ?>
                                         <option <?php if ($siswa['thn_msk'] == $row['id']) {
-                                                                        echo "selected='selected'";
+                                                    echo "selected='selected'";
                                                 } ?> value="<?= $row['id'] ?>"><?= $row['period_start'] ?>/<?= $row['period_end'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
@@ -586,7 +633,7 @@
                                                     <?= form_error('pendidikan', '<small class="text-danger pl-3">', ' </small>') ?>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <!-- <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Kelas</label>
                                                     <select class="form-control" id="kelas" name="kelas">
@@ -601,7 +648,7 @@
                                                     </select>
                                                     <?= form_error('kelas', '<small class="text-danger pl-3">', ' </small>') ?>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div id="jurus" class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Kejuruan</label>
@@ -609,21 +656,21 @@
                                                         <option>- Pilih Jurusan -</option>
                                                         <?php foreach ($jurusan as $s) : ?>
 
-                                                        <option <?php if ($siswa['id_majors'] == $s['id']) {
-                                                                    echo "selected='selected'";
-                                                                } ?> value="<?= $s['id'] ?>"><?= $s['nama'] ?></option>
+                                                            <option <?php if ($siswa['id_majors'] == $s['id']) {
+                                                                        echo "selected='selected'";
+                                                                    } ?> value="<?= $s['id'] ?>"><?= $s['nama'] ?></option>
 
                                                         <?php endforeach; ?>
                                                     </select>
                                                     <?= form_error('jurusan', '<small class="text-danger pl-3">', ' </small>') ?>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                                        
+
                         </div>
                     </div>
 
@@ -636,17 +683,17 @@
                     <?php form_close(); ?>
 
                     <?php if ($siswa['status']  == '1') : ?>
-                    <div class="pt-3 form-group row">
-                        <div class="col-md-12">
-                            <a href="<?= base_url('admin/import_ppdb?id=' . $siswa['id']) ?>" onclick="return confirm('Lanjutkan Import Data?');" class="btn btn-block btn-primary"><i class="fa fa-file-import"></i> Import ke Data siswa</a>
+                        <div class="pt-3 form-group row">
+                            <div class="col-md-12">
+                                <a href="<?= base_url('admin/import_ppdb?id=' . $siswa['id']) ?>" onclick="return confirm('Lanjutkan Import Data?');" class="btn btn-block btn-primary"><i class="fa fa-file-import"></i> Import ke Data siswa</a>
+                            </div>
                         </div>
-                    </div>
                     <?php endif ?>
 
                 </div>
             </div>
         </div>
-
+        <!-- End Data Siswa -->
     </div>
 </div>
 <!-- /.container-fluid -->
@@ -664,7 +711,7 @@
             <div class="modal-body">Apakah anda yakin ingin Konfirmasi data <b><?= $siswa['nama'] ?></b></div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-success" href="<?= base_url('update/konfirmasi_ppdb/admin?id=' . $siswa['id'] .'&staff=' . $user['id']) ?>"><i class="fa fa-check"></i> Konfirmasi</a>
+                <a class="btn btn-success" href="<?= base_url('update/konfirmasi_ppdb/admin?id=' . $siswa['id'] . '&staff=' . $user['id']) ?>"><i class="fa fa-check"></i> Konfirmasi</a>
             </div>
         </div>
     </div>
@@ -712,7 +759,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         <?php if ($siswa['id_majors'] == 0) : ?>
-        $("#jurus").hide();
+            $("#jurus").hide();
         <?php endif ?>
         $('#prov').change(function() {
             $.ajax({
@@ -784,9 +831,9 @@
                 },
                 cache: false,
                 success: function(response) {
-                    if(response == 1){
+                    if (response == 1) {
                         $("#jurus").show();
-                    }else if(response == 0){
+                    } else if (response == 0) {
                         $("#jurus").hide();
                     }
                 }
@@ -869,13 +916,29 @@
         reader.readAsDataURL(this.files[0]);
     });
 
+    // $(document).ready(function() {
+    //     $('#raport').on('change', function() {
+    //         $.ajax({
+    //             type: 'POST',
+    //             url: '<?= site_url('update/update_raport'); ?>',
+    //             data: {
+    //                 raport: this.value,
+    //                 id: <?= $siswa['id'] ?>
+    //             },
+    //             cache: false,
+    //             success: function(response) {
+    //                 location.reload();
+    //             }
+    //         });
+    //     });
+    // });
     $(document).ready(function() {
-        $('#raport').on('change',function(){
+        $('#sts_pmb').on('change', function() {
             $.ajax({
                 type: 'POST',
-                url: '<?= site_url('update/update_raport'); ?>',
+                url: '<?= site_url('update/update_pmb'); ?>',
                 data: {
-                    raport: this.value,
+                    sts_pmb: this.value,
                     id: <?= $siswa['id'] ?>
                 },
                 cache: false,

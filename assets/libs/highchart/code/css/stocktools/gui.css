@@ -3,11 +3,6 @@
   height: 100%;
 }
 
-.chart:-moz-full-screen {
-  width: 100%;
-  height: 100%;
-}
-
 .chart:-ms-fullscreen {
   width: 100%;
   height: 100%;
@@ -265,4 +260,4 @@
   width: 50%;
   height: 20px;
   float: left;
-}
+}/*# sourceMappingURL=gui.css.map */
