@@ -149,7 +149,7 @@
             <!-- Begin Page Content -->
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 p0 mx-auto">
+                    <div class="col-lg-12 py-10 p0 mx-auto">
                         <ul class="timeline">
                             <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
                                 <div class="timeline-arrow">

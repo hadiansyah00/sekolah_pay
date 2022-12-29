@@ -65,7 +65,7 @@
                                                 <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Di Tolak</span>
                                             <?php endif ?>
                                         </td>
-                                        
+
                                         <td>
                                             <a href="<?= base_url('admin/edit_ppdb?id=') ?><?= $d['id'] ?>" class="badge badge-success"><i class="fa fa-redo"></i> Kelola</a>
                                             <a href="" class="badge badge-danger" data-toggle="modal" data-target="#deleteData<?= $d['id'] ?>"><i class="fa fa-trash"></i> Hapus</a>
@@ -79,9 +79,7 @@
                     </div>
                 </div>
             </div>
-
             <!-- Data Hapus  -->
-
             <?php foreach ($siswa as $d) : ?>
                 <!--delete Data-->
                 <div class="modal fade" id="deleteData<?= $d['id'] ?>" role="dialog" aria-labelledby="addNewDataLabel" aria-hidden="true">

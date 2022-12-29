@@ -86,7 +86,7 @@
   </section><!-- End Values Section -->
 
   <!-- ======= Counts Section ======= -->
-  <section id="counts" class="counts">
+  <!-- <section id="counts" class="counts">
     <div class="container" data-aos="fade-up">
 
       <div class="row gy-4">
@@ -134,16 +134,16 @@
       </div>
 
     </div>
-  </section><!-- End Counts Section -->
+  </section>End Counts Section -->
 
   <!-- ======= Features Section ======= -->
-  <section id="features" class="features">
+  <!-- <section id="features" class="features">
 
     <div class="container" data-aos="fade-up">
 
       <header class="section-header">
         <h2></h2>
-        <p>Ciri Khas Sekolah</p>
+        <p>Ciri Akademik/p>
       </header>
 
       <div class="row">
@@ -200,11 +200,13 @@
           </div>
         </div>
 
-      </div> <!-- / row -->
+      </div>
+ 
 
     </div>
 
-  </section><!-- End Features Section -->
+  </section> -->
+  <!-- End Features Section -->
 
   <!-- ======= Portfolio Section ======= -->
   <section id="portfolio" class="portfolio">
