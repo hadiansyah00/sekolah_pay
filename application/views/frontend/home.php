@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-lg-6 d-flex flex-column justify-content-center">
         <h1 data-aos="fade-up"><?= $home['judul'] ?></h1>
-        <h2 data-aos="fade-up" data-aos-delay="400"><?= $home['isi'] ?></h2>
+        <h3 data-aos="fade-up" data-aos-delay="400"><?= $home['isi'] ?></h3>
         <div data-aos="fade-up" data-aos-delay="600">
           <div class="text-center text-lg-start">
             <a href="<?= base_url($home['link']); ?>" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
@@ -25,7 +25,7 @@
 
 <main id="main">
   <!-- ======= About Section ======= -->
-  <section id="about" class="about">
+  <!-- <section id="about" class="about">
 
     <div class="container" data-aos="fade-up">
       <div class="row gx-0">
@@ -51,7 +51,7 @@
         </div>
 
       </div>
-    </div>
+    </div> -->
 
   </section><!-- End About Section -->
 
@@ -62,7 +62,7 @@
 
       <header class="section-header">
         <h2></h2>
-        <p>Program Study</p>
+        <p>Program Studi</p>
       </header>
 
       <div class="row">
@@ -137,19 +137,19 @@
   </section>End Counts Section -->
 
   <!-- ======= Features Section ======= -->
-  <!-- <section id="features" class="features">
+  <section id="features" class="features">
 
     <div class="container" data-aos="fade-up">
 
       <header class="section-header">
         <h2></h2>
-        <p>Ciri Akademik/p>
+        <p>Alur Pendaftaran Online</p>
       </header>
 
       <div class="row">
 
         <div class="col-lg-6">
-          <img src="<?= base_url('assets/'); ?>img/features.png" class="img-fluid" alt="">
+          <img src="<?= base_url('assets/'); ?>img/Alur_online.jpeg" class="img-fluid" alt="">
         </div>
 
         <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
@@ -158,42 +158,42 @@
             <div class="col-md-6" data-aos="zoom-out" data-aos-delay="200">
               <div class="feature-box d-flex align-items-center">
                 <i class="bi bi-check"></i>
-                <h3>Sistem Pendidikan Terpadu</h3>
+                <h3>Lorem Ipsum is simply dummy</h3>
               </div>
             </div>
 
             <div class="col-md-6" data-aos="zoom-out" data-aos-delay="300">
               <div class="feature-box d-flex align-items-center">
                 <i class="bi bi-check"></i>
-                <h3>Spirit But Modern</h3>
+                <h3>Lorem Ipsum is simply dummy</h3>
               </div>
             </div>
 
             <div class="col-md-6" data-aos="zoom-out" data-aos-delay="600">
               <div class="feature-box d-flex align-items-center">
                 <i class="bi bi-check"></i>
-                <h3>Boarding School</h3>
+                <h3>Lorem Ipsum is simply dummy</h3>
               </div>
             </div>
 
             <div class="col-md-6" data-aos="zoom-out" data-aos-delay="400">
               <div class="feature-box d-flex align-items-center">
                 <i class="bi bi-check"></i>
-                <h3>Area Pendidikan yang Luas dan Kondusif</h3>
+                <h3>Lorem Ipsum is simply dummy</h3>
               </div>
             </div>
 
             <div class="col-md-6" data-aos="zoom-out" data-aos-delay="700">
               <div class="feature-box d-flex align-items-center">
                 <i class="bi bi-check"></i>
-                <h3>Full Development Of Personality</h3>
+                <h3>Lorem Ipsum is simply dummy</h3>
               </div>
             </div>
 
             <div class="col-md-6" data-aos="zoom-out" data-aos-delay="500">
               <div class="feature-box d-flex align-items-center">
                 <i class="bi bi-check"></i>
-                <h3>International Language</h3>
+                <h3>Lorem Ipsum is simply dummy</h3>
               </div>
             </div>
 
@@ -201,11 +201,80 @@
         </div>
 
       </div>
- 
+
 
     </div>
 
-  </section> -->
+  </section>
+  <section id="features" class="features">
+
+    <div class="container" data-aos="fade-up">
+
+      <header class="section-header">
+        <h2></h2>
+        <p>Alur Pendaftaran Offline</p>
+      </header>
+
+      <div class="row">
+        <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
+          <div class="row align-self-center gy-4">
+
+            <div class="col-md-6" data-aos="zoom-out" data-aos-delay="200">
+              <div class="feature-box d-flex align-items-center">
+                <i class="bi bi-check"></i>
+                <h3>Lorem Ipsum is simply dummy</h3>
+              </div>
+            </div>
+
+            <div class="col-md-6" data-aos="zoom-out" data-aos-delay="300">
+              <div class="feature-box d-flex align-items-center">
+                <i class="bi bi-check"></i>
+                <h3>Lorem Ipsum is simply dummy</h3>
+              </div>
+            </div>
+
+            <div class="col-md-6" data-aos="zoom-out" data-aos-delay="600">
+              <div class="feature-box d-flex align-items-center">
+                <i class="bi bi-check"></i>
+                <h3>Lorem Ipsum is simply dummy</h3>
+              </div>
+            </div>
+
+            <div class="col-md-6" data-aos="zoom-out" data-aos-delay="400">
+              <div class="feature-box d-flex align-items-center">
+                <i class="bi bi-check"></i>
+                <h3>Lorem Ipsum is simply dummy</h3>
+              </div>
+            </div>
+
+            <div class="col-md-6" data-aos="zoom-out" data-aos-delay="700">
+              <div class="feature-box d-flex align-items-center">
+                <i class="bi bi-check"></i>
+                <h3>Lorem Ipsum is simply dummy</h3>
+              </div>
+            </div>
+
+            <div class="col-md-6" data-aos="zoom-out" data-aos-delay="500">
+              <div class="feature-box d-flex align-items-center">
+                <i class="bi bi-check"></i>
+                <h3>Lorem Ipsum is simply dummy</h3>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <img src="<?= base_url('assets/'); ?>img/Alur_online.jpeg" class="img-fluid" alt="">
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
   <!-- End Features Section -->
 
   <!-- ======= Portfolio Section ======= -->
@@ -215,7 +284,7 @@
 
       <header class="section-header">
         <h2></h2>
-        <p>Gallery</p>
+        <p>Galeri</p>
       </header>
 
       <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -292,7 +361,8 @@
 
     </div>
 
-  </section><!-- End Recent Blog Posts Section -->
+  </section>
+  <!-- End Recent Blog Posts Section -->
 
   <!-- ======= F.A.Q Section ======= -->
   <section id="features" class="features">
