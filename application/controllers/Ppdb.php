@@ -701,7 +701,8 @@ class Ppdb extends CI_Controller
         $data['home'] =  $this->db->get('home')->row_array();
         $data['user'] = $this->db->get_where('ppdb', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Dashboard';
-        $data['pembayaran'] = $this->db->get_where('data_pembayaran', ['jenis' => 'PPDB'])->result_array();
+        $data['pembayaran'] = $this->db->get('data_pembayaran')->result_array();
+        $data['pemb'] = $this->db->get_where('data_pembayaran', ['jenis' => 'PPDB'])->result_array();
         $this->db->order_by('nama', 'asc');
         $data['prov'] = $this->db->get('provinsi')->result_array();
         $data['pendidikan'] = $this->db->get('data_pendidikan')->result_array();
