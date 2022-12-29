@@ -149,22 +149,25 @@
             <!-- Begin Page Content -->
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12 py-10 p0 mx-auto">
-                        <ul class="timeline">
-                            <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
-                                <div class="timeline-arrow">
-                                </div>
-                                <h2 class="h5 mb-0 text-primary font-weight-bold">Informasi Mahasiswa Baru</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i></span>
+                    <div class="col-lg-8 py-4 p0 mx-auto">
+
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 align-right">
+                                <a href="<?= base_url('ppdb/biodata') ?>" class="m-0 font-font-weight-medium text-primary"><i class="fa fa-list-alt fa-fw"></i> <b>Edit Biodata</b></a>
+
+                            </div>
+                            <div class="card-body">
+
                                 <div class="row">
-                                    <div class="card-body col-md-4 mb-4 mb-md-0">
+                                    <div class="col-md-4 mb-4 mb-md-0">
+
                                         <img src="<?php if (!empty($user['img_siswa'])) {
                                                         echo base_url('assets/img/data/' . $user['img_siswa']);
-                                                    } ?>" class="img-thumbnail rounded mb-2">
+                                                    } ?>" class="img-thumbnail">
                                         <br /><br />
-
                                     </div>
-                                    <div class="card-body col-md-8 mb-4 mb-md-0">
-                                        <table style="font-size: 14px;" cellpadding="3">
+                                    <div class="col-md-8 mb-4 mb-md-0">
+                                        <table class="table" style="font-size: 16;" cellpadding="3">
                                             <tbody>
                                                 <tr>
                                                     <td>Nomor Daftar</td>
@@ -180,7 +183,7 @@
                                                         <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Belum Bayar</span></td>
                                                     <?php elseif ($user['sts_pmb']  == '1') : ?>
                                                         <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Menunggu Verfikasi Staff</span></td>
-                                                    <?php elseif ($user['sts_pmb']  == '2') : ?>
+                                                    <?php elseif ($user['sts_pmb']  == '2   ') : ?>
                                                         <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Pembayaran Telah Verfikasi</span></td>
 
                                                     <?php endif ?>
@@ -199,61 +202,483 @@
                                                     <td>Tanggal Daftar</td>
                                                     <td>: <?= mediumdate_indo(date($user['date_created'])); ?></td>
                                                 </tr>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td>Email</td>
                                                     <td>: <?= $user['email'] ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>NISN</td>
                                                     <td>: <?= $user['nis'] ?></td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
-                                        <hr>
-                                        <div class="container-fluid">
-                                            <?php if ($user['status'] == 2) : ?>
-                                                <div class="col-md-12">
-                                                    <div class="card-footer bg-danger text-white shadow mb-2">
-                                                        <div class="card-body">
-                                                            <strong><i class="bi bi-bell"></i> Informasi Penolakan.</strong><br />
-                                                            <span><?= $user['alasan'] ?></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <?php endif ?>
+                                    </div>
+                                </div>
 
-                                            <?php if ($user['sts_pmb']  == '2') : ?>
-                                                <a target="_blank" href="<?= base_url('laporan/cetak_invoice?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-primary"><i class="bi bi-printer"></i> Cetak Invoice</a>
-                                            <?php endif ?>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6 mb-4 mb-md-0">
+                                        <table class="table" style="font-size: 14px;" cellpadding="3">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="3"><b>A. IDENTITAS CALON SISWA</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="" width="5%">1. </td>
+                                                    <td width="20%">Nama</td>
+                                                    <td width="50%"><?= strtoupper($user['nama']); ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">2. </td>
+                                                    <td>NIK</td>
+                                                    <td><?= $user['nik'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">3. </td>
+                                                    <td>NISN</td>
+                                                    <td><?= $user['nis'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">4. </td>
+                                                    <td>Jenis Kelamin</td>
+                                                    <td><?= ($user['jk'] == 'L') ? 'Laki-Laki' : 'Perempuan' ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">5. </td>
+                                                    <td>Tempat Lahir</td>
+                                                    <td><?= $user['kab'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">6. </td>
+                                                    <td>Tanggal Lahir</td>
+                                                    <td><?= mediumdate_indo(date($user['ttl'])) ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">7. </td>
+                                                    <td>Alamat</td>
+                                                    <td><?= $user['alamat'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">8. </td>
+                                                    <td>Asal Sekolah</td>
+                                                    <td><?= $user['sekolah_asal'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">9. </td>
+                                                    <td>Email</td>
+                                                    <td><?= $user['email'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">10. </td>
+                                                    <td>No HP</td>
+                                                    <td><?= $user['no_hp'] ?></td>
+                                                </tr>
 
-                                        </div>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4 mb-md-0">
+                                        <table class="table" style="font-size: 14px;" cellpadding="3">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="3"><b>B. IDENTITAS ORANG TUA</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">1. </td>
+                                                    <td>Nama Ayah</td>
+                                                    <td><?= $user['nama_ayah'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">2. </td>
+                                                    <td>Pekerjaan Ayah</td>
+                                                    <td><?= $user['pek_ayah'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">3. </td>
+                                                    <td>Nama Ibu</td>
+                                                    <td><?= $user['nama_ibu'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">4. </td>
+                                                    <td>Pekerjaan Ibu</td>
+                                                    <td><?= $user['pek_ibu'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="">5. </td>
+                                                    <td>No Telepon Ortu</td>
+                                                    <td><?= $user['no_telp'] ?></td>
+                                                </tr>
+                                                <?php if (!empty($user['nama_wali'])) : ?>
+
+                                                    <tr>
+                                                        <td colspan="3"><b>C. IDENTITAS WALI</b></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td align="">1. </td>
+                                                        <td>Nama Wali</td>
+                                                        <td><?= $user['nama_wali'] ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="">2. </td>
+                                                        <td>Pekerjaan Wali</td>
+                                                        <td><?= $user['pek_wali'] ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="">3. </td>
+                                                        <td>No Telepon</td>
+                                                        <td><?= $user['no_telp'] ?></td>
+                                                    </tr>
+                                                <?php endif ?>
+                                            </tbody>
+                                        </table>
 
                                     </div>
                                 </div>
-                            </li>
-                            <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
-                                <div class="timeline-arrow"></div>
-                                <h2 class="h5 mb-0 text-primary font-weight-bold">Informasi Akademik</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i></span>
-                                <p class="text-small mt-1 font-weight-bold ">Tanggal Tes Akademik :</p>
-                                <p class="text-small mt-1 font-weight-bold ">Lokasi Tes Akademik : </p>
-                                <p class="text-small mt-1 font-weight-normal text-danger"> <strong>Syarat dan Ketentuan Mengikuti Tes Akademik</strong></p>
                                 <hr>
-                                <p>Dokumen Persyaratan Pendaftaran
-                                    <br>
-                                    1. Membawa Berkas berkas
-                                    <br>
-                                    2. Pakain Hitam Putih
-                                    <br>
-                                    3. Membawa Kartu PMB
+                                <div class="col-md-12 mb-4 mb-md-0">
+                                    <table style="font-size: 14px;" cellpadding="3">
+                                        <tbody>
+                                            <table class="table" width="100%" cellspacing="2">
 
-                                </p>
-                                <br>
-                                <?php if ($user['status']  == '1') : ?>
-                                    <a target="_blank" href="<?= base_url('laporan/cetak_formulir?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-primary"><i class="bi bi-printer"></i> Cetak Formulir</a>
-                                <?php endif ?>
-                            </li>
-                        </ul>
+                                                <tr>
+                                                    <td colspan="3"><b>*) PERYARATAN PENDAFTARAN</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="" width="5%">1. </td>
+                                                    <td width="20%">KTP / Akta Lahir</td>
+                                                    <td width="50%"><?= (!empty($user['img_ktp'])) ? 'Ada' : 'Tidak Ada' ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="" width="5%">2. </td>
+                                                    <td width="20%">Kartu Keluarga (KK)</td>
+                                                    <td width="50%"><?= (!empty($user['img_kk'])) ? 'Ada' : 'Tidak Ada' ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="" width="5%">3. </td>
+                                                    <td width="20%">SKHUN / Ijazah</td>
+                                                    <td width="50%"><?= (!empty($user['img_ijazah'])) ? 'Ada' : 'Tidak Ada' ?></td>
+                                                </tr>
+                                            </table>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="card-footer">
+                                    <?php if ($user['status']  == '1') : ?>
+                                        <a target="_blank" href="<?= base_url('laporan/cetak_formulir?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Formulir</a>
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+                    <div class="col-lg-4 py-4 p0 mx-auto">
+                        <!-- <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-success"><i class="fa fa-list-alt fa-fw"></i> <b>Informasi</b></h6>
+                            </div>
+                            <div class="card-body">
+                                <img src="<?php if (!empty($user['img_siswa'])) {
+                                                echo base_url('assets/img/data/' . $user['img_siswa']);
+                                            } ?>" class="img-thumbnail">
+                                <br /><br />
+                                <table style="font-size: 14px;" cellpadding="3">
+                                    <tbody>
+                                        <tr>
+                                            <td>Nomor Daftar</td>
+                                            <td>: <b><?= $user['no_daftar'] ?></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nama</td>
+                                            <td>: <?= $user['nama'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Daftar Ulang</td>
+                                            <?php if ($user['sts_pmb']  == '0') : ?>
+                                                <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Belum Bayar</span></td>
+                                            <?php elseif ($user['sts_pmb']  == '1') : ?>
+                                                <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Menunggu Verfikasi Staff</span></td>
+                                            <?php elseif ($user['sts_pmb']  == '2   ') : ?>
+                                                <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Pembayaran Telah Verfikasi</span></td>
+
+                                            <?php endif ?>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <?php if ($user['status']  == '0') : ?>
+                                                <td>: <span class="badge badge-warning badge-pill disabled" aria-disabled="true">Pending</span></td>
+                                            <?php elseif ($user['status']  == '1') : ?>
+                                                <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Konfirmasi</span></td>
+                                            <?php elseif ($user['status']  == '2') : ?>
+                                                <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Di Tolak</span></td>
+                                            <?php endif ?>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal Daftar</td>
+                                            <td>: <?= mediumdate_indo(date($user['date_created'])); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td>: <?= $user['email'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NISN</td>
+                                            <td>: <?= $user['nis'] ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="card-footer">
+                                <?php if ($user['status']  == '1') : ?>
+                                    <a target="_blank" href="<?= base_url('laporan/cetak_formulir?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Formulir</a>
+                                <?php endif ?>
+
+                            </div>
+                        </div> -->
+
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-success"><i class="fa fa-list-alt fa-fw"></i> <b>Informasi Daftar Ulang</b></h6>
+                            </div>
+                            <div class="card-body">
+                                <table style="font-size: 14px;" cellpadding="3">
+                                    <tbody>
+                                        <?php $sum = 0;
+                                        foreach ($pembayaran as $d) : ?>
+                                            <?php $sum += $d['jumlah']; ?>
+                                            <tr>
+                                                <td><?= $d['nama'] ?></td>
+                                                <td>: <?= 'Rp. ' . number_format($d['jumlah'], 0, ',', '.') ?></td>
+                                            </tr>
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                                <br>
+                                Total pembayaran : <b><?= 'Rp. ' . number_format($sum, 0, ',', '.') ?>,-</b>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Foto Bukti Bayar</div>
+                                                <span><?= $user['img_bukti'] ?></span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <img src="<?php if (!empty($user['img_bukti'])) {
+                                                                echo base_url('assets/img/data/' . $user['img_bukti']);
+                                                            } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <?php if ($user['sts_pmb']  == '2') : ?>
+                                    <a target="_blank" href="<?= base_url('laporan/cetak_invoice?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Invoice</a>
+                                <?php elseif ($user['sts_pmb']  == '1') : ?>
+                                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#" disabled> Menungggu Verfikasi</a>
+                                <?php elseif ($user['sts_pmb']  == '0') : ?>
+
+                                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#payModal">Pembayaran</a>
+                                <?php endif ?>
+
+                            </div>
+                        </div>
+
+                        <!-- Payment Modal-->
+                        <div class="modal fade" id="payModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-md" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-primary text-center" id="exampleModalLabel">Informasi Pembayaran Daftar Ulang</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table style="font-size: 14px;" cellpadding="6">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <h5>Nomor Rekening</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5>: 787498491</h5>
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        <h5>Atas Nama</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5>: SBH</h5>
+                                                    </td>
+                                                </tr>
+                                                <?php $sum = 0;
+                                                foreach ($pembayaran as $d) : ?>
+                                                    <?php $sum += $d['jumlah']; ?>
+                                                    <tr>
+                                                        <td>
+                                                            <h5> Jumlah Yang Harus dibayar</h5>
+                                                        </td>
+                                                        <td>
+                                                            <h5>: <?= 'Rp.' . number_format($d['jumlah'], 0, ',', '.') ?></h5>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach ?>
+                                            </tbody>
+
+                                        </table>
+                                        <?= form_open_multipart('ppdb/pmb'); ?>
+                                        <div class="form-group row">
+                                            <div class="col-lg-auto text-center">
+                                                <img src="<?php if (!empty($user['img_bukti'])) {
+                                                                echo base_url('assets/img/data/' . $user['img_bukti']);
+                                                            } ?>" width="100" height="85" id="preview5" class="img-thumbnail mt-3">
+                                            </div>
+                                            <div class="col-lg-auto">
+                                                <input type="hidden" name="id" value="<?= $user['id'] ?>">
+
+                                                <input hidden type="file" name="img_bukti" class="file5" accept="image/*" id="imgInp5">
+                                                <div class="input-group my-3">
+                                                    <input type="text" class="form-control" disabled placeholder="Foto Bukti" id="file5">
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="browse5 btn btn-primary">Browse</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div id="jenis_pay"></div> -->
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                                            <button class="btn btn-success" type="submit"><i class=" bi bi-credit-card"></i> Upload Bukti Bayar</button>
+                                        </div>
+
+                                        </form>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-success"><i class="fa fa-image fa-fw"></i> <b>Data Foto</b></h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card border-left-success shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Foto siswa</div>
+                                                        <span><?= $user['img_siswa'] ?></span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <img src="<?php if (!empty($user['img_siswa'])) {
+                                                                        echo base_url('assets/img/data/' . $user['img_siswa']);
+                                                                    } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="card border-left-info shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Foto KK</div>
+                                                        <span><?= $user['img_kk'] ?></span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <img src="<?php if (!empty($user['img_kk'])) {
+                                                                        echo base_url('assets/img/data/' . $user['img_kk']);
+                                                                    } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="card border-left-primary shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Foto Ijazah</div>
+                                                        <span><?= $user['img_ijazah'] ?></span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <img src="<?php if (!empty($user['img_ijazah'])) {
+                                                                        echo base_url('assets/img/data/' . $user['img_ijazah']);
+                                                                    } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="card border-left-warning shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Foto Akte / KTP</div>
+                                                        <span><?= $user['img_ktp'] ?></span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <img src="<?php if (!empty($user['img_ktp'])) {
+                                                                        echo base_url('assets/img/data/' . $user['img_ktp']);
+                                                                    } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-4 py-10 p0 mx-auto">
+                        <div class="card-body bg-white rounded ml-3 p-4 shadow">
+                            <div class="timeline-arrow"></div>
+                            <h2 class="h5 mb-0 text-primary font-weight-bold">Informasi Akademik</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i></span>
+                            <p class="text-small mt-1 font-weight-bold ">Tanggal Tes Akademik :</p>
+                            <p class="text-small mt-1 font-weight-bold ">Lokasi Tes Akademik : </p>
+                            <p class="text-small mt-1 font-weight-normal text-danger"> <strong>Syarat dan Ketentuan Mengikuti Tes Akademik</strong></p>
+                            <hr>
+                            <p>Dokumen Persyaratan Pendaftaran
+                                <br>
+                                1. Membawa Berkas berkas
+                                <br>
+                                2. Pakain Hitam Putih
+                                <br>
+                                3. Membawa Kartu PMB
+
+                            </p>
+                            <br>
+                            <?php if ($user['status']  == '1') : ?>
+                                <a target="_blank" href="<?= base_url('laporan/cetak_formulir?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-primary"><i class="bi bi-printer"></i> Cetak Formulir</a>
+                            <?php endif ?>
+                        </div>
+
+                    </div> -->
 
                 </div>
 </main><!-- End #main -->
@@ -369,6 +794,7 @@
     });
 </script>
 
+
 <script type="text/javascript">
     $(document).on("click", ".browse", function() {
         var file = $(this).parents().find(".file");
@@ -387,6 +813,10 @@
 
     $(document).on("click", ".browse3", function() {
         var file = $(this).parents().find(".file3");
+        file.trigger("click");
+    });
+    $(document).on("click", ".browse5", function() {
+        var file = $(this).parents().find(".file5");
         file.trigger("click");
     });
 
@@ -437,6 +867,18 @@
         reader.onload = function(e) {
             // get loaded data and render thumbnail.
             document.getElementById("preview3").src = e.target.result;
+        };
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    });
+    $('#imgInp5').change(function(e) {
+        var fileName = e.target.files[0].name;
+        $("#file5").val(fileName);
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("preview5").src = e.target.result;
         };
         // read the image file as a data URL.
         reader.readAsDataURL(this.files[0]);

@@ -216,7 +216,7 @@
       </header>
 
       <div class="row">
-        <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
+        <div class="col-lg-6">
           <div class="row align-self-center gy-4">
 
             <div class="col-md-6" data-aos="zoom-out" data-aos-delay="200">
@@ -264,7 +264,7 @@
           </div>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
           <img src="<?= base_url('assets/'); ?>img/Alur_online.jpeg" class="img-fluid" alt="">
         </div>
 

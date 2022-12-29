@@ -91,7 +91,7 @@
                                                 <?= form_error('no_hp', '<small class="text-danger pl-3">', ' </small>') ?>
                                             </div>
 
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label>Tahun Masuk</label>
                                                 <select class="form-control" id="thn_msk" name="thn_msk">
                                                     <option value="">- Pilih Periode -</option>
@@ -100,7 +100,7 @@
                                                     <?php endforeach; ?>
                                                 </select>
                                                 <?= form_error('thn_msk', '<small class="text-danger pl-3">', ' </small>') ?>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <button type="submit" id="submit-form" hidden>123</button>

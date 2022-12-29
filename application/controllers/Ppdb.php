@@ -98,7 +98,7 @@ class Ppdb extends CI_Controller
                 </div>');
                 redirect('ppdb');
             }
-            redirect('ppdb');
+            redirect('ppdb/login');
         }
     }
     private function _sendEmail($token, $type)
@@ -151,7 +151,7 @@ class Ppdb extends CI_Controller
                     $this->db->update('ppdb');
                     $this->db->delete('siswa_token', ['email' => $email]);
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . $email . ' Telah Sukses ! Silahkan login.</div>');
-                    redirect('ppdb');
+                    redirect('ppdb/login');
                 } else {
                     $this->db->delete('ppdb', ['email' => $email]);
                     $this->db->delete('siswa_token', ['email' => $email]);
@@ -467,6 +467,25 @@ class Ppdb extends CI_Controller
         $data['thn_msk'] = $this->db->get('period')->result_array();
 
         $this->form_validation->set_rules('email', 'Email', 'required');
+        // $this->form_validation->set_rules('nik', 'NIK', 'required');
+        // $this->form_validation->set_rules('nis', 'NISN', 'required');
+        // $this->form_validation->set_rules('jk', 'Jenis Kelamin', 'required');
+        // $this->form_validation->set_rules('ttl', 'Tempat Lahir', 'required');
+        // $this->form_validation->set_rules('prov', 'Provinsi', 'required');
+        // $this->form_validation->set_rules('kab', 'Alamat', 'required');
+        // $this->form_validation->set_rules('kec', 'Alamat', 'required');
+        // $this->form_validation->set_rules('kel', 'Alamat', 'required');
+        // $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        // $this->form_validation->set_rules('nama_ayah', 'Namah Ayah', 'required');
+        // $this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'required');
+        // $this->form_validation->set_rules('pek_ayah', 'Pekerjeaan Ayah', 'required');
+        // $this->form_validation->set_rules('pek_ibu', 'Pekerjaan Ibu', 'required');
+        // $this->form_validation->set_rules('peng_ortu', 'Penghasilan Ortu', 'required');
+        // $this->form_validation->set_rules('no_telp', 'No Telp Ortu', 'required');
+        // $this->form_validation->set_rules('thn_masuk', 'Tahun Masuk', 'required');
+        // $this->form_validation->set_rules('sekolah_asal', 'Sekolah Asal', 'required');
+        // // $this->form_validation->set_rules('kelas', 'kelas', 'required');
+        // $this->form_validation->set_rules('thn_lls', 'Tahun Lulus', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template/header_siswa', $data);
@@ -657,7 +676,7 @@ class Ppdb extends CI_Controller
             <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-        redirect('ppdb/biodata');
+        redirect('ppdb/dashboard');
     }
 
 
