@@ -365,7 +365,7 @@
   <!-- End Recent Blog Posts Section -->
 
   <!-- ======= F.A.Q Section ======= -->
-  <section id="features" class="features">
+  <!-- <section id="features" class="features">
 
     <div class="container" data-aos="fade-up">
 
@@ -397,7 +397,7 @@
 
 
     </div>
-  </section>
+  </section> -->
   <!-- End F.A.Q Section -->
 
 

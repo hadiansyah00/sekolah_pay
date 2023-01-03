@@ -60,9 +60,9 @@
           <li><a class="nav-link scrollto <?php if ($menu == 'gallery') {
                                             echo 'active';
                                           } ?>" href="<?= base_url('gallery'); ?>">Gallery</a></li>
-          <li><a class="nav-link scrollto <?php if ($menu == 'about') {
+          <!-- <li><a class="nav-link scrollto <?php if ($menu == 'about') {
                                             echo 'active';
-                                          } ?>" href="<?= base_url('about'); ?>">Tentang Kami</a></li>
+                                          } ?>" href="<?= base_url('about'); ?>">Register</a></li> -->
           <li><a class="nav-link scrollto <?php if ($menu == 'kontak') {
                                             echo 'active';
                                           } ?>" href="<?= base_url('kontak'); ?>">Kontak</a></li>
