@@ -903,8 +903,8 @@ class Update extends CI_Controller
         $data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
         $data['web'] =  $this->db->get('website')->row_array();
 
-        $data['ppdb'] =  $this->db->get_where('ppdb', ['id' => $id])->row_array();
-        $email = $data['ppdb']['email'];
+        $data['ppdb'] =  $this->db->get_where('pmb', ['id' => $id])->row_array();
+        $email = $data['pmb']['email'];
 
         $web = $data['web'];
 
@@ -960,18 +960,18 @@ class Update extends CI_Controller
         ];
 
         $this->db->where('id', $id);
-        $this->db->update('ppdb', $data);
+        $this->db->update('pmb', $data);
 
-        $ppdb =  $this->db->get_where('ppdb', ['id' => $id])->row_array();
+        $ppdb =  $this->db->get_where('pmb', ['id' => $id])->row_array();
         $no = $ppdb['no_hp'];
-        $pesan = 'Pendaftaran PPDB anda telah berhasil dengan data :
+        $pesan = 'Pendaftaran PMB anda telah berhasil dengan data :
 
 Nama : ' . $ppdb['nama'] . '
 Nomor Pendaftaran : ' . $ppdb['no_daftar'] . '
 NISN : ' . $ppdb['nis'] . '
 Email : ' . $ppdb['email'] . '
 
-Untuk pengumuman PPDB akan di infokan melalui website :
+Untuk pengumuman PMB akan di infokan melalui website :
 ' . $site . '
 
 Terimakasih.';
@@ -997,9 +997,9 @@ Terimakasih.';
 
         $this->db->set('status', 0);
         $this->db->where('id', $id);
-        $this->db->update('ppdb');
+        $this->db->update('pmb');
         $this->session->set_flashdata('messageInfo', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            Data ppdb berhasil di batalkan.
+            Data pmb berhasil di batalkan.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -1017,7 +1017,7 @@ Terimakasih.';
         ];
 
         $this->db->where('id', $id);
-        $this->db->update('ppdb', $data);
+        $this->db->update('pmb', $data);
         $this->session->set_flashdata('messageInfo', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data ppdb berhasil di batalkan.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -1334,7 +1334,7 @@ Terimakasih.';
 
         $this->db->set('password', password_hash($psswrd, PASSWORD_DEFAULT));
         $this->db->where('id', $id);
-        $this->db->update('ppdb');
+        $this->db->update('pmb');
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Password baru berhasil di Update.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -214,16 +214,16 @@ class Laporan extends CI_Controller
         $id     = $this->input->get('id');
         $id = $this->secure->decrypt($id);
 
-        $data['ppdb'] = $this->db->get_where('ppdb', ['id' => $id])->row_array();
+        $data['pmb'] = $this->db->get_where('pmb', ['id' => $id])->row_array();
    
-        $data['period'] = $this->db->get_where('period', ['id' => $data['ppdb']['thn_msk']])->row_array();
+        $data['period'] = $this->db->get_where('period', ['id' => $data['pmb']['thn_msk']])->row_array();
 
         // $data['header'] = $this->encode_img_base64('assets/img/formulir/header.jpg');
         // $data['footer'] = $this->encode_img_base64('assets/img/formulir/footer.jpg');
 
 
         $this->pdf->setPaper('A4', 'potrait');
-        $this->pdf->filename = 'cetak_formulir_' . $data['ppdb']['nama'] . '.pdf';
+        $this->pdf->filename = 'cetak_formulir_' . $data['pmb']['nama'] . '.pdf';
         $this->pdf->load_view('laporan/cetakformulir', $data);
     }
 

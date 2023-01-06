@@ -26,7 +26,7 @@ class Hapus extends CI_Controller
   {
     $id = $this->input->get('id');
 
-    $g =  $this->db->get('ppdb')->row_array();
+    $g =  $this->db->get('pmb')->row_array();
 
     if (!empty($g['img_siswa'])) {
       unlink("./assets/img/data/" . $g['img_siswa']);
@@ -41,14 +41,14 @@ class Hapus extends CI_Controller
       unlink("./assets/img/data/" . $g['img_ktp']);
     }
 
-    $this->db->delete('ppdb', array('id' => $id));
+    $this->db->delete('pmb', array('id' => $id));
     $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            Data PPDB berhasil dihapus
+            Data PMB berhasil dihapus
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
           </div>');
-    redirect('admin/ppdb');
+    redirect('admin/pmb');
   }
 
   public function hapus_pelanggaran()

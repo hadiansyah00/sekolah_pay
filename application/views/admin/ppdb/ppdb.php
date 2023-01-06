@@ -6,9 +6,9 @@
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <h4 class="mb-5 header-title"><i class="fas fa-list"></i> <?= $title ?>
-                        <div class="float-right mr-1">
+                        <!-- <div class="float-right mr-1">
                             <a href="" class="btn btn-block btn-success btn-sm" data-toggle="modal" data-target="#exportData"><i class="fa fa-file-export"></i> Export</a>
-                        </div>
+                        </div> -->
                     </h4>
                     <?= $this->session->flashdata('message') ?>
 

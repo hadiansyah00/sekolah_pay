@@ -65,11 +65,11 @@
 	<table class="tabel_utama" style="border: 1px;" width="100%" cellspacing="2">
 		<tr>
 			<td width="25%">Nomor Pendaftaran</td>
-			<td width="50%"><?= $ppdb['no_daftar'] ?></td>
+			<td width="50%"><?= $pmb['no_daftar'] ?></td>
 		</tr>
 		<tr>
 			<td>Status Pendaftaran</td>
-			<td><?= ($ppdb['status'] == 1) ? 'Konfirmasi' : 'Di Tolak' ?></td>
+			<td><?= ($pmb['status'] == 1) ? 'Konfirmasi' : 'Di Tolak' ?></td>
 		</tr>
 	</table>
 	<table width="100%" class="tabel_utama" cellspacing="2">
@@ -79,27 +79,27 @@
 		<tr>
 			<td align="" width="5%">1. </td>
 			<td width="20%">Nama</td>
-			<td width="50%"><?= strtoupper($ppdb['nama']); ?></td>
+			<td width="50%"><?= strtoupper($pmb['nama']); ?></td>
 		</tr>
 		<tr>
 			<td align="">2. </td>
 			<td>NIK</td>
-			<td><?= $ppdb['nik'] ?></td>
+			<td><?= $pmb['nik'] ?></td>
 		</tr>
 		<tr>
 			<td align="">3. </td>
 			<td>NISN</td>
-			<td><?= $ppdb['nis'] ?></td>
+			<td><?= $pmb['nis'] ?></td>
 		</tr>
 		<tr>
 			<td align="">4. </td>
 			<td>Jenis Kelamin</td>
-			<td><?= ($ppdb['jk'] == 'L') ? 'Laki-Laki' : 'Perempuan' ?></td>
+			<td><?= ($pmb['jk'] == 'L') ? 'Laki-Laki' : 'Perempuan' ?></td>
 		</tr>
 		<tr>
 			<td align="">5. </td>
 			<td>Tempat Lahir</td>
-			<td><?= $ppdb['kab'] ?></td>
+			<td><?= $pmb['kab'] ?></td>
 		</tr>
 		<tr>
 			<td align="">6. </td>
@@ -109,22 +109,22 @@
 		<tr>
 			<td align="">7. </td>
 			<td>Alamat</td>
-			<td><?= $ppdb['alamat'] ?></td>
+			<td><?= $pmb['alamat'] ?></td>
 		</tr>
 		<tr>
 			<td align="">8. </td>
 			<td>Asal Sekolah</td>
-			<td><?= $ppdb['sekolah_asal'] ?></td>
+			<td><?= $pmb['sekolah_asal'] ?></td>
 		</tr>
 		<tr>
 			<td align="">9. </td>
 			<td>Email</td>
-			<td><?= $ppdb['email'] ?></td>
+			<td><?= $pmb['email'] ?></td>
 		</tr>
 		<tr>
 			<td align="">10. </td>
 			<td>No HP</td>
-			<td><?= $ppdb['no_hp'] ?></td>
+			<td><?= $pmb['no_hp'] ?></td>
 		</tr>
 		<tr>
 			<td colspan="3"><b>B. IDENTITAS ORANG TUA</b></td>
@@ -132,27 +132,27 @@
 		<tr>
 			<td align="">1. </td>
 			<td>Nama Ayah</td>
-			<td><?= $ppdb['nama_ayah'] ?></td>
+			<td><?= $pmb['nama_ayah'] ?></td>
 		</tr>
 		<tr>
 			<td align="">2. </td>
 			<td>Pekerjaan Ayah</td>
-			<td><?= $ppdb['pek_ayah'] ?></td>
+			<td><?= $pmb['pek_ayah'] ?></td>
 		</tr>
 		<tr>
 			<td align="">3. </td>
 			<td>Nama Ibu</td>
-			<td><?= $ppdb['nama_ibu'] ?></td>
+			<td><?= $pmb['nama_ibu'] ?></td>
 		</tr>
 		<tr>
 			<td align="">4. </td>
 			<td>Pekerjaan Ibu</td>
-			<td><?= $ppdb['pek_ibu'] ?></td>
+			<td><?= $pmb['pek_ibu'] ?></td>
 		</tr>
 		<tr>
 			<td align="">5. </td>
 			<td>No Telepon Ortu</td>
-			<td><?= $ppdb['no_telp'] ?></td>
+			<td><?= $pmb['no_telp'] ?></td>
 		</tr>
 		<?php if (!empty($ppdb['nama_wali'])) : ?>
 			<tr>
@@ -161,17 +161,17 @@
 			<tr>
 				<td align="">1. </td>
 				<td>Nama Wali</td>
-				<td><?= $ppdb['nama_wali'] ?></td>
+				<td><?= $pmb['nama_wali'] ?></td>
 			</tr>
 			<tr>
 				<td align="">2. </td>
 				<td>Pekerjaan Wali</td>
-				<td><?= $ppdb['pek_wali'] ?></td>
+				<td><?= $pmb['pek_wali'] ?></td>
 			</tr>
 			<tr>
 				<td align="">3. </td>
 				<td>No Telepon</td>
-				<td><?= $ppdb['no_telp'] ?></td>
+				<td><?= $pmb['no_telp'] ?></td>
 			</tr>
 		<?php endif ?>
 	</table>
@@ -183,17 +183,17 @@
 		<tr>
 			<td align="" width="5%">1. </td>
 			<td width="20%">KTP / Akta Lahir</td>
-			<td width="50%"><?= (!empty($ppdb['img_ktp'])) ? 'Ada' : 'Tidak Ada' ?></td>
+			<td width="50%"><?= (!empty($pmb['img_ktp'])) ? 'Ada' : 'Tidak Ada' ?></td>
 		</tr>
 		<tr>
 			<td align="" width="5%">2. </td>
 			<td width="20%">Kartu Keluarga (KK)</td>
-			<td width="50%"><?= (!empty($ppdb['img_kk'])) ? 'Ada' : 'Tidak Ada' ?></td>
+			<td width="50%"><?= (!empty($pmb['img_kk'])) ? 'Ada' : 'Tidak Ada' ?></td>
 		</tr>
 		<tr>
 			<td align="" width="5%">3. </td>
 			<td width="20%">SKHUN / Ijazah</td>
-			<td width="50%"><?= (!empty($ppdb['img_ijazah'])) ? 'Ada' : 'Tidak Ada' ?></td>
+			<td width="50%"><?= (!empty($pmb['img_ijazah'])) ? 'Ada' : 'Tidak Ada' ?></td>
 		</tr>
 	</table>
 
