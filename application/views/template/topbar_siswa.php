@@ -16,13 +16,13 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item dropdown no-arrow mx-1 show">
+                <!-- <li class="nav-item dropdown no-arrow mx-1 show">
                     <a class="nav-link dropdown-toggle" target="_blank" href="<?= base_url('home') ?>">
                         <i class="fas fa-bell fa-globe pr-1"></i>
                         <span> Website</span>
                     </a>
 
-                </li>
+                </li> -->
 
                 <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -35,7 +35,7 @@
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="<?= base_url('ppdb/biodata') ?>">
+                        <a class="dropdown-item" href="<?= base_url('pmb/biodata') ?>">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             My Profile
                         </a>
@@ -65,7 +65,7 @@
                     <div class="modal-body">Pilih <b>Keluar</b> jika kamu ingin keluar dari dashboard</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                        <a class="btn btn-danger" href="<?= base_url('ppdb/logout') ?>"><i class="bi bi-box-arrow-right"></i> Keluar</a>
+                        <a class="btn btn-danger" href="<?= base_url('pmb/logout') ?>"><i class="bi bi-box-arrow-right"></i> Keluar</a>
                     </div>
                 </div>
             </div>

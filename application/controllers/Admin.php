@@ -1443,7 +1443,7 @@ class Admin extends CI_Controller
     public function data_pendidikan()
     {
         $data['menu'] = 'menu-4';
-        $data['title'] = 'Data Pendidikan';
+        $data['title'] = 'Data Kelas';
         $data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
         if ($data['user']['role_id'] !== '1') {
             redirect('admin');
@@ -1596,7 +1596,7 @@ class Admin extends CI_Controller
     {
 
         $data['menu'] = 'menu-4';
-        $data['title'] = 'Data Jurusan';
+        $data['title'] = 'Data Prodi';
         $data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
         if ($data['user']['role_id'] !== '1') {
             redirect('admin');
@@ -2681,15 +2681,15 @@ class Admin extends CI_Controller
 
 
 
-    public function ppdb()
+    public function pmb()
     {
-        $data['menu'] = 'ppdb';
-        $data['title'] = 'Daftar PPDB';
+        $data['menu'] = 'pmb';
+        $data['title'] = 'Daftar PMB';
         $data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
         $data['web'] =  $this->db->get('website')->row_array();
 
         $this->db->order_by('id', 'DESC');
-        $data['siswa'] =  $this->db->get('ppdb')->result_array();
+        $data['siswa'] =  $this->db->get('pmb')->result_array();
 
         $this->load->view('template/header', $data);
         if ($data['user']['role_id'] !== '1') {
@@ -2706,15 +2706,15 @@ class Admin extends CI_Controller
     public function edit_ppdb()
     {
         $id      = $this->input->get('id');
-        $data['menu'] = 'ppdb';
-        $data['title'] = 'Kelola PPDB';
+        $data['menu'] = 'pmb';
+        $data['title'] = 'Kelola PMB';
         $data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
         $data['web'] =  $this->db->get('website')->row_array();
 
         $this->db->order_by('nama', 'asc');
         $data['prov'] = $this->db->get('provinsi')->result_array();
         $this->db->order_by('id', 'DESC');
-        $data['siswa'] =  $this->db->get_where('ppdb', ['id' => $id])->row_array();
+        $data['siswa'] =  $this->db->get_where('pmb', ['id' => $id])->row_array();
         $data['staff'] = $this->db->get_where('karyawan', ['id' => $data['siswa']['staff_konfirmasi']])->row_array();
 
         $data['pendidikan'] = $this->db->get('data_pendidikan')->result_array();
@@ -2757,7 +2757,7 @@ class Admin extends CI_Controller
             $this->load->library('upload', $config);
 
             $this->db->where('id', $id);
-            $g =  $this->db->get('ppdb')->row_array();
+            $g =  $this->db->get('pmb')->row_array();
 
             if ($this->upload->do_upload('img_siswa')) {
                 $img_siswa  = $this->upload->data('file_name');
@@ -2911,7 +2911,7 @@ class Admin extends CI_Controller
     {
         $segmen = $this->uri->segment(3);
         //ambil data
-        if ($segmen == 'ppdb') {
+        if ($segmen == 'pmb') {
             $get    = $this->Export_model->getPPDB();
         } else {
             $get    = $this->Export_model->getAll();
@@ -2920,8 +2920,8 @@ class Admin extends CI_Controller
         if ($get->num_rows() > 0) {
             $writer = WriterEntityFactory::createXLSXWriter();
 
-            if ($segmen == 'ppdb') {
-                $writer->openToBrowser("data_ppdb.xlsx");
+            if ($segmen == 'pmb') {
+                $writer->openToBrowser("data_pmb.xlsx");
             } else {
                 $writer->openToBrowser("data_siswa.xlsx");
             }

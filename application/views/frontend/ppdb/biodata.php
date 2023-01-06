@@ -97,7 +97,7 @@
                                 <?= form_error('biodata', '<div class="alert alert-danger" role="alert">', '</div>') ?>
                                 <?= $this->session->flashdata('message') ?>
 
-                                <?= form_open_multipart('ppdb/biodata'); ?>
+                                <?= form_open_multipart('pmb/biodata'); ?>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -151,6 +151,12 @@
                                                         } ?> value="P">Perempuan</option>
                                             </select>
                                         </div>
+                                    
+                                        <div class="form-group">
+                                            <label>Tempat Lahir</label>
+                                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?= $user['tempat_lahir'] ?>">
+                                            <?= form_error('tempat_lahir', '<small class="text-danger pl-3">', ' </small>') ?>
+                                        </div>
                                         <div class="form-group">
                                             <label>Tanggal Lahir</label>
                                             <input type="date" class="form-control" id="ttl" name="ttl" value="<?= $user['ttl'] ?>">
@@ -183,14 +189,14 @@
                                             </select>
                                             <?= form_error('kec', '<small class="text-danger pl-3">', ' </small>') ?>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label>Keluarahan</label>
                                             <select class="form-control" id="kel" name="kel">
                                                 <option value="<?= $user['kel']; ?>"><?= $user['kel']; ?></option>
                                                 <option value="">- Pilih kecamatan dahulu -</option>
                                             </select>
                                             <?= form_error('kel', '<small class="text-danger pl-3">', ' </small>') ?>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <label>Alamat</label>
                                             <textarea type="text" rows="4" class="form-control" id="alamat" name="alamat" placeholder="Alamat Lengkap"><?= $user['alamat'] ?></textarea>
@@ -348,27 +354,56 @@
                                             <?= form_error('sekolah_asal', '<small class="text-danger pl-3">', ' </small>') ?>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label>Kelas</label>
-                                            <!-- <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Kelas" value="<?= $user['kelas'] ?>"> -->
-                                            <select class="form-control" id="kelas" name="kelas">
-                                                <option value disabled>- Pilih Kelas -</option>
-                                                <option <?php if ($user['kelas'] == "Reguler") {
-                                                            echo "selected='selected'";
-                                                        } ?> value="Reguler">Reguler</option>
-                                                <option <?php if ($user['kelas'] == "Karyawan") {
-                                                            echo "selected='selected'";
-                                                        } ?> value="Karyawan">Karyawan</option>
-                                            </select>
-                                            <?= form_error('kelas', '<small class="text-danger pl-3">', ' </small>') ?>
-                                        </div>
 
                                         <div class="form-group">
                                             <label>Tahun Lulus Sekolah</label>
                                             <input type="number" class="form-control" id="thn_lls" name="thn_lls" placeholder="Tahun Lulus" value="<?= $user['thn_lls'] ?>">
                                             <?= form_error('thn_lls', '<small class="text-danger pl-3">', ' </small>') ?>
                                         </div>
+                                      <div class="form-group">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3">
+                                                    <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-university fa-fw"></i> Progam Studi</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Pilih  Kelas</label>
+                                                                <select class="form-control" id="pendidikan" name="pendidikan">
+                                                                    <option value disabled>- Pilih Kelas -</option>
+                                                                    <?php foreach ($pendidikan as $row) : ?>
 
+                                                                        <option <?php if ($user['id_pend'] == $row['id']) {
+                                                                                    echo "selected='selected'";
+                                                                                } ?> value="<?= $row['id'] ?>"><?= $row['nama'] ?></option>
+
+                                                                    <?php endforeach; ?>
+                                                                </select>
+                                                                <?= form_error('pendidikan', '<small class="text-danger pl-3">', ' </small>') ?>
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="jurus" class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Program Study</label>
+                                                                <select class="form-control" id="jurusan" name="jurusan">
+                                                                    <option>- Pilih Program Study -</option>
+                                                                    <?php foreach ($jurusan as $s) : ?>
+
+                                                                        <option <?php if ($user['id_majors'] == $s['id']) {
+                                                                                    echo "selected='selected'";
+                                                                                } ?> value="<?= $s['id'] ?>"><?= $s['nama'] ?></option>
+                                                                    <?php endforeach; ?>
+                                                                </select>
+                                                                <?= form_error('jurusan', '<small class="text-danger pl-3">', ' </small>') ?>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <br />
 
                                         <div class="form-group row">
@@ -441,7 +476,7 @@
                                         <hr class="sidebar-divider">
                                         <hr class="sidebar-divider">
 
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label>Tahun Masuk</label>
                                             <select class="form-control" id="thn_msk" name="thn_msk">
                                                 <option>- Pilih Periode -</option>
@@ -452,52 +487,9 @@
                                                 <?php endforeach; ?>
                                             </select>
                                             <?= form_error('thn_msk', '<small class="text-danger pl-3">', ' </small>') ?>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="form-group">
-                                            <div class="card shadow mb-4">
-                                                <div class="card-header py-3">
-                                                    <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-university fa-fw"></i> Penempatan</h6>
-                                                </div>
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Status Mahasiswa</label>
-                                                                <select class="form-control" id="pendidikan" name="pendidikan">
-                                                                    <option>- Pilih Status -</option>
-                                                                    <?php foreach ($pendidikan as $row) : ?>
-
-                                                                        <option <?php if ($user['id_pend'] == $row['id']) {
-                                                                                    echo "selected='selected'";
-                                                                                } ?> value="<?= $row['id'] ?>"><?= $row['nama'] ?></option>
-
-                                                                    <?php endforeach; ?>
-                                                                </select>
-                                                                <?= form_error('pendidikan', '<small class="text-danger pl-3">', ' </small>') ?>
-                                                            </div>
-                                                        </div>
-
-                                                        <div id="jurus" class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Program Study</label>
-                                                                <select class="form-control" id="jurusan" name="jurusan">
-                                                                    <option>- Pilih Program Study -</option>
-                                                                    <?php foreach ($jurusan as $s) : ?>
-
-                                                                        <option <?php if ($user['id_majors'] == $s['id']) {
-                                                                                    echo "selected='selected'";
-                                                                                } ?> value="<?= $s['id'] ?>"><?= $s['nama'] ?></option>
-                                                                    <?php endforeach; ?>
-                                                                </select>
-                                                                <?= form_error('jurusan', '<small class="text-danger pl-3">', ' </small>') ?>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
 
                                     </div>
                                 </div>

@@ -215,6 +215,7 @@ class Laporan extends CI_Controller
         $id = $this->secure->decrypt($id);
 
         $data['ppdb'] = $this->db->get_where('ppdb', ['id' => $id])->row_array();
+   
         $data['period'] = $this->db->get_where('period', ['id' => $data['ppdb']['thn_msk']])->row_array();
 
         // $data['header'] = $this->encode_img_base64('assets/img/formulir/header.jpg');

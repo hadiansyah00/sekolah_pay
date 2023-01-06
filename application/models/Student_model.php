@@ -90,7 +90,7 @@ class Student_model extends CI_Model
         $this->db->select('siswa.id, point, nik, nis, siswa.nama, email, no_hp, password, jk, ttl, prov, kab, alamat, nama_ayah, nama_ibu, pek_ayah, pek_ibu, nama_wali, pek_wali, peng_ortu, no_telp, thn_msk, sekolah_asal, kelas, img_siswa, img_kk, img_ijazah, img_ktp, siswa.id_pend, id_majors, id_kelas, status, date_created, role_id');
         $this->db->select('id_kelas, data_kelas.nama as class_name');
         $this->db->select('id_majors, data_jurusan.nama as majors_name');
-        $this->db->join('data_pendidikan', 'data_pendidikan.id = siswa.id_pend', 'left');
+        $this->db->join('kelas', 'kelas.id_kelas = siswa.id_kelas', 'left');
         $this->db->join('data_kelas', 'data_kelas.id = siswa.id_kelas', 'left');
         $this->db->join('data_jurusan', 'data_jurusan.id = siswa.id_majors', 'left');
         $res = $this->db->get('siswa');
@@ -127,8 +127,8 @@ class Student_model extends CI_Model
             $this->db->order_by('id', 'asc');
         }
 
-        $this->db->select('id, nama');
-        $res = $this->db->get('data_pendidikan');
+        $this->db->select('id_kelas, nama_kelas');
+        $res = $this->db->get('kelas');
 
         if (isset($params['id'])) {
             return $res->row_array();

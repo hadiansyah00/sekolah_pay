@@ -63,7 +63,7 @@
                                 <div class="card-body">
                                     <?= form_error('menu', '<div class="alert alert-danger" role="alert">', '</div>') ?>
                                     <?= $this->session->flashdata('message') ?>
-                                    <?= form_open('ppdb'); ?>
+                                    <?= form_open('pmb'); ?>
                                     <input type="hidden" name="reff" value="<?= $this->session->userdata('reff') ?>">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -109,7 +109,7 @@
                                             <button type="button" class="btn-block btn btn-primary" data-toggle="modal" data-target="#Kebijakan">Kirim Pendaftaran</button>
                                         </div>
                                         <div class="col-md-12 text-center mt-5">
-                                            <p>Sudah mendaftar? <a href="<?= base_url('ppdb/login') ?>">Login</a> ke dashboard.</p>
+                                            <p>Sudah mendaftar? <a href="<?= base_url('pmb/login') ?>">Login</a> ke dashboard.</p>
                                         </div>
                                     </div>
 

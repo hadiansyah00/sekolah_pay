@@ -1,7 +1,7 @@
 <?php
 $notif_izin      = $this->db->get_where('perizinan', ['status' => 'Pending'])->num_rows();
 $notif_konseling = $this->db->get_where('konseling', ['status' => 'Pending'])->num_rows();
-$notif_ppdb = $this->db->get_where('ppdb', ['status' => '0'])->num_rows();
+$notif_pmb = $this->db->get_where('pmb', ['status' => '0'])->num_rows();
 $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
 ?>
 <!-- Sidebar -->
@@ -33,22 +33,22 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
         Menu
     </div>
 
-    <?php if ($menu == 'ppdb') : ?>
+    <?php if ($menu == 'pmb') : ?>
         <li class="nav-item active">
         <?php else : ?>
         <li class="nav-item">
         <?php endif; ?>
-        <a class="nav-link" href="<?= base_url('admin/ppdb'); ?>">
+        <a class="nav-link" href="<?= base_url('admin/pmb'); ?>">
             <i class="fas fa-fw fa-address-card"></i>
-            <span>PPDB </span> &nbsp;
-            <?php if ($notif_ppdb) : ?>
-                <span class="badge badge-danger" style="font-size: 10px;"><?= $notif_ppdb ?></span>
+            <span>PMB </span> &nbsp;
+            <?php if ($notif_pmb) : ?>
+                <span class="badge badge-danger" style="font-size: 10px;"><?= $notif_pmb ?></span>
             <?php endif ?>
         </a>
         </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <?php if ($menu == 'menu-1') : ?>
+        <!-- <?php if ($menu == 'menu-1') : ?>
             <li class="nav-item active">
             <?php else : ?>
             <li class="nav-item">
@@ -60,12 +60,12 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Pilih menu:</h6>
-                    <!-- <a class="collapse-item" href="<?= base_url('admin/daftar_siswa'); ?>">Data siswa</a> -->
+                    <a class="collapse-item" href="<?= base_url('admin/daftar_siswa'); ?>">Data siswa</a>
                     <a class="collapse-item" href="<?= base_url('admin/tambah_siswa'); ?>">Pendaftaran siswa</a>
 
                 </div>
             </div>
-            </li>
+            </li> -->
 
             <!-- <?php if ($menu == 'menu-9') : ?>
                 <li class="nav-item active">
@@ -140,8 +140,8 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Pilih Menu:</h6>
-                        <a class="collapse-item" href="<?= base_url('admin/data_pendidikan'); ?>">Data Pendidikan</a>
-                        <a class="collapse-item" href="<?= base_url('admin/data_jurusan'); ?>">Data Jurusan</a>
+                        <a class="collapse-item" href="<?= base_url('admin/data_pendidikan'); ?>">Data Kelas</a>
+                        <a class="collapse-item" href="<?= base_url('admin/data_jurusan'); ?>">Data Prodi</a>
                         <a class="collapse-item" href="<?= base_url('admin/data_ta'); ?>">Tahun Ajaran</a>
                         <!-- <a class="collapse-item" href="<?= base_url('admin/kelas'); ?>">Data Kelas</a>
                         <a class="collapse-item" href="<?= base_url('admin/data_kursi'); ?>">Data Kursi</a>
@@ -198,7 +198,7 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                                 </div>
                                 </li> -->
 
-                <li class="nav-item <?= ($this->uri->segment(2) == 'pembayaran_ppdb' or $this->uri->segment(2) == 'jenis_pembayaran' or $this->uri->segment(2) == 'pos') ? 'active' : '' ?>">
+                <li class="nav-item <?= ($this->uri->segment(2) == 'pembayaran_pmb' or $this->uri->segment(2) == 'jenis_pembayaran' or $this->uri->segment(2) == 'pos') ? 'active' : '' ?>">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pengaturanpemb" aria-expanded="true" aria-controls="pengaturanpemb">
                         <i class="fa fa-cog text-stock"></i> <span>Setting Pembayaran</span>
                     </a>
@@ -207,7 +207,7 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                             <h6 class="collapse-header">Pilih Menu:</h6>
                             <a class="collapse-item" href="<?= base_url('manage/pos'); ?>">Data Pembayaran</a>
                             <a class="collapse-item" href="<?= site_url('manage/jenis_pembayaran') ?>">☆ Jenis Pembayaran</a>
-                            <a class="collapse-item" href="<?= base_url('manage/pembayaran_ppdb'); ?>">Pembayaran PPDB</a>
+                            <a class="collapse-item" href="<?= base_url('manage/pembayaran_pmb'); ?>">Pembayaran pmb</a>
                         </div>
                     </div>
                 </li>
@@ -344,7 +344,7 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                                         Pengaturan
                                     </div>
 
-                                    <!-- <?php if ($menu == 'menu-2') : ?>
+                                    <?php if ($menu == 'menu-2') : ?>
                                                         <li class="nav-item active">
                                                         <?php else : ?>
                                                         <li class="nav-item">
@@ -355,14 +355,14 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                                                         <div id="pengaturanumum" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                                                             <div class="bg-white py-2 collapse-inner rounded">
                                                                 <h6 class="collapse-header">Pilih Menu:</h6>
-                                                                <a class="collapse-item" href="<?= site_url('manage/month') ?>">Bulan</a>
-                                                                <a class="collapse-item" href="<?= site_url('manage/period') ?>">Tahun Pelajaran</a>
-                                                                <a class="collapse-item" href="<?= site_url('student/upgrade') ?>">Kenaikan Kelas</a>
+                                                                <!-- <a class="collapse-item" href="<?= site_url('manage/month') ?>">Bulan</a> -->
+                                                                <a class="collapse-item" href="<?= site_url('manage/period') ?>">Tahun Pendaftaran</a>
+                                                                <!-- <a class="collapse-item" href="<?= site_url('student/upgrade') ?>">Kenaikan Kelas</a>
                                                                 <a class="collapse-item" href="<?= site_url('student/pass') ?>">Kelulusan</a>
-                                                                <a class="collapse-item" href="<?= base_url('admin/data_divisi'); ?>">Data Divisi</a>
+                                                                <a class="collapse-item" href="<?= base_url('admin/data_divisi'); ?>">Data Divisi</a> -->
                                                             </div>
                                                         </div>
-                                                    </li> -->
+                                                    </li>
 
                                     <?php if ($menu == 'menu-5') : ?>
                                         <li class="nav-item active">

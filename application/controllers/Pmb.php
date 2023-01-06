@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Ppdb extends CI_Controller
+class Pmb extends CI_Controller
 {
     public function __construct()
     {
@@ -24,7 +24,7 @@ class Ppdb extends CI_Controller
         $data['thn_msk'] = $this->db->get('period')->result_array();
 
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[ppdb.email]', [
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[pmb.email]', [
             'is_unique' => 'Email ini sudah terdaftar!',
             'required' => 'Email tidak boleh kosong!'
         ]);
@@ -40,7 +40,7 @@ class Ppdb extends CI_Controller
             $nama = $this->input->post('nama');
             $email = $this->input->post('email');
             //Buat ID DAFTAR
-            $query = $this->db->order_by('id', 'DESC')->limit(1)->get('ppdb');
+            $query = $this->db->order_by('id', 'DESC')->limit(1)->get('pmb');
             if ($query->num_rows() !== 0) {
                 $data1 = $query->row_array();
                 $nodaftar = $data1['id'] + 1;
@@ -75,7 +75,7 @@ class Ppdb extends CI_Controller
             ];
             $query = $this->_sendEmail($token, 'verify');
             $query = $this->db->insert('siswa_token', $user_token);
-            $query =  $this->db->insert('ppdb', $data);
+            $query =  $this->db->insert('pmb', $data);
             $sess = [
                 'email' => $email,
                 // 'nik' => $this->input->post('nik')
@@ -88,7 +88,7 @@ class Ppdb extends CI_Controller
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-                redirect('ppdb');
+                redirect('pmb/login');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Gagal Simpan Data!</strong>
@@ -96,9 +96,9 @@ class Ppdb extends CI_Controller
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-                redirect('ppdb');
+                redirect('pmb');
             }
-            redirect('ppdb/login');
+            redirect('pmb/login');
         }
     }
     private function _sendEmail($token, $type)
@@ -124,10 +124,10 @@ class Ppdb extends CI_Controller
 
         if ($type == 'verify') {
             $this->email->subject('Verfikasi Akun');
-            $this->email->message(' Konfirmasi Aktivasi Akun anda ' . $nama . ': <a href="' . base_url() . 'ppdb/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"> Activate</a>');
+            $this->email->message(' Konfirmasi Aktivasi Akun anda ' . $nama . ': <a href="' . base_url() . 'pmb/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"> Activate</a>');
         } else if ($type == 'forgot') {
             $this->email->subject('Reset Password');
-            $this->email->message('Click this link to reset your password  ' . $nama . ': <a href="' . base_url() . 'ppdb/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
+            $this->email->message('Click this link to reset your password  ' . $nama . ': <a href="' . base_url() . 'pmb/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
         }
 
         if ($this->email->send()) {
@@ -141,31 +141,31 @@ class Ppdb extends CI_Controller
     {
         $email = $this->input->get('email');
         $token = $this->input->get('token');
-        $user = $this->db->get_where('ppdb', ['email' => $email])->row_array();
+        $user = $this->db->get_where('pmb', ['email' => $email])->row_array();
         if ($user) {
             $user_token = $this->db->get_where('siswa_token', ['token' => $token])->row_array();
             if ($user_token) {
                 if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
                     $this->db->set('is_active', 1);
                     $this->db->where('email', $email);
-                    $this->db->update('ppdb');
+                    $this->db->update('pmb');
                     $this->db->delete('siswa_token', ['email' => $email]);
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . $email . ' Telah Sukses ! Silahkan login.</div>');
-                    redirect('ppdb/login');
+                    redirect('pmb/login');
                 } else {
-                    $this->db->delete('ppdb', ['email' => $email]);
+                    $this->db->delete('pmb', ['email' => $email]);
                     $this->db->delete('siswa_token', ['email' => $email]);
 
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Akun Aktivasi Gagal! Token Kadaluarsa.</div>');
-                    redirect('ppdb');
+                    redirect('pmb');
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Akun Aktivasi Gagal!  Tokden salah</div>');
-                redirect('ppdb');
+                redirect('pmb');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Akun Aktivasi Gagal!  Email salah.</div>');
-            redirect('ppdb');
+            redirect('pmb');
         }
     }
 
@@ -196,7 +196,7 @@ class Ppdb extends CI_Controller
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         $is_aktif = $this->input->post('is_active');
-        $user = $this->db->get_where('ppdb', ['email' => $email])->row_array();
+        $user = $this->db->get_where('pmb', ['email' => $email])->row_array();
         // jika usernya ada
         if ($user) {
 
@@ -212,7 +212,7 @@ class Ppdb extends CI_Controller
                     </div>',
                     false
                 );
-                redirect('ppdb/login');
+                redirect('pmb/login');
             }
 
             if (password_verify($password, $user['password'])) {
@@ -231,7 +231,7 @@ class Ppdb extends CI_Controller
                     </button>
                     </div>'
                 );
-                redirect('ppdb/dashboard');
+                redirect('pmb/dashboard');
             } else {
 
                 $this->session->set_flashdata(
@@ -243,7 +243,7 @@ class Ppdb extends CI_Controller
              </button>
              </div>'
                 );
-                redirect('ppdb/login');
+                redirect('pmb/login');
             }
         } else {
             $this->session->set_flashdata(
@@ -255,15 +255,15 @@ class Ppdb extends CI_Controller
                  </button>
                  </div>'
             );
-            redirect('ppdb/login');
+            redirect('pmb/login');
         }
     }
     public function register()
     {
         $users = $this->session->userdata('email');
-        $user = $this->db->get_where('ppdb', ['email' => $users])->num_rows();
+        $user = $this->db->get_where('pmb', ['email' => $users])->num_rows();
         if (!empty($user)) {
-            redirect('ppdb/dashboard');
+            redirect('pmb/dashboard');
         }
         $data['menu'] = 'home';
         $data['web'] =  $this->db->get('website')->row_array();
@@ -275,16 +275,16 @@ class Ppdb extends CI_Controller
         $data['thn_msk'] = $this->db->get('period')->result_array();
 
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[ppdb.nik]', [
+        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[pmb.nik]', [
             'is_unique' => 'Nik ini sudah terdaftar!',
             'required' => 'Nik tidak boleh kosong!'
         ]);
-        $this->form_validation->set_rules('nis', 'NIS', 'required|is_unique[ppdb.nis]', [
+        $this->form_validation->set_rules('nis', 'NIS', 'required|is_unique[pmb.nis]', [
             'is_unique' => 'Nis ini sudah terdaftar!',
             'required' => 'Nis tidak boleh kosong!'
         ]);
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[ppdb.email]', [
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[pmb.email]', [
             'is_unique' => 'Email ini sudah terdaftar!',
             'required' => 'Email tidak boleh kosong!'
         ]);
@@ -340,7 +340,7 @@ class Ppdb extends CI_Controller
 
 
             //Buat ID DAFTAR
-            $query = $this->db->order_by('id', 'DESC')->limit(1)->get('ppdb');
+            $query = $this->db->order_by('id', 'DESC')->limit(1)->get('pmb');
             if ($query->num_rows() !== 0) {
                 $data1 = $query->row_array();
                 $nodaftar = $data1['id'] + 1;
@@ -420,7 +420,7 @@ class Ppdb extends CI_Controller
                 'status' => '0'
             ];
 
-            $this->db->insert('ppdb', $data);
+            $this->db->insert('pmb', $data);
 
             $sess = [
                 'email' => $email,
@@ -434,14 +434,15 @@ class Ppdb extends CI_Controller
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-            redirect('ppdb/dashboard');
+            redirect('pmb/dashboard');
         }
     }
     public function biodata()
     {
+       
         $users = $this->session->userdata('email');
 
-        $user = $this->db->get_where('ppdb', ['email' => $users])->num_rows();
+        $user = $this->db->get_where('pmb', ['email' => $users])->num_rows();
 
         if (empty($user)) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -450,13 +451,13 @@ class Ppdb extends CI_Controller
              <span aria-hidden="true">&times;</span>
          </button>
          </div>');
-            redirect('ppdb/login');
+            redirect('pmb/login');
         }
         $data['title'] = 'Biodata';
         $data['biodata'] = 'biodata';
         $data['web'] =  $this->db->get('website')->row_array();
         $data['home'] =  $this->db->get('home')->row_array();
-        $data['user'] = $this->db->get_where('ppdb', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('pmb', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['pembayaran'] = $this->db->get('data_pembayaran')->result_array();
         $this->db->order_by('nama', 'asc');
@@ -516,7 +517,7 @@ class Ppdb extends CI_Controller
             $this->load->library('upload', $config);
 
             $this->db->where('id', $id);
-            $g =  $this->db->get('ppdb')->row_array();
+            $g =  $this->db->get('pmb')->row_array();
 
             if ($this->upload->do_upload('img_siswa')) {
                 $img_siswa  = $this->upload->data('file_name');
@@ -561,6 +562,7 @@ class Ppdb extends CI_Controller
                 'no_hp' => $this->input->post('no_hp'),
                 'password' => $password,
                 'jk' => $this->input->post('jk'),
+                'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'ttl' => $this->input->post('ttl'),
                 'prov' => $provinsi['nama'],
                 'kab' => $kab['nama_kab'],
@@ -588,12 +590,12 @@ class Ppdb extends CI_Controller
             ];
 
             $this->db->where('id', $id);
-            $this->db->update('ppdb', $data);
+            $this->db->update('pmb', $data);
 
             if ($status == 2) {
                 $this->db->set('status', 0);
                 $this->db->where('id', $id);
-                $this->db->update('ppdb');
+                $this->db->update('pmb');
             }
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> Data pendaftaran kamu berhasil di update.
@@ -601,14 +603,14 @@ class Ppdb extends CI_Controller
             <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-            redirect('ppdb/biodata');
+            redirect('pmb/biodata');
         }
     }
     public function status_ppdb()
     {
         $users = $this->session->userdata('email');
 
-        $user = $this->db->get_where('ppdb', ['email' => $users])->num_rows();
+        $user = $this->db->get_where('pmb', ['email' => $users])->num_rows();
 
         if (empty($user)) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -617,15 +619,15 @@ class Ppdb extends CI_Controller
              <span aria-hidden="true">&times;</span>
          </button>
          </div>');
-            redirect('ppdb/login');
+            redirect('pmb/login');
         }
         $data['title'] = 'pendaftaran';
         $data['menu'] = 'pendafataran';
         $data['web'] =  $this->db->get('website')->row_array();
         $data['home'] =  $this->db->get('home')->row_array();
-        $data['user'] = $this->db->get_where('ppdb', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('pmb', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Dashboard';
-        $data['pembayaran'] = $this->db->get_where('data_pembayaran', ['jenis' => 'PPDB'])->result_array();
+        $data['pembayaran'] = $this->db->get_where('data_pembayaran', ['jenis' => 'pmb'])->result_array();
         $this->db->order_by('nama', 'asc');
         $data['prov'] = $this->db->get('provinsi')->result_array();
         $data['pendidikan'] = $this->db->get('data_pendidikan')->result_array();
@@ -653,7 +655,7 @@ class Ppdb extends CI_Controller
 
         $this->load->library('upload', $config);
         $this->db->where('id', $id);
-        $g =  $this->db->get('ppdb')->row_array();
+        $g =  $this->db->get('pmb')->row_array();
 
         if ($this->upload->do_upload('img_bukti')) {
             $img_bukti  = $this->upload->data('file_name');
@@ -668,7 +670,7 @@ class Ppdb extends CI_Controller
         ];
 
         $this->db->where('id', $id);
-        $this->db->update('ppdb', $data);
+        $this->db->update('pmb', $data);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> Data pendaftaran kamu berhasil di update.
@@ -676,7 +678,7 @@ class Ppdb extends CI_Controller
             <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-        redirect('ppdb/dashboard');
+        redirect('pmb/dashboard');
     }
 
 
@@ -684,7 +686,7 @@ class Ppdb extends CI_Controller
     {
         $users = $this->session->userdata('email');
 
-        $user = $this->db->get_where('ppdb', ['email' => $users])->num_rows();
+        $user = $this->db->get_where('pmb', ['email' => $users])->num_rows();
 
         if (empty($user)) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -693,16 +695,16 @@ class Ppdb extends CI_Controller
              <span aria-hidden="true">&times;</span>
          </button>
          </div>');
-            redirect('ppdb/login');
+            redirect('pmb/login');
         }
 
         $data['menu'] = 'home';
         $data['web'] =  $this->db->get('website')->row_array();
         $data['home'] =  $this->db->get('home')->row_array();
-        $data['user'] = $this->db->get_where('ppdb', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('pmb', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Dashboard';
         $data['pembayaran'] = $this->db->get('data_pembayaran')->result_array();
-        $data['pemb'] = $this->db->get_where('data_pembayaran', ['jenis' => 'PPDB'])->result_array();
+        $data['pemb'] = $this->db->get_where('data_pembayaran', ['jenis' => 'pmb'])->result_array();
         $this->db->order_by('nama', 'asc');
         $data['prov'] = $this->db->get('provinsi')->result_array();
         $data['pendidikan'] = $this->db->get('data_pendidikan')->result_array();
@@ -771,6 +773,6 @@ class Ppdb extends CI_Controller
     </button>
     </div>'
         );
-        redirect('ppdb/login');
+        redirect('pmb/login');
     }
 }

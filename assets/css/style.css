@@ -186,7 +186,8 @@ section {
 --------------------------------------------------------------*/
 
 .header {
-    transition: all 0.5s;
+
+    transition: all 0.2s;
     z-index: 997;
     padding: 20px 0;
 }
@@ -194,7 +195,7 @@ section {
 .header.header-scrolled {
     background: #fff;
     padding: 15px 0;
-    box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+    box-shadow: 0px 2px 20px rgba(247, 189, 162, 0.678);
 }
 
 .header .logo {
@@ -207,7 +208,7 @@ section {
 }
 
 .header .logo span {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 700;
     letter-spacing: 1px;
     color: #b96914;
@@ -227,14 +228,17 @@ section {
 
 .navbar {
     padding: 0;
+
 }
 
 .navbar ul {
     margin: 0;
     padding: 0;
     display: flex;
+   
     list-style: none;
     align-items: center;
+
 }
 
 .navbar li {
@@ -381,7 +385,7 @@ section {
     right: 0;
     left: 0;
     bottom: 0;
-    background: rgba(1, 22, 61, 0.9);
+    background: rgba(230, 192, 112, 0.637);
     transition: 0.3s;
 }
 
@@ -469,7 +473,7 @@ section {
 
 .hero h1 {
     margin: 0;
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 700;
     color: #b96914;
 }
@@ -477,7 +481,7 @@ section {
 .hero h2 {
     color: #444444;
     margin: 15px 0 0 0;
-    font-size: 26px;
+    font-size: 20px;
 }
 
 .hero .btn-get-started {

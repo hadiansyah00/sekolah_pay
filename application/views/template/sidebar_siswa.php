@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url('ppdb/dashboard') ?>">
+        <a class="nav-link" href="<?= base_url('pmb/dashboard') ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -28,7 +28,7 @@
     </div>
 
     <li class="nav-item <?= ($this->uri->segment(2) == 'biodata') ? 'active' : '' ?>">
-        <a class="nav-link" href="<?= base_url('ppdb/biodata'); ?>">
+        <a class="nav-link" href="<?= base_url('pmb/biodata'); ?>">
             <i class="fas fa-fw  fa-file-contract"></i>
             <span> Pendaftaran <strong>PMB</strong> </span>
         </a>
@@ -39,7 +39,7 @@
         <?php else : ?>
         <li class="nav-item">
         <?php endif; ?>
-        <a class="nav-link" href="<?= base_url('ppdb/pembayaran'); ?>">
+        <a class="nav-link" href="<?= base_url('pmb/pembayaran'); ?>">
             <i class="fas fa-fw fa-comments"></i>
             <span>Pembayaran</span> &nbsp;
         </a>
@@ -51,7 +51,7 @@
             <?php else : ?>
             <li class="nav-item">
             <?php endif; ?>
-            <a class="nav-link" href="<?= base_url('ppdb/status_ppdb') ?>">
+            <a class="nav-link" href="<?= base_url('pmb/status_pmb') ?>">
                 <i class="fas fa-fw fa-sticky-note"></i>
                 <span>Status Pendaftaran</span> &nbsp;
             </a>
@@ -95,7 +95,7 @@
             <div class="modal-body">Pilih <b>Keluar</b> jika kamu ingin keluar dari dashboard</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-danger" href="<?= base_url('ppdb/logout') ?>"><i class="bi bi-box-arrow-right"></i> Keluar</a>
+                <a class="btn btn-danger" href="<?= base_url('pmb/logout') ?>"><i class="bi bi-box-arrow-right"></i> Keluar</a>
             </div>
         </div>
     </div>

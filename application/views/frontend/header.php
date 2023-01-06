@@ -83,7 +83,7 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li> -->
-          <li><a class="getstarted scrollto" href="<?= base_url('ppdb/login'); ?>">Login</a></li>
+          <li><a class="getstarted scrollto" href="<?= base_url('pmb/login'); ?>">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

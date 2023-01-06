@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>FORMULIR PPDB</title>
+	<title>FORMULIR PMB STIKES BOGOR HUSADA</title>
 	<style>
 		html,
 		body {
@@ -52,10 +52,11 @@
 
 <body>
 	<div class="header">
-		<div style="font-weight: bold; font-size: 17px">FORMULIR PENERIMAAN PESERTA DIDIK BARU</div>
+		<div style="font-weight: bold; font-size: 17px">FORMULIR PENERIMAAN PESERTA MAHASISWA BARU</div>
 		<div style="font-weight: bold; font-size: 22px">"<?= $web['nama'] ?>"</div>
 		<div style="font-size: 15px;">Alamat : <?= $web['alamat'] ?></div>
 		<div style="font-size: 15px;">No Telp : <?= $web['telp'] ?> E-mail : <?= $web['email'] ?></div>
+
 		<div style="font-size: 16px">Tahun Pelajaran <?= date("Y"); ?>/<?= date("Y") + 1; ?></div>
 	</div>
 
@@ -73,7 +74,7 @@
 	</table>
 	<table width="100%" class="tabel_utama" cellspacing="2">
 		<tr>
-			<td colspan="3"><b>A. IDENTITAS CALON SISWA</b></td>
+			<td colspan="3"><b>A. IDENTITAS CALON MAHASISWA</b></td>
 		</tr>
 		<tr>
 			<td align="" width="5%">1. </td>

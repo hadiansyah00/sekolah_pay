@@ -5,11 +5,15 @@
     <div class="row">
       <div class="col-lg-6 d-flex flex-column justify-content-center">
         <h1 data-aos="fade-up"><?= $home['judul'] ?></h1>
-        <h3 data-aos="fade-up" data-aos-delay="400"><?= $home['isi'] ?></h3>
+        <h2 data-aos="fade-up" data-aos-delay="400"><?= $home['isi'] ?></h2>
         <div data-aos="fade-up" data-aos-delay="600">
-          <div class="text-center text-lg-start">
+          <div class="text-center text-sm-start">
             <a href="<?= base_url($home['link']); ?>" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
               <span><?= $home['tombol'] ?></span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+                <a href="#" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+              <span>Download Brosur</span>
               <i class="bi bi-arrow-right"></i>
             </a>
           </div>

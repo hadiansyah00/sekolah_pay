@@ -380,6 +380,11 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label>Tempat Lahir</label>
+                                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?= $siswa['tempat_lahir'] ?>">
+                                <?= form_error('tempat_lahir', '<small class="text-danger pl-3">', ' </small>') ?>
+                            </div>
+                            <div class="form-group">
                                 <label>Tanggal Lahir</label>
                                 <input type="date" class="form-control" id="ttl" name="ttl" value="<?= $siswa['ttl'] ?>">
                                 <?= form_error('ttl', '<small class="text-danger pl-3">', ' </small>') ?>
@@ -396,7 +401,7 @@
                                 <?= form_error('prov', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                             <div class="form-group">
-                                <label>Kota</label>
+                                <label>Kota / Kabupaten</label>
                                 <select class="form-control" id="kab" name="kab">
                                     <option value="<?= $siswa['kab']; ?>"><?= $siswa['kab']; ?></option>
                                     <option>- Pilih provinsi dahulu -</option>
@@ -407,18 +412,18 @@
                                 <label>Kecamatan</label>
                                 <select class="form-control" id="kec" name="kec">
                                     <option value="<?= $siswa['kec']; ?>"><?= $siswa['kec']; ?></option>
-                                    <option value="">- Pilih kabupaten dahulu -</option>
+                                    <option value="">- Pilih kabupaten / kota dahulu -</option>
                                 </select>
                                 <?= form_error('kec', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>Keluarahan</label>
                                 <select class="form-control" id="kel" name="kel">
                                     <option value="<?= $siswa['kel']; ?>"><?= $siswa['kel']; ?></option>
                                     <option value="">- Pilih kecamatan dahulu -</option>
                                 </select>
                                 <?= form_error('kel', '<small class="text-danger pl-3">', ' </small>') ?>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label>Alamat</label>
                                 <textarea type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat"><?= $siswa['alamat'] ?></textarea>
@@ -570,11 +575,11 @@
                                 <?= form_error('no_telp', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>Tahun Masuk</label>
                                 <input type="number" class="form-control" id="thn_msk" name="thn_msk" placeholder="Tahun Masuk" value="<?= $siswa['thn_msk'] ?>">
                                 <?= form_error('thn_msk', '<small class="text-danger pl-3">', ' </small>') ?>
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <label>Sekolah Asal</label>
@@ -582,14 +587,10 @@
                                 <?= form_error('sekolah_asal', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
 
-                            <div class="form-group">
-                                <label>Kelas</label>
-                                <input type="text" class="form-control" id="old_kelas" name="old_kelas" placeholder="Kelas" value="<?= $siswa['kelas'] ?>">
-                                <?= form_error('old_kelas', '<small class="text-danger pl-3">', ' </small>') ?>
-                            </div>
+                          
 
                             <div class="form-group">
-                                <label>Tahun Lulus</label>
+                                <label>Tahun Lulus Sekolah</label>
                                 <input type="number" class="form-control" id="thn_lls" name="thn_lls" placeholder="Tahun Lulus" value="<?= $siswa['thn_lls'] ?>">
                                 <?= form_error('thn_lls', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
@@ -597,7 +598,7 @@
                             <hr class="sidebar-divider">
                             <hr class="sidebar-divider">
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>Tahun Masuk</label>
                                 <select class="form-control" id="thn_msk" name="thn_msk">
                                     <option>- Pilih Periode -</option>
@@ -608,20 +609,20 @@
                                     <?php endforeach; ?>
                                 </select>
                                 <?= form_error('thn_msk', '<small class="text-danger pl-3">', ' </small>') ?>
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-university fa-fw"></i> Penempatan</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-university fa-fw"></i> Program Studi</h6>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Pendidikan</label>
+                                                    <label>Kelas</label>
                                                     <select class="form-control" id="pendidikan" name="pendidikan">
-                                                        <option>- Pilih Pendidikan -</option>
+                                                        <option>- Pilih Kelas -</option>
                                                         <?php foreach ($pendidikan as $row) : ?>
 
                                                             <option <?php if ($siswa['id_pend'] == $row['id']) {
@@ -651,9 +652,9 @@
                                             </div> -->
                                             <div id="jurus" class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Kejuruan</label>
+                                                    <label>Program Studi</label>
                                                     <select class="form-control" id="jurusan" name="jurusan">
-                                                        <option>- Pilih Jurusan -</option>
+                                                        <option>- Pilih Prodi -</option>
                                                         <?php foreach ($jurusan as $s) : ?>
 
                                                             <option <?php if ($siswa['id_majors'] == $s['id']) {
@@ -670,18 +671,14 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                     <div class="pt-3 form-group row">
                         <div class="col-md-12">
                             <button type="submit" onclick="return confirm('Lanjutkan Simpan Data?');" class="btn btn-block btn-success"><i class="fa fa-redo"></i> Perbaharui Data</button>
                         </div>
                     </div>
-
                     <?php form_close(); ?>
-
                     <?php if ($siswa['status']  == '1') : ?>
                         <div class="pt-3 form-group row">
                             <div class="col-md-12">

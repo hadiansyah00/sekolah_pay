@@ -26,22 +26,22 @@
                             <tbody>
                                 <?php
                                 $i = 1;
-                                foreach ($pendidikan as $d) : ?>
+                                foreach ($kelas as $d) : ?>
                                     <tr>
                                         <th width="50"><?= $i ?></th>
-                                        <td><?= $d['nama'] ?></td>
+                                        <td><?= $d['nama_kelas'] ?></td>
                                         <td><?= ($d['majors'] == 1) ? 'Aktif' : 'Tidak Aktif' ?></td>
                                         <td width="200">
-                                            <a href="#" class="badge badge-success" data-toggle="modal" data-target="#updateData<?= $d['id'] ?>">Edit</a>
-                                            <a href="" class="badge badge-danger" data-toggle="modal" data-target="#deleteData<?= $d['id'] ?>">Hapus</a>
+                                            <a href="#" class="badge badge-success" data-toggle="modal" data-target="#updateData<?= $d['id_kelas'] ?>">Edit</a>
+                                            <a href="" class="badge badge-danger" data-toggle="modal" data-target="#deleteData<?= $d['id_kelas'] ?>">Hapus</a>
                                         </td>
                                     </tr>
                                     <!--update Data-->
-                                    <div class="modal fade" id="updateData<?= $d['id'] ?>" role="dialog" aria-labelledby="addNewDataLabel" aria-hidden="true">
+                                    <div class="modal fade" id="updateData<?= $d['id_kelas'] ?>" role="dialog" aria-labelledby="addNewDataLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="addNewDataLabel">Ubah Data Pendidikan</h5>
+                                                    <h5 class="modal-title" id="addNewDataLabel">Ubah Data Kelas</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -50,9 +50,9 @@
                                                     <div class="modal-body">
 
                                                         <div class="form-group">
-                                                            <input type="hidden" name="id" id="id" value="<?= $d['id'] ?>">
-                                                            <label for="">Nama Pendidikan</label>
-                                                            <input type="text" class="form-control" id="pendidikan" name="pendidikan" value="<?= $d['nama'] ?>" placeholder="Nama Pendidikan">
+                                                            <input type="hidden" name="id_kelas" id="id_kelas" value="<?= $d['id_kelas'] ?>">
+                                                            <label for="">Nama Kelas</label>
+                                                            <input type="text" class="form-control" id="nama_kelas" name="nama_kelas" value="<?= $d['nama_kelas'] ?>" placeholder="Nama Pendidikan">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Kejuruan</label>
@@ -77,22 +77,22 @@
                                         </div>
                                     </div>
                                     <!--delete Data-->
-                                    <div class="modal fade" id="deleteData<?= $d['id'] ?>" role="dialog" aria-labelledby="addNewDataLabel" aria-hidden="true">
+                                    <div class="modal fade" id="deleteData<?= $d['id_kelas'] ?>" role="dialog" aria-labelledby="addNewDataLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="addNewDataLabel">Hapus Data Pendidikan</h5>
+                                                    <h5 class="modal-title" id="addNewDataLabel">Hapus Data Kelas</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Anda yakin ingin menghapus data <b><?= $d['nama'] ?></b></p>
+                                                    <p>Anda yakin ingin menghapus data <b><?= $d['nama_kelas'] ?></b></p>
                                                 </div>
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                                    <a href="<?= base_url('hapus/hapus_data_pendidikan?id=') ?><?= $d['id'] ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a>
+                                                    <a href="<?= base_url('hapus/hapus_data_pendidikan?id=') ?><?= $d['id_kelas'] ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a>
                                                 </div>
 
                                             </div>
@@ -120,7 +120,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addNewDataLabel">Tambah Data Kelas</h5>
+                <h5 class="modal-title" id="addNewDataLabel">Tambah Data kelas</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -129,10 +129,10 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="">Nama Kelas</label>
-                        <input type="text" class="form-control" id="pendidikan" name="pendidikan" placeholder="Nama Kelas">
+                        <input type="text" class="form-control" id="nama_kelas" name="nama_kelas" placeholder="Nama Kelas">
                     </div>
                     <div class="form-group">
-                        <label>Kejuruan</label>
+                        <label>Status</label>
                         <select class="form-control" id="majors" name="majors">
                             <option value="">- Status -</option>
                             <option value="1">Aktif</option>

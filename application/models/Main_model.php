@@ -2,7 +2,17 @@
 
 class Main_model extends CI_Model
 {
-    // Fetch siswa
+    public function insert($table, $data, $batch = false)
+	{
+		return $batch ? $this->db->insert_batch($table, $data) : $this->db->insert($table, $data);
+	}
+
+	public function delete($table, $pk, $id)
+	{
+		return $this->db->delete($table, [$pk => $id]);
+	}
+
+	
     function getsiswa($id, $searchTerm = "")
     {
 

@@ -24,7 +24,7 @@
                                     <!-- <span class="text-muted">Silahkan Login </span> -->
                                 </div>
                                 <?= $this->session->flashdata('message') ?>
-                                <form class="user" action="<?= base_url('ppdb/login'); ?>" method="post">
+                                <form class="user" action="<?= base_url('pmb/login'); ?>" method="post">
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input type="text" class="form-control form-control-user" value="<?= set_value('email') ?>" name="email" id="email" placeholder="Email">
@@ -51,7 +51,7 @@
                                 </form>
 
                                 <div class="text-center">
-                                    <a class="small" href="<?= base_url('ppdb'); ?>"><b>⇤ Form Pendaftaran</b></a>
+                                    <a class="small" href="<?= base_url('ppdb'); ?>"><b>⇤ Klik Disini Untuk Mendaftar</b></a>
                                 </div>
                             </div>
                         </div>

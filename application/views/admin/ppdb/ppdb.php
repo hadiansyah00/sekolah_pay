@@ -19,7 +19,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Nama Lengkap</th>
                                     <th scope="col">NIK</th>
-                                    <th scope="col">NIS</th>
+                                    <th scope="col">NISN</th>
                                     <th scope="col">Alamat</th>
                                     <th scope="col">Tanggal Lahir</th>
                                     <th scope="col">Invoice</th>
@@ -49,9 +49,9 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <?php if ($d['inv']  !== '1') : ?>
+                                            <?php if ($d['sts_pmb']  == '0') : ?>
                                                 <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Belum Bayar</span>
-                                            <?php elseif ($d['inv']  == '1') : ?>
+                                            <?php elseif ($d['sts_pmb']  == '2') : ?>
                                                 <span class="badge badge-success badge-pill disabled" aria-disabled="true">Lunas</span>
                                                 <a target="_blank" href="<?= base_url('laporan/cetak_invoice?id=' . $this->secure->encrypt($d['id'])) ?>" class="badge badge-info"><i class="fa fa-print"></i> Cetak Invoice</a>
                                             <?php endif ?>

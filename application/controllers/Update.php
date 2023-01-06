@@ -247,15 +247,15 @@ class Update extends CI_Controller
 
     public function update_data_pendidikan()
     {
-        $id    = $this->input->post('id');
-        $nama  = $this->input->post('pendidikan');
+        $id    = $this->input->post('id_kelas');
+        $nama  = $this->input->post('nama_kelas');
 
         $data = [
-            'nama' => $nama,
+            'nama_kelas' => $nama,
             'majors' => $this->input->post('majors')
         ];
-        $this->db->where('id', $id);
-        $this->db->update('data_pendidikan', $data);
+        $this->db->where('id_kelas', $id);
+        $this->db->update('kelas', $data);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data Pendidikan <strong>' . $nama . '</strong> berhasil diubah
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -290,14 +290,14 @@ class Update extends CI_Controller
 
     public function update_data_jurusan()
     {
-        $id    = $this->input->post('id');
-        $nama = $this->input->post('jurusan');
+        $id    = $this->input->post('id_prodi');
+        $nama = $this->input->post('nama_prodi');
         $data = [
-            'nama' => $nama,
-            'id_pend' => $this->input->post('pendidikan')
+            'nama_prodi' => $nama,
+            'id_kelas' => $this->input->post('kelas')
         ];
-        $this->db->where('id', $id);
-        $this->db->update('data_jurusan', $data);
+        $this->db->where('id_prodi', $id);
+        $this->db->update('prodi', $data);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data jurusan <strong>' . $nama . '</strong> berhasil diubah
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

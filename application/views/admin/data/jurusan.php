@@ -18,8 +18,8 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Jurusan</th>
-                                    <th scope="col">Pendidikan</th>
+                                    <th scope="col">Prodi</th>
+                                    <th scope="col">Kelas</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -27,7 +27,7 @@
                                 <?php
                                 $i = 1;
                                 foreach ($jurusan as $d) : ?>
-                                <?php $majors =  $this->db->get_where('data_pendidikan', ['id' => $d['id_pend']])->row_array(); ?>
+                              <?php $majors =  $this->db->get_where('data_pendidikan', ['id' => $d['id_pend']])->row_array(); ?>
                                     <tr>
                                         <th width="50"><?= $i ?></th>
                                         <td><?= $d['nama'] ?></td>
@@ -133,9 +133,9 @@
 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="pendidikan">Pendidikan</label>
+                        <label for="pendidikan">Kelas</label>
                         <select class="form-control" id="pendidikan" name="pendidikan">
-                            <option value="">- Pilih Pendidikan -</option>
+                            <option value="">- Pilih Kelas -</option>
                             <?php foreach ($pendidikan as $a) : ?>
                                 <option value="<?= $a['id'] ?>"><?= $a['nama'] ?></option>
                             <?php endforeach ?>

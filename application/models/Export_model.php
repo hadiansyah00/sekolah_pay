@@ -18,7 +18,7 @@ class Export_model extends CI_Model
 
     function getPPDB()
     {
-        $this->db->from('ppdb'); //nama tabel harap disesuaikan dengan nama tabel milik sobat
+        $this->db->from('pmb'); //nama tabel harap disesuaikan dengan nama tabel milik sobat
 
         return $this->db->get();
     }
