@@ -104,7 +104,7 @@
 		<tr>
 			<td align="">6. </td>
 			<td>Tanggal Lahir</td>
-			<td><?= mediumdate_indo(date($ppdb['ttl'])) ?></td>
+			<td><?= mediumdate_indo(date($pmb['ttl'])) ?></td>
 		</tr>
 		<tr>
 			<td align="">7. </td>
@@ -154,7 +154,7 @@
 			<td>No Telepon Ortu</td>
 			<td><?= $pmb['no_telp'] ?></td>
 		</tr>
-		<?php if (!empty($ppdb['nama_wali'])) : ?>
+		<?php if (!empty($pmb['nama_wali'])) : ?>
 			<tr>
 				<td colspan="3"><b>C. IDENTITAS WALI</b></td>
 			</tr>
