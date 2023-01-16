@@ -169,6 +169,19 @@ class Hapus extends CI_Controller
           </div>');
     redirect('admin/data_pendidikan');
   }
+   public function hapus_data_kusioner()
+  {
+    $id = $this->input->get('id');
+    
+    $this->db->delete('data_kusioner', array('id' => $id));
+    $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Data Pendidikan berhasil dihapus
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>');
+    redirect('admin/data_kusioner');
+  }
   public function hapus_data_ta()
   {
     $id = $this->input->get('id_ta');

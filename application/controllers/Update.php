@@ -264,6 +264,25 @@ class Update extends CI_Controller
           </div>');
         redirect('admin/data_pendidikan');
     }
+     public function update_data_kusioner()
+    {
+        $id    = $this->input->post('id');
+        $nama  = $this->input->post('nama');
+
+        $data = [
+            'nama' => $nama,
+           
+        ];
+        $this->db->where('id', $id);
+        $this->db->update('data_kusioner', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Data Pendidikan <strong>' . $nama . '</strong> berhasil diubah
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>');
+        redirect('admin/data_kusioner');
+    }
 
     public function update_data_ta()
     {

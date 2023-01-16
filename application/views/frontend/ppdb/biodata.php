@@ -91,7 +91,7 @@
                     <div class="col-md-12">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-success"><i class="fa fa-list-alt fa-fw"></i> <b>Form Data Diri</b></h6>
+                                <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-list-alt fa-fw"></i> <b>Form Data Diri</b></h6>
                             </div>
                             <div class="card-body">
                                 <?= form_error('biodata', '<div class="alert alert-danger" role="alert">', '</div>') ?>
@@ -218,7 +218,19 @@
                                             <input type="text" class="form-control" id="nama_wali" name="nama_wali" placeholder="Nama Wali" value="<?= $user['nama_wali'] ?>">
                                             <small class="text-info">* Kosongkan jika tidak ada.</small>
                                         </div>
-
+                                        
+                                        <!-- <div class="form-group">
+                                            <label>Tahun Masuk</label>
+                                            <select class="form-control" id="thn_msk" name="thn_msk">
+                                                <option>- Pilih Periode -</option>
+                                                <?php foreach ($thn_msk as $row) : ?>
+                                                    <option <?php if ($user['thn_msk'] == $row['id']) {
+                                                                echo "selected='selected'";
+                                                            } ?> value="<?= $row['id'] ?>"><?= $row['period_start'] ?>/<?= $row['period_end'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <?= form_error('thn_msk', '<small class="text-danger pl-3">', ' </small>') ?>
+                                        </div> -->
                                     </div>
 
                                     <div class="col-md-6">
@@ -404,7 +416,34 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <br />
+                                        
+                                        <hr class="sidebar-divider">
+                                         <div class="form-group">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3">
+                                                    <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-university fa-fw"></i> Data Kusioner</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <!-- <label>Kusione</label> -->
+                                                                <select class="form-control" id="id_kusioner" name="id_kusioner">
+                                                                    <option value disabled>- Pilih Kusioner -</option>
+                                                                    <?php foreach ($kusioner as $row) : ?>
+                                                                        <option <?php if ($user['id_kusioner'] == $row['id']) {
+                                                                                    echo "selected='selected'";
+                                                                                } ?> value="<?= $row['id'] ?>"><?= $row['nama'] ?></option>
+                                                                    <?php endforeach; ?>
+                                                                </select>
+                                                                <?= form_error('pendidikan', '<small class="text-danger pl-3">', ' </small>') ?>
+                                                            </div>
+                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="sidebar-divider">
 
                                         <div class="form-group row">
                                             <div class="col-sm-3">
@@ -473,24 +512,9 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <br/>
                                         <hr class="sidebar-divider">
-                                        <hr class="sidebar-divider">
-
-                                        <!-- <div class="form-group">
-                                            <label>Tahun Masuk</label>
-                                            <select class="form-control" id="thn_msk" name="thn_msk">
-                                                <option>- Pilih Periode -</option>
-                                                <?php foreach ($thn_msk as $row) : ?>
-                                                    <option <?php if ($user['thn_msk'] == $row['id']) {
-                                                                echo "selected='selected'";
-                                                            } ?> value="<?= $row['id'] ?>"><?= $row['period_start'] ?>/<?= $row['period_end'] ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                            <?= form_error('thn_msk', '<small class="text-danger pl-3">', ' </small>') ?>
-                                        </div> -->
-
-                                        
-
+                                       
                                     </div>
                                 </div>
 

@@ -124,7 +124,9 @@ class Pmb extends CI_Controller
 
         if ($type == 'verify') {
             $this->email->subject('Verfikasi Akun');
-            $this->email->message(' Konfirmasi Aktivasi Akun anda ' . $nama . ': <a href="' . base_url() . 'pmb/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"> Activate</a>');
+            $this->email->message(' Konfirmasi Aktivasi Akun anda ' 
+             . $nama . ': <a href="' . base_url() . 'pmb/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"> Aktivasi AKun </a> 
+            <br> ');
         } else if ($type == 'forgot') {
             $this->email->subject('Reset Password');
             $this->email->message('Click this link to reset your password  ' . $nama . ': <a href="' . base_url() . 'pmb/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
@@ -462,11 +464,11 @@ class Pmb extends CI_Controller
         $data['pembayaran'] = $this->db->get('data_pembayaran')->result_array();
         $this->db->order_by('nama', 'asc');
         $data['prov'] = $this->db->get('provinsi')->result_array();
+        $data['kusioner'] = $this->db->get('data_kusioner')->result_array();
         $data['pendidikan'] = $this->db->get('data_pendidikan')->result_array();
         $data['jurusan'] = $this->db->get('data_jurusan')->result_array();
         $this->db->where('period_status', 1);
         $data['thn_msk'] = $this->db->get('period')->result_array();
-
         $this->form_validation->set_rules('email', 'Email', 'required');
         // $this->form_validation->set_rules('nik', 'NIK', 'required');
         // $this->form_validation->set_rules('nis', 'NISN', 'required');
@@ -499,6 +501,7 @@ class Pmb extends CI_Controller
             $status = $this->input->post('status');
             $id_prov = $this->input->post('prov');
             $id_pend = $this->input->post('pendidikan');
+            $id_kusioner = $this->input->post('id_kusioner');
 
             $pend = $this->db->get_where('data_pendidikan', ['id' => $id_pend])->row_array();
             if ($pend['majors'] == 1) {
@@ -586,7 +589,8 @@ class Pmb extends CI_Controller
                 'img_siswa' => $img_siswa,
                 'img_kk' => $img_kk,
                 'img_ijazah' => $img_ijazah,
-                'img_ktp' => $img_ktp
+                'img_ktp' => $img_ktp,
+                'id_kusioner' => $id_kusioner
             ];
 
             $this->db->where('id', $id);
@@ -631,6 +635,7 @@ class Pmb extends CI_Controller
         $this->db->order_by('nama', 'asc');
         $data['prov'] = $this->db->get('provinsi')->result_array();
         $data['pendidikan'] = $this->db->get('data_pendidikan')->result_array();
+        $data['kusioner'] = $this->db->get('data_kusioner')->result_array();
         $data['jurusan'] = $this->db->get('data_jurusan')->result_array();
         $this->db->where('period_status', 1);
         $data['thn_msk'] = $this->db->get('period')->result_array();
@@ -775,4 +780,60 @@ class Pmb extends CI_Controller
         );
         redirect('pmb/login');
     }
+    
+    public function kusioner()
+    {
+        $users = $this->session->userdata('email');
+        $user = $this->db->get_where('pmb', ['email' => $users])->num_rows();
+
+        if (empty($user)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+             Silahkan masuk terlebih dahulu!
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+         </button>
+         </div>');
+            redirect('pmb/login');
+        }
+
+        $data['menu'] = 'home';
+        $data['web'] =  $this->db->get('website')->row_array();
+        $data['home'] =  $this->db->get('home')->row_array();
+        $data['user'] = $this->db->get_where('pmb', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Dashboard';
+        $data['pembayaran'] = $this->db->get('data_pembayaran')->result_array();
+        $data['pemb'] = $this->db->get_where('data_pembayaran', ['jenis' => 'pmb'])->result_array();
+
+        $data['kusioner'] = $this->Main_model->getData('data_kusioner');
+        $data['pendidikan'] = $this->db->get('data_pendidikan')->result_array();
+        $data['jurusan'] = $this->db->get('data_jurusan')->result_array();
+        $this->db->where('period_status', 1);
+        $data['thn_msk'] = $this->db->get('period')->result_array();
+
+
+           if ($this->form_validation->run() == true) {
+            $this->load->view('template/header_siswa', $data);
+            $this->load->view('template/sidebar_siswa', $data);
+            $this->load->view('template/topbar_siswa', $data);
+            $this->load->view('frontend/ppdb/v_kusioner', $data);
+            $this->load->view('template/footer');
+        } else {
+            $id = $this->input->post('id');
+            $data = [
+                     'medsos' => $this->input->post('medsos')
+            ];  
+
+            $this->db->where('id', $id);
+            $this->db->update('pmb', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Data pendaftaran kamu berhasil di update.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('pmb/kusioner');
+        }
+    }
+
 }

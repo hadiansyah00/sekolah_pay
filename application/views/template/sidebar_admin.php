@@ -143,6 +143,7 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                         <a class="collapse-item" href="<?= base_url('admin/data_pendidikan'); ?>">Data Kelas</a>
                         <a class="collapse-item" href="<?= base_url('admin/data_jurusan'); ?>">Data Prodi</a>
                         <a class="collapse-item" href="<?= base_url('admin/data_ta'); ?>">Tahun Ajaran</a>
+                            <a class="collapse-item" href="<?= base_url('admin/data_kusioner'); ?>">Data Kusioner</a>
                         <!-- <a class="collapse-item" href="<?= base_url('admin/kelas'); ?>">Data Kelas</a>
                         <a class="collapse-item" href="<?= base_url('admin/data_kursi'); ?>">Data Kursi</a>
                         <a class="collapse-item" href="<?= base_url('admin/data_pelanggaran'); ?>">Data Pelanggaran</a>

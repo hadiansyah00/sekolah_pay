@@ -46,7 +46,7 @@
       <a href="<?= base_url('home'); ?>" class="logo d-flex align-items-center">
         <!-- <img src="<?= base_url('assets/'); ?>img/logo.png" alt=""> -->
         <!-- <span><?= $web['logo'] ?></span> -->
-        <img style="logo" src="<?= base_url('assets/'); ?>img/<?= $web['fav'] ?>" alt="">
+        <img style="logo" src="<?= base_url('assets/'); ?>img/<?= $web['logo'] ?>" alt="">
       </a>
 
       <nav id="navbar" class="navbar">

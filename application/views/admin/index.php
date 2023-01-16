@@ -7,16 +7,15 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
 <div class="container-fluid">
     <?= $this->session->flashdata('message'); ?>
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800"><?= $web['nama'] ?></h1>
         <a href="<?= base_url('admin/tambah_siswa'); ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah siswa</a>
-    </div>
+    </div> -->
 
     <!-- Content Row -->
     <div class="row">
-
         <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <!-- <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -32,16 +31,16 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <!-- <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <a href="<?= base_url('admin/daftar_siswa') ?>">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total siswa</div>
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total PMB</div>
                             </a>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($sum_pmb, 0, ',', '.') ?></div>
                         </div>
@@ -51,10 +50,10 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <!-- <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -70,10 +69,10 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <!-- <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -91,7 +90,7 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
             </div>
         </div>
 
-    </div>
+    </div> -->
 
 
     <!-- Content Row -->
@@ -99,9 +98,31 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
     <div class="row">
 
         <!-- Color System -->
-        <div class="col-xl-4 col-lg-5">
+        
+        <div class="col-md-4">
             <div class="row">
-                <div class="col-lg-6 mb-4">
+                
+                <div class="col-lg-12 mb-4">
+                         <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <a href="<?= base_url('admin/daftar_siswa') ?>">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Calon Mahasiswa SBH</div>
+                            </a>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($sum_pmb, 0, ',', '.') ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+            <div class="row">
+                
+                <!-- <div class="col-lg-6 mb-4">
                     <div class="card bg-primary text-white shadow">
                         <div class="card-body">
                             <a href="<?= base_url('admin/konseling') ?>" style="color:white">E-konseling <?php if ($notif_konseling) : ?><span class="badge badge-danger"><?= $notif_konseling ?></span><?php endif ?></a>
@@ -143,7 +164,7 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="col-lg-6 mb-4">
                     <div class="card border-left-success shadow h-100 py-2">
@@ -184,50 +205,71 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
             </div>
         </div>
         <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-5">
+        <div class="col-md-8">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Data siswa</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Calon Mahasiswa</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-pie pt-4 pb-2">
                         <canvas id="myPieChart"></canvas>
                     </div>
+               
                     <div class="mt-4 text-center small">
                         <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Laki - Laki
+                            <i class="fas fa-circle" style="text-decoration:none;color:#4e73df"></i> Kebidanan
                         </span>
                         <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Perempuan
+                            <i class="fas fa-circle text-color" style="text-decoration:none;color:#8F00FF"></i> Farmasi Reg A
                         </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-color" style="text-decoration:none;color:#9F00Ff"></i> Farmasi Reg B
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-color" style="text-decoration:none;color:#FFFF00"></i> Gizi
+                        </span>
+                       
                     </div>
                 </div>
             </div>
         </div>
 
-
-        <div class="col-xl-4 col-lg-5">
+        <div class="col-md-12">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Profile Website</h6>
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Data Kusioner Mahasiswa</h6>
                 </div>
+                <!-- Card Body -->
                 <div class="card-body">
-                    <div class="text-center">
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 20rem;" src="<?= base_url('assets/img/' . $about['img']) ?>" alt="">
+                    <div class="chart-pie pt-4 pb-2">
+                        <canvas id="KusionerChart"></canvas>
                     </div>
-                    <p><?= substr($about['about'], 0, 200) ?>..</p>
-                    <a href="<?= base_url('admin/about') ?>">Edit Profile website &rarr;</a>
+               
+                    <!-- <div class="mt-4 text-center small">
+                        <span class="mr-2">
+                            <i class="fas fa-circle" style="text-decoration:none;color:#4e73df"></i> Kebidanan
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-color" style="text-decoration:none;color:#8F00FF"></i> Farmasi Reg A
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-color" style="text-decoration:none;color:#9F00Ff"></i> Farmasi Reg B
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-color" style="text-decoration:none;color:#FFFF00"></i> Gizi
+                        </span>
+                       
+                    </div> -->
                 </div>
             </div>
         </div>
-
-    </div>
 
     <!-- Content Row -->
 
-    <div class="row">
+    <!-- <div class="row">
 
         <div class="col-md-6">
             <div class="card shadow mb-4">
@@ -339,7 +381,7 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
             </div>
         </div>
 
-    </div>
+    </div> -->
 
 </div>
 
@@ -408,11 +450,11 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
     var myPieChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ["Perempuan", "Laki - Laki"],
+            labels: ["Kebidanan", "Farmasi Reg A","Farmasi B", "Gizi"],
             datasets: [{
-                data: [<?= $sum_wanita ?>, <?= $sum_pria ?>],
-                backgroundColor: ['#4e73df', '#1cc88a'],
-                hoverBackgroundColor: ['#2e59d9', '#17a673'],
+                data: [<?= $mhs_bidan ?>, <?= $mhs_farm ?>, <?= $mhs_farm_b ?>, <?= $mhs_gizi ?>],
+                backgroundColor: ['#4e73df', '#8F00FF', '#8F00FF', '#FFFF00'],
+                hoverBackgroundColor: ['#00008B', '#8F00FF', '#8F00FF', '#FFFF00'],
                 hoverBorderColor: "rgba(234, 236, 244, 1)",
             }],
         },
@@ -427,6 +469,36 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                 yPadding: 15,
                 displayColors: false,
                 caretPadding: 10,
+            },
+            legend: {
+                display: false
+            },
+            cutoutPercentage: 80,
+        },
+    });
+    var ctx = document.getElementById("KusionerChart");
+    var myPieChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Medsos(IG / FB)", "Koran","Brosur", "Website / Google", "Persentasi","Radio","Teman","Spanduk","Broadcast WA/SMS","Guru SMA/SMK","Lain Lain"],
+            datasets: [{
+                data: [<?= $mhs_bidan ?>, <?= $mhs_farm ?>, <?= $mhs_farm_b ?>, <?= $mhs_gizi ?>],
+                backgroundColor: ['#4e73df', '#4e73df', '#4e73df', '#4e73df','#4e73df','#4e73df','#4e73df','#4e73df','#4e73df','#4e73df','#4e73df'],
+                hoverBackgroundColor: ['#4e73df', '#4e73df', '#4e73df', '#4e73df', '#4e73df', '#4e73df', '#4e73df', '#4e73df', '#4e73df', '#4e73df'],
+                hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: '#dddfeb',
+                borderWidth: 2,
+                xPadding: 5,
+                yPadding: 6,
+                displayColors: false,
+                caretPadding: 8,
             },
             legend: {
                 display: false

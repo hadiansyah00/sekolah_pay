@@ -113,4 +113,71 @@ class Main_model extends CI_Model
         }
         return $data;
     }
+    public function getKusioner()
+    {
+		$this->db->select('*');
+		$this->db->join('data_kusioner t', 'p.id_kusioner = d.id');
+		$this->db->order_by('user_id', 'DESC');
+		return $this->db->get('pmb p')->result_array();
+    }
+    public function getData($table, $data = null, $where = null)
+	{
+		if ($data != null) {
+			return $this->db->get_where($table, $data)->row_array();
+		} else {
+			return $this->db->get_where($table, $where)->result_array();
+		}
+	}
+    public function update($table, $pk, $id, $data)
+	{
+		$this->db->where($pk, $id);
+		return $this->db->update($table, $data);
+	}
+
+    public function mhs_farmasi_b()
+	{
+
+		$this->db->where('id_majors', '10');
+		$query = $this->db->get('pmb');
+		if ($query->num_rows() > 0) {
+			return $query->num_rows();
+		} else {
+			return 0;
+		}
+	}
+     public function mhs_farmasi_a()
+	{
+
+		$this->db->where('id_majors', '9');
+		$query = $this->db->get('pmb');
+		if ($query->num_rows() > 0) {
+			return $query->num_rows();
+		} else {
+			return 0;
+		}
+	}
+     public function mhs_bidan()
+	{
+
+		$this->db->where('id_majors', '11');
+		$query = $this->db->get('pmb');
+		if ($query->num_rows() > 0) {
+			return $query->num_rows();
+		} else {
+			return 0;
+		}
+	}
+     public function mhs_gizi()
+	{
+
+		$this->db->where('id_majors', '12');
+		$query = $this->db->get('pmb');
+		if ($query->num_rows() > 0) {
+			return $query->num_rows();
+		} else {
+			return 0;
+		}
+	}
+
+
 }

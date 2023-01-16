@@ -34,6 +34,12 @@
         </a>
     </li>
 
+    <!-- <li class="nav-item <?= ($this->uri->segment(2) == 'biodata') ? 'active' : '' ?>">
+        <a class="nav-link" href="<?= base_url('pmb/kusioner'); ?>">
+            <i class="fas fa-fw  fa-file-contract"></i>
+            <span> Kusioner</span>
+        </a>
+    </li> -->
     <!-- <?php if ($menu == 'pembayaran') : ?>
         <li class="nav-item active">
         <?php else : ?>

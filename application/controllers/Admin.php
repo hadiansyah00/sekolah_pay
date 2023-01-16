@@ -64,8 +64,11 @@ class Admin extends CI_Controller
         if ($data['user']['role_id'] !== '1') {
             $this->db->where_in('id_kelas', $id_kelas);
         }
-        $data['sum_siswa'] = $this->db->get("siswa")->num_rows();
-
+        $data['sum_pmb'] = $this->db->get("pmb")->num_rows();
+		$data['mhs_farm'] = $this->Main_model->mhs_farmasi_a();
+        $data['mhs_farm_b'] = $this->Main_model->mhs_farmasi_b();
+        $data['mhs_bidan'] = $this->Main_model->mhs_bidan();
+        $data['mhs_gizi'] = $this->Main_model->mhs_gizi();
         if ($data['user']['role_id'] !== '1') {
             $data['tot_siswa'] = $this->db->get("siswa")->num_rows();
             $this->db->where('id_peng', $id_peng);
@@ -1481,6 +1484,51 @@ class Admin extends CI_Controller
             redirect('admin/data_pendidikan');
         }
     }
+
+    
+
+    public function data_kusioner()
+    {
+        $data['menu'] = 'menu-12';
+        $data['title'] = 'Data Kusioner';
+        $data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
+        if ($data['user']['role_id'] !== '1') {
+            redirect('admin');
+        }
+        $data['web'] =  $this->db->get('website')->row_array();
+
+        $data['kusioner'] =  $this->db->get('data_kusioner')->result_array();
+
+        $this->form_validation->set_rules('nama', 'Nama kusioner', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('template/header', $data);
+            if ($data['user']['role_id'] !== '1') {
+                $this->load->view('template/sidebar_karyawan', $data);
+            } else {
+                $this->load->view('template/sidebar_admin', $data);
+            }
+            $this->load->view('template/topbar_admin', $data);
+            $this->load->view('admin/data/kusioner', $data);
+            $this->load->view('template/footer_admin');
+        } else {
+            $nama = $this->input->post('nama');
+            // $majors = $this->input->post('majors');
+            $data = [
+                'nama' => $nama,
+                // 'majors' => $majors
+            ];
+            $this->db->insert('data_kusioner', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Data Pendidikan <strong>' . $nama . '</strong> berhasil ditambahkan :)
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>');
+            redirect('admin/data_kusioner');
+        }
+    }
+
     public function data_ta()
     {
         $data['menu'] = 'menu-11';
