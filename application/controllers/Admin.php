@@ -2872,7 +2872,7 @@ class Admin extends CI_Controller
             ];
 
             $this->db->where('id', $id);
-            $this->db->update('ppdb', $data);
+            $this->db->update('pmb', $data);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Success!</strong> Data pendaftaran berhasil di update.

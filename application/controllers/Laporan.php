@@ -302,7 +302,7 @@ class Laporan extends CI_Controller
         $data['web'] =  $this->db->get('website')->row_array();
         $id     = $this->input->get('id');
         $id = $this->secure->decrypt($id);
-        $data['user'] = $this->db->get_where('ppdb', ['id' => $id])->row_array();
+        $data['user'] = $this->db->get_where('pmb', ['id' => $id])->row_array();
         $data['pembayaran'] = $this->db->get('data_pembayaran')->result_array();
         $data['pay'] = $this->db->get_where('data_pembayaran', ['jenis' => 'PPDB'])->result_array();
 

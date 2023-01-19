@@ -51,7 +51,7 @@
                                 </form>
 
                                 <div class="text-center">
-                                    <a class="small" href="<?= base_url('ppdb'); ?>"><b>⇤ Klik Disini Untuk Mendaftar</b></a>
+                                    <a class="small" href="<?= base_url('pmb'); ?>"><b>⇤ Klik Disini Untuk Mendaftar</b></a>
                                 </div>
                             </div>
                         </div>

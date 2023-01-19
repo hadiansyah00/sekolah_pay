@@ -149,24 +149,24 @@
             <!-- Begin Page Content -->
             <div class="container">
                 <div class="row">
+          
                     <div class="col-lg-8 py-4 p0 mx-auto">
-
+                                 <?php if ($user['status'] == 1) :?>   
                         <div class="card shadow mb-4">
                             <div class="card-header py-3 align-right">
-                                <a href="<?= base_url('pmb/biodata') ?>" class="m-0 font-font-weight-medium text-primary"><i class="fa fa-list-alt fa-fw"></i> <b>Edit Biodata</b></a>
-
-                            </div>
+                                <a class="m-0 font-font-weight-medium text-primary"><i class="fa fa-list-alt fa-fw"></i> <b>Informasi Penerimaan Mahasiswa Baru</b></a>
+                            </div>  
+                                     
                             <div class="card-body">
-
                                 <div class="row">
-                                    <div class="col-md-4 mb-4 mb-md-0">
-
+                                    <!-- <div class="col-md-4 mb-4 mb-md-0">
                                         <img src="<?php if (!empty($user['img_siswa'])) {
                                                         echo base_url('assets/img/data/' . $user['img_siswa']);
                                                     } ?>" class="img-thumbnail">
                                         <br /><br />
-                                    </div>
-                                    <div class="col-md-8 mb-4 mb-md-0">
+                                    </div> -->
+                          
+                                    <div class="col-md-12 mb-4 mb-md-0">
                                         <table class="table" style="font-size: 16;" cellpadding="3">
                                             <tbody>
                                                 <tr>
@@ -178,26 +178,10 @@
                                                     <td>: <?= $user['nama'] ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Daftar Ulang</td>
-                                                    <?php if ($user['sts_pmb']  == '0') : ?>
-                                                        <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Belum Bayar</span></td>
-                                                    <?php elseif ($user['sts_pmb']  == '1') : ?>
-                                                        <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Menunggu Verfikasi Staff</span></td>
-                                                    <?php elseif ($user['sts_pmb']  == '2   ') : ?>
-                                                        <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Pembayaran Telah Verfikasi</span></td>
-
-                                                    <?php endif ?>
-                                                </tr>
-                                                <tr>
                                                     <td>Status</td>
-                                                    <?php if ($user['status']  == '0') : ?>
-                                                        <td>: <span class="badge badge-warning badge-pill disabled" aria-disabled="true">Pending</span></td>
-                                                    <?php elseif ($user['status']  == '1') : ?>
-                                                        <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Konfirmasi</span></td>
-                                                    <?php elseif ($user['status']  == '2') : ?>
-                                                        <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Di Tolak</span></td>
-                                                    <?php endif ?>
+                                                    <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Selamat <?= $user['nama']?> Pendaftaran  diTerima</span></td>
                                                 </tr>
+                                               
                                                 <tr>
                                                     <td>Tanggal Daftar</td>
                                                     <td>: <?= mediumdate_indo(date($user['date_created'])); ?></td>
@@ -214,11 +198,25 @@
                                         </table>
                                     </div>
                                 </div>
+                                <div class="card-footer">
+                          
+                                        <a target="_blank" href="<?= base_url('laporan/cetak_formulir?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Formulir</a>
+                             
 
-                                <hr>
+                                </div>
+                            </div>
+
+                        </div>    
+                  <?php else : ?>
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 align-right">
+                                <a href="<?= base_url('pmb/biodata') ?>" class="m-0 font-font-weight-medium text-primary"><i class="fa fa-list-alt fa-fw"></i> <b>Edit Biodata</b></a>
+                            </div>                           
+                            <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6 mb-4 mb-md-0">
-                                        <table class="table" style="font-size: 14px;" cellpadding="3">
+                                
+                                    <table class="table" style="font-size: 14px;" cellpadding="3">
                                             <tbody>
                                                 <tr>
                                                     <td colspan="3"><b>A. IDENTITAS CALON SISWA</b></td>
@@ -331,6 +329,7 @@
                                                         <td>No Telepon</td>
                                                         <td><?= $user['no_telp'] ?></td>
                                                     </tr>
+                                                  
                                                 <?php endif ?>
                                             </tbody>
                                         </table>
@@ -367,88 +366,53 @@
                                     </table>
 
                                 </div>
-                                <div class="card-footer">
-                                    <?php if ($user['status']  == '1') : ?>
-                                        <a target="_blank" href="<?= base_url('laporan/cetak_formulir?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Formulir</a>
-                                    <?php endif ?>
-
-                                </div>
+                            
                             </div>
-
+         
                         </div>
-                    </div>
-                    <div class="col-lg-4 py-4 p0 mx-auto">
-                        <!-- <div class="card shadow mb-4">
+                           <?php endif ?>    
+                    </div>    
+                 
+                <div class="col-lg-4 py-4 p0 mx-auto">
+                    <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-success"><i class="fa fa-list-alt fa-fw"></i> <b>Informasi</b></h6>
-                            </div>
-                            <div class="card-body">
-                                <img src="<?php if (!empty($user['img_siswa'])) {
-                                                echo base_url('assets/img/data/' . $user['img_siswa']);
-                                            } ?>" class="img-thumbnail">
-                                <br /><br />
-                                <table style="font-size: 14px;" cellpadding="3">
-                                    <tbody>
-                                        <tr>
-                                            <td>Nomor Daftar</td>
-                                            <td>: <b><?= $user['no_daftar'] ?></b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Nama</td>
-                                            <td>: <?= $user['nama'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Daftar Ulang</td>
-                                            <?php if ($user['sts_pmb']  == '0') : ?>
-                                                <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Belum Bayar</span></td>
-                                            <?php elseif ($user['sts_pmb']  == '1') : ?>
-                                                <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Menunggu Verfikasi Staff</span></td>
-                                            <?php elseif ($user['sts_pmb']  == '2   ') : ?>
-                                                <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Pembayaran Telah Verfikasi</span></td>
-
-                                            <?php endif ?>
-                                        </tr>
-                                        <tr>
-                                            <td>Status</td>
-                                            <?php if ($user['status']  == '0') : ?>
-                                                <td>: <span class="badge badge-warning badge-pill disabled" aria-disabled="true">Pending</span></td>
-                                            <?php elseif ($user['status']  == '1') : ?>
-                                                <td>: <span class="badge badge-success badge-pill disabled" aria-disabled="true">Konfirmasi</span></td>
-                                            <?php elseif ($user['status']  == '2') : ?>
-                                                <td>: <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Di Tolak</span></td>
-                                            <?php endif ?>
-                                        </tr>
-                                        <tr>
-                                            <td>Tanggal Daftar</td>
-                                            <td>: <?= mediumdate_indo(date($user['date_created'])); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email</td>
-                                            <td>: <?= $user['email'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>NISN</td>
-                                            <td>: <?= $user['nis'] ?></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                            <div class="card-footer">
-                                <?php if ($user['status']  == '1') : ?>
-                                    <a target="_blank" href="<?= base_url('laporan/cetak_formulir?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Formulir</a>
-                                <?php endif ?>
-
-                            </div>
-                        </div> -->
-
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-success"><i class="fa fa-list-alt fa-fw"></i> <b>Informasi Daftar Ulang</b></h6>
+                                <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-list-alt fa-fw"></i> <b>Informasi Daftar Ulang</b></h6>
                             </div>
                             <div class="card-body">
                                 <table style="font-size: 14px;" cellpadding="3">
-                                    <tbody>
+                                     <table class="table" style="font-size: 10;" cellpadding="2">
+                            <?php if ($user['sts_pmb']  == '2') : ?>
+                                  <tbody>
+                                                <tr>
+                                                    <td>Tahun Ajaran</td>
+                                                
+                                                    <td>: <b><?= $verfikasi['tahun'] ?></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tanggal Tes</td>
+                                                    <td>: <?= $verfikasi['tgl_tes'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jadwal Tes</td>
+                                              
+                                                    <td>: <?= $verfikasi['tempat_tes'] ?> </td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                              
+                                       
+                                                <!-- <tr>
+                                                    <td>Email</td>
+                                                    <td>: <?= $user['email'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>NISN</td>
+                                                    <td>: <?= $user['nis'] ?></td>
+                                                </tr> -->
+                                            </tbody>
+                                        </table>
+                                <?php else : ?>
+                                <tbody>
                                         <?php $sum = 0;
                                         foreach ($pembayaran as $d) : ?>
                                             <?php $sum += $d['jumlah']; ?>
@@ -462,7 +426,7 @@
                                 <br>
                                 Total pembayaran : <b><?= 'Rp. ' . number_format($sum, 0, ',', '.') ?>,-</b>
                             </div>
-
+                          <?php endif ?>
                             <div class="col-sm-12">
                                 <div class="card border-left-warning shadow h-100 py-2">
                                     <div class="card-body">
@@ -488,14 +452,14 @@
                                 <?php elseif ($user['sts_pmb']  == '0') : ?>
 
                                     <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#payModal">Klik Untuk Pembayaran</a>
-                                <?php endif ?>
+                          
 
                             </div>
-                        </div>
+                    </div>
 
                         <!-- Payment Modal-->
                         <div class="modal fade" id="payModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-md" role="document">
+                            <div class="modal-dialog modal-lg col-8" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title text-primary text-center" id="exampleModalLabel">Informasi Pembayaran Daftar Ulang</h5>
@@ -507,11 +471,14 @@
                                         <table style="font-size: 14px;" cellpadding="6">
                                             <tbody>
                                                 <tr>
-                                                    <td>
+                                                    <td>  
+                                                        <h5>Nama Bank</h5>
                                                         <h5>Nomor Rekening</h5>
                                                     </td>
                                                     <td>
-                                                        <h5>: 787498491</h5>
+                                                  
+                                                        <h5>: BANK BRI (BANK RAKYAT INDONESIA)</h5>
+                                                        <h5>: 0387-01-001235-30-9</h5>
                                                     </td>
 
                                                 </tr>
@@ -521,7 +488,7 @@
                                                         <h5>Atas Nama</h5>
                                                     </td>
                                                     <td>
-                                                        <h5>: SBH</h5>
+                                                        <h5>: Yayasan Husada Bogor</h5>
                                                     </td>
                                                 </tr>
                                                 <?php $sum = 0;
@@ -539,7 +506,7 @@
                                             </tbody>
 
                                         </table>
-                                        <?= form_open_multipart('ppdb/pmb'); ?>
+                                        <?= form_open_multipart('pmb/pmb'); ?>
                                         <div class="form-group row">
                                             <div class="col-lg-auto text-center">
                                                 <img src="<?php if (!empty($user['img_bukti'])) {
@@ -571,10 +538,10 @@
                                 </div>
                             </div>
                         </div>
-
+     
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-success"><i class="fa fa-image fa-fw"></i> <b>Data Foto</b></h6>
+                                <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-image fa-fw"></i> <b>Data Foto</b></h6>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -654,7 +621,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                  <?php endif ?>
+                </div>
                     <!-- <div class="col-lg-4 py-10 p0 mx-auto">
                         <div class="card-body bg-white rounded ml-3 p-4 shadow">
                             <div class="timeline-arrow"></div>

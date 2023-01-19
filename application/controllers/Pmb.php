@@ -710,13 +710,15 @@ class Pmb extends CI_Controller
         $data['title'] = 'Dashboard';
         $data['pembayaran'] = $this->db->get('data_pembayaran')->result_array();
         $data['pemb'] = $this->db->get_where('data_pembayaran', ['jenis' => 'pmb'])->result_array();
+        $data['siswa'] = $this->db->get_where('ta', ['id_ta' => 'pmb'])->result_array();
         $this->db->order_by('nama', 'asc');
         $data['prov'] = $this->db->get('provinsi')->result_array();
         $data['pendidikan'] = $this->db->get('data_pendidikan')->result_array();
         $data['jurusan'] = $this->db->get('data_jurusan')->result_array();
         $this->db->where('period_status', 1);
         $data['thn_msk'] = $this->db->get('period')->result_array();
-
+        $data['verfikasi'] = $this->Main_model->getDataPMB();
+        $data['tes'] = $this->db->get('ta')->result_array();
 
         $this->load->view('template/header_siswa', $data);
         $this->load->view('template/sidebar_siswa', $data);
@@ -724,7 +726,7 @@ class Pmb extends CI_Controller
         $this->load->view('frontend/ppdb/dashboard', $data);
         $this->load->view('template/footer');
     }
-
+  
     public function payment()
     {
         if (!$this->session->userdata('email')) {

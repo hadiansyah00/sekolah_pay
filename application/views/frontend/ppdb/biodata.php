@@ -402,7 +402,6 @@
                                                                 <select class="form-control" id="jurusan" name="jurusan">
                                                                     <option>- Pilih Program Study -</option>
                                                                     <?php foreach ($jurusan as $s) : ?>
-
                                                                         <option <?php if ($user['id_majors'] == $s['id']) {
                                                                                     echo "selected='selected'";
                                                                                 } ?> value="<?= $s['id'] ?>"><?= $s['nama'] ?></option>

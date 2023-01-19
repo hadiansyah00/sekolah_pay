@@ -315,7 +315,7 @@
                 <p><?= $kat['nama'] ?></p>
                 <div class="portfolio-links">
                   <a href="<?= base_url('assets/'); ?>img/gallery/<?= $g['img'] ?>" data-gallery="portfolioGallery" class="portfokio-lightbox" title="<?= $g['nama'] ?>"><i class="bi bi-plus"></i></a>
-                  <a href="<?= base_url('detail_gallery?id=' . $g['id']); ?>" title="Lihat Detail"><i class="bi bi-link"></i></a>
+                  <!-- <a href="<?= base_url('detail_gallery?id=' . $g['id']); ?>" title="Lihat Detail"><i class="bi bi-link"></i></a> -->
                 </div>
               </div>
             </div>
@@ -353,7 +353,7 @@
           <div class="col-lg-4">
             <div class="post-box">
               <div class="post-img"><img style="height: 250px;width: 450px;" src="<?= base_url('assets/'); ?>img/blog/<?= $d['img'] ?>" class="img-fluid" alt=""></div>
-              <span class="post-date"><?= $d['tgl'] ?></span>
+              <span class="post-date"><?= mediumdate_indo(date($d['tgl'])) ?></span>
               <h3 class="post-title"><?= $d['judul'] ?></h3>
               <a href="<?= base_url('detail_acara?id=' . $d['id']); ?>" class="readmore stretched-link mt-auto"><span>Selengkapnya</span><i class="bi bi-arrow-right"></i></a>
             </div>
@@ -369,7 +369,7 @@
   <!-- End Recent Blog Posts Section -->
 
   <!-- ======= F.A.Q Section ======= -->
-  <!-- <section id="features" class="features">
+  <section id="features" class="features">
 
     <div class="container" data-aos="fade-up">
 
@@ -401,7 +401,7 @@
 
 
     </div>
-  </section> -->
+  </section>
   <!-- End F.A.Q Section -->
 
 

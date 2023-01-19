@@ -20,7 +20,7 @@
 
             <div class="row">
 
-                <div class="col-lg-8 entries">
+                <div class="col-lg-12 entries">
 
                     <article class="entry entry-single">
 
@@ -39,7 +39,10 @@
                                 <ul>
                                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><?= $d['jam'] ?></a></li>
                                     <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i> <a href="#"><?= $d['tempat'] ?></a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-calendar-check"></i> <a href="#"><?= $d['tgl'] ?></a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-calendar-check"></i> <a href="#">  <?= mediumdate_indo(date($d['tgl'])) ?></a></li>
+
+                                  
+                                           
                                 </ul>
                             </div>
 
@@ -62,42 +65,7 @@
 
                 </div><!-- End blog entries list -->
 
-                <div class="col-lg-4">
-
-                    <div class="sidebar">
-
-                        <h3 class="sidebar-title">Kategori</h3>
-                        <div class="sidebar-item categories">
-                            <ul>
-
-                                <?php foreach ($kategori as $k) : ?>
-                                    <?php $sum_kat = $this->db->get_where('acara', ['id_kat' => $k['id']])->num_rows(); ?>
-
-                                    <li><a href="<?= base_url('kategori_acara/' . $k['uniq']); ?>"><?= $k['nama'] ?> <span>(<?= $sum_kat ?>)</span></a></li>
-
-                                <?php endforeach ?>
-
-                            </ul>
-                        </div><!-- End sidebar categories-->
-
-                        <h3 class="sidebar-title">Acara Lain</h3>
-                        <div class="sidebar-item recent-posts">
-
-                            <?php foreach ($acara_lain as $a) : ?>
-
-                                <div class="post-item clearfix">
-                                    <img src="<?= base_url('assets/'); ?>img/blog/<?= $a['img'] ?>" alt="">
-                                    <h4><a href="<?= base_url('detail_acara?id=' . $a['id']); ?>"><?= $a['judul'] ?></a></h4>
-                                    <time datetime="2020-01-01"><?= $a['tgl'] ?></time>
-                                </div>
-
-                            <?php endforeach ?>
-
-                        </div><!-- End sidebar recent posts-->
-
-                    </div><!-- End sidebar -->
-
-                </div><!-- End blog sidebar -->
+                <!-- End blog sidebar -->
 
             </div>
 

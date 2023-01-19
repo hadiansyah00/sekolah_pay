@@ -1491,7 +1491,7 @@ Terimakasih.';
         $p = $this->input->post('sts_pmb');
         $this->db->set('sts_pmb', $p);
         $this->db->where('id', $id);
-        $this->db->update('ppdb');
+        $this->db->update('pmb');
         $this->session->set_flashdata('messagePmb', '<div class="alert alert-success alert-dismissible fade show" role="alert">
               Raport berhasil di update.
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">

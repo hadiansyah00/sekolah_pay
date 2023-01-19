@@ -106,7 +106,7 @@
                                     <button type="submit" id="submit-form" hidden>123</button>
                                     <div class="pt-3 form-group row">
                                         <div class="col-md-12">
-                                            <button type="button" class="btn-block btn btn-primary" data-toggle="modal" data-target="#Kebijakan">Kirim Pendaftaran</button>
+                                            <button type="submit" class="btn-block btn btn-primary" ">Kirim Pendaftaran</button>
                                         </div>
                                         <div class="col-md-12 text-center mt-5">
                                             <p>Sudah mendaftar? <a href="<?= base_url('pmb/login') ?>">Login</a> ke dashboard.</p>
