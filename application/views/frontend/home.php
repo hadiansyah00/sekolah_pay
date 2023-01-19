@@ -12,7 +12,7 @@
               <span><?= $home['tombol'] ?></span>
               <i class="bi bi-arrow-right"></i>
             </a>
-                <a href="#" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <a href="https://drive.google.com/file/d/1_ceDwMtzb__ItvY6-u0zl71JSGiChGEI/view" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
               <span>Download Brosur</span>
               <i class="bi bi-arrow-right"></i>
             </a>
@@ -152,11 +152,11 @@
 
       <div class="row">
 
-        <div class="col-lg-6">
-          <img src="<?= base_url('assets/'); ?>img/Alur_online.jpeg" class="img-fluid" alt="">
+        <div class="col-lg-8">
+          <img src="<?= base_url('assets/'); ?>img/Alur_Pendaftaran.jpg" class="img-fluid" alt="">
         </div>
 
-        <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
+        <div class="col-lg-4 mt-5 mt-lg-0 d-flex">
           <div class="row align-self-center gy-4">
 
             <div class="col-md-6" data-aos="zoom-out" data-aos-delay="200">
@@ -210,7 +210,7 @@
     </div>
 
   </section>
-  <section id="features" class="features">
+  <!-- <section id="features" class="features">
 
     <div class="container" data-aos="fade-up">
 
@@ -278,7 +278,7 @@
 
     </div>
 
-  </section>
+  </section> -->
   <!-- End Features Section -->
 
   <!-- ======= Portfolio Section ======= -->
