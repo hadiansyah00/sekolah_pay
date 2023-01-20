@@ -30,7 +30,7 @@
                         <article class="entry">
 
                             <div class="entry-img">
-                                <img style="height: 250px;width: 450px;" src="<?= base_url('assets/'); ?>img/blog/<?= $d['img'] ?>" alt="" class="img-fluid">
+                                <img style="height: 350px;width: 450px;" src="<?= base_url('assets/'); ?>img/blog/<?= $d['img'] ?>" alt="" class="img-fluid">
                             </div>
 
                             <h2 class="entry-title">
@@ -59,7 +59,7 @@
 
                 <div class="blog-pagination">
                     <ul class="justify-content-center">
-                        <li class="disabled" aria-disabled="true"><a>Total data: <?= $total; ?></a></li>
+                        <!-- <li class="disabled" aria-disabled="true"><a>Total data: <?= $total; ?></a></li> -->
                         <?php echo $pagination; ?>
                     </ul>
                 </div>

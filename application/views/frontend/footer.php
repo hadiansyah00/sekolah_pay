@@ -59,7 +59,7 @@
               <li><i class="bi bi-chevron-right"></i> <a href="<?= base_url('home'); ?>">Home</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="<?= base_url('acara'); ?>">Acara</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="<?= base_url('gallery'); ?>">Gallery</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="<?= base_url('about'); ?>">Tentang Kami</a></li>
+              <!-- <li><i class="bi bi-chevron-right"></i> <a href="<?= base_url('about'); ?>">Tentang Kami</a></li> -->
               <li><i class="bi bi-chevron-right"></i> <a href="<?= base_url('kontak'); ?>">Kontak</a></li>
             </ul>
           </div>

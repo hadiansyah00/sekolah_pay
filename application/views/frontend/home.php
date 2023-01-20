@@ -152,11 +152,11 @@
 
       <div class="row">
 
-        <div class="col-lg-8">
+        <div class="col-lg-12">
           <img src="<?= base_url('assets/'); ?>img/Alur_Pendaftaran.jpg" class="img-fluid" alt="">
         </div>
 
-        <div class="col-lg-4 mt-5 mt-lg-0 d-flex">
+        <!-- <div class="col-lg-4 mt-5 mt-lg-0 d-flex">
           <div class="row align-self-center gy-4">
 
             <div class="col-md-6" data-aos="zoom-out" data-aos-delay="200">
@@ -202,7 +202,7 @@
             </div>
 
           </div>
-        </div>
+        </div> -->
 
       </div>
 
@@ -352,7 +352,7 @@
 
           <div class="col-lg-4">
             <div class="post-box">
-              <div class="post-img"><img style="height: 250px;width: 450px;" src="<?= base_url('assets/'); ?>img/blog/<?= $d['img'] ?>" class="img-fluid" alt=""></div>
+              <div class="post-img"><img style="height: 350px;width: 450px;" src="<?= base_url('assets/'); ?>img/blog/<?= $d['img'] ?>" class="img-fluid" alt=""></div>
               <span class="post-date"><?= mediumdate_indo(date($d['tgl'])) ?></span>
               <h3 class="post-title"><?= $d['judul'] ?></h3>
               <a href="<?= base_url('detail_acara?id=' . $d['id']); ?>" class="readmore stretched-link mt-auto"><span>Selengkapnya</span><i class="bi bi-arrow-right"></i></a>

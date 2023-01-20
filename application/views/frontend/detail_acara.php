@@ -1,6 +1,8 @@
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
+</br>
+</br>
     <section class="breadcrumbs">
         <div class="container">
 
@@ -14,23 +16,20 @@
     </section><!-- End Breadcrumbs -->
 
     <!-- ======= Blog Single Section ======= -->
-    <br>
-    <section id="blog" class="blog">
+    <section id="blog" class="blog p-2">
         <div class="container" data-aos="fade-up">
-
             <div class="row">
-
-                <div class="col-lg-12 entries">
-
+                <div class="col-md-12 entries mx-auto">
                     <article class="entry entry-single">
-
                         <?php foreach ($detail as $d) : ?>
-
-                            <div class="entry-img">
-                                <img src="<?= base_url('assets/'); ?>img/blog/<?= $d['img'] ?>" alt="" class="img-fluid">
-                            </div>
-
-                            <h2 class="entry-title">
+                                <div class="row">
+                                    <div class="col-lg-5 mx-auto">
+                            <div class="entry-img w-1000 h-1000">                             
+                                <img src="<?= base_url('assets/'); ?>img/blog/<?= $d['img'] ?>" alt="" class="img-fluid" >
+                            </div>                         
+                                    </div>
+                                <div class="col-lg-6">
+                                           <h2 class="entry-title">
                                 <a href="<?= base_url('acara/detail?id=' . $d['id']); ?>"><?= $d['judul'] ?></a>
                             </h2>
 
@@ -39,14 +38,10 @@
                                 <ul>
                                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><?= $d['jam'] ?></a></li>
                                     <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i> <a href="#"><?= $d['tempat'] ?></a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-calendar-check"></i> <a href="#">  <?= mediumdate_indo(date($d['tgl'])) ?></a></li>
-
-                                  
-                                           
+                                    <li class="d-flex align-items-center"><i class="bi bi-calendar-check"></i> <a href="#">  <?= mediumdate_indo(date($d['tgl'])) ?></a></li>                             
                                 </ul>
                             </div>
-
-                            <div class="entry-content">
+                         <div class="entry-content">
                                 <?= $d['deskripsi'] ?>
                             </div>
 
@@ -58,7 +53,8 @@
                                     <li><i class="bi bi-person"></i> <a href="#"><?= $peng['nama'] ?></a></li>
                                 </ul>
                             </div>
-
+                                    </div>
+                                </div>
                     </article><!-- End blog entry -->
 
                 <?php endforeach ?>
