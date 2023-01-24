@@ -125,7 +125,7 @@ class Pmb extends CI_Controller
         if ($type == 'verify') {
             $this->email->subject('Verfikasi Akun');
             $this->email->message(' Konfirmasi Aktivasi Akun anda ' 
-             . $nama . ': <a href="' . base_url() . 'pmb/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"> Aktivasi AKun </a> 
+             . $nama . ': <a href="' . base_url() . 'pmb/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"> Aktivasi Akun </a> 
             <br> ');
         } else if ($type == 'forgot') {
             $this->email->subject('Reset Password');
