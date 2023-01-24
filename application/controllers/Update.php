@@ -930,16 +930,17 @@ class Update extends CI_Controller
         $esen =  $this->db->get('email_sender')->row_array();
 
         $config = [
-            'protocol'  => $esen['protocol'],
-            'smtp_host' => $esen['host'],
-            'smtp_user' => $esen['email'],
-            'smtp_pass' => $esen['password'],
-            'smtp_port' => $esen['port'],
             'mailtype'  => 'html',
-            'charset'   => $esen['charset'],
-            'newline'   => "\r\n"
+            'charset'   => 'utf-8',
+            'protocol'  => 'smtp',
+            'smtp_host' => 'smtp.gmail.com', // atau smptp lainnya                
+            'smtp_user' => 'admin_workspace@sbh.ac.id',  // Email gmail admin aplikasi
+            'smtp_pass'   => 'pbiksimkrbtwwhfe',  // Password Gmail atau Sandi Aplikasi Gmail
+            'smtp_crypto' => 'ssl',
+            'smtp_port'   => 465,
+            'crlf'    => "\r\n",
+            'newline' => "\r\n"
         ];
-
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
         $this->email->set_header('Content-Type', 'text/html');
@@ -994,12 +995,9 @@ Untuk pengumuman PMB akan di infokan melalui website :
 ' . $site . '
 
 Terimakasih.';
-        wa_api($no, $pesan);
+        // wa_api($no, $pesan);
 
         $this->ppdbEmail($id);
-
-
-
         $this->session->set_flashdata('messageInfo', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data ppdb berhasil di konfirmasi.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
