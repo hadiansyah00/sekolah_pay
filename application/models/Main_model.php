@@ -183,6 +183,7 @@ class Main_model extends CI_Model
 
         $this->db->select('*');
 		$this->db->from('pmb');
+        $this->db->join('data_jurusan','data_jurusan.id = pmb.id_majors','left');
 		$this->db->join('ta', 'ta.id_ta = pmb.id_ta', 'left');
 		$this->db->where('pmb.email', $this->session->userdata('email'));
 		$query = $this->db->get()->row_array();

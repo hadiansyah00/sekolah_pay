@@ -8,6 +8,7 @@ class Laporan extends CI_Controller
         parent::__construct();
         $this->load->helper('tgl_indo');
         $this->load->library('Pdf');
+        $this->load->model('Main_model');
     }
 
     function encode_img_base64($img_path = false, $img_type = 'jpg')
@@ -215,7 +216,6 @@ class Laporan extends CI_Controller
         $id = $this->secure->decrypt($id);
 
         $data['pmb'] = $this->db->get_where('pmb', ['id' => $id])->row_array();
-   
         $data['period'] = $this->db->get_where('period', ['id' => $data['pmb']['thn_msk']])->row_array();
 
         // $data['header'] = $this->encode_img_base64('assets/img/formulir/header.jpg');
@@ -310,5 +310,21 @@ class Laporan extends CI_Controller
         $this->pdf->filename = 'invoice_ppdb_' . $data['user']['nama'] . '.pdf';
 
         $this->pdf->load_view('laporan/invoicePPDB', $data);
+    }
+    public function cetak_kartu()
+    {
+        $data['title'] = 'Kartu Tes PMB';
+        $data['web'] =  $this->db->get('website')->row_array();
+        $id     = $this->input->get('id');
+        $id = $this->secure->decrypt($id);
+        $data['user'] = $this->db->get_where('pmb', ['id' => $id])->row_array();
+        $data['pembayaran'] = $this->db->get('data_pembayaran')->result_array();
+
+        $data['pay'] = $this->db->get_where('data_pembayaran', ['jenis' => 'PPDB'])->result_array();
+        $data['verfikasi'] = $this->Main_model->getDataPMB();
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = 'kartu_pmb_' . $data['user']['nama'] . '.pdf';
+
+        $this->pdf->load_view('laporan/kartu_pmb', $data);
     }
 }

@@ -9,6 +9,10 @@ class Pmb extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('M_payment');
         $this->load->model('Main_model');
+
+            require APPPATH.'libraries/phpmailer/src/Exception.php';
+            require APPPATH.'libraries/phpmailer/src/PHPMailer.php';
+            require APPPATH.'libraries/phpmailer/src/SMTP.php';
     }
 
     public function index()

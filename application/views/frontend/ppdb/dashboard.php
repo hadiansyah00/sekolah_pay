@@ -210,10 +210,283 @@
                   <?php else : ?>
                         <div class="card shadow mb-4">
                             <div class="card-header py-3 align-right">
-                                <a href="<?= base_url('pmb/biodata') ?>" class="m-0 font-font-weight-medium text-primary"><i class="fa fa-list-alt fa-fw"></i> <b>Edit Biodata</b></a>
-                            </div>                           
+                                <a href="<?= base_url('pmb/biodata') ?>" class="m-0 font-font-weight-medium text-primary"><i class="fa fa-list-alt fa-fw"></i> <b>Dashboard</b></a>
+                            </div> 
+                            <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 mb-4 mb-md-0">
+                                   <p style="m-0 font-font-lgiht text-primary"> Silahkan untuk mengisi Form Biodata </p> </br>
+                                   <a  href="<?= base_url ('pmb/biodata')?>"class="btn btn-sm text-white bg-success mt-2">Klik Disini</a>
+                                    <a href="#" class="btn btn-sm text-white bg-success mt-2 fa fa-eye"  data-toggle="modal" data-target="#biodataModal"> Lihat Biodata</a>
+                                <br></br>
+                                </div>
+                                         
+                                </div>
+                                    <hr>                                                  
+                            </div>
+                        </div>
+                           <?php endif ?>    
+                    </div>    
+                <div class="col-lg-4 py-4 p0 mx-auto">
+                    <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-list-alt fa-fw"></i> <b>Informasi Daftar Ulang</b></h6>
+                            </div>
+                            <div class="card-body">
+                                <table style="font-size: 10px;" cellpadding="3">
+                                     <table class="table" cellpadding="2">
+                            <?php if ($user['sts_pmb']  == '2') : ?>
+                                  <tbody>
+                                                <tr>
+                                                    <td>Tahun Ajaran</td>
+                                                
+                                                    <td>: <b><?= $verfikasi['tahun'] ?></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tanggal Tes</td>
+                                                    <td>: <?= $verfikasi['tgl_tes'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jadwal Tes</td>
+                                              
+                                                    <td>: <?= $verfikasi['tempat_tes'] ?> </td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                              
+                                       
+                                                <!-- <tr>
+                                                    <td>Email</td>
+                                                    <td>: <?= $user['email'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>NISN</td>
+                                                    <td>: <?= $user['nis'] ?></td>
+                                                </tr> -->
+                                            </tbody>
+                                        </table>
+                                <?php else : ?>
+                                <tbody>
+                                        <?php $sum = 0;
+                                        foreach ($pembayaran as $d) : ?>
+                                            <?php $sum += $d['jumlah']; ?>
+                                            <!-- <tr>
+                                                <td><?= $d['nama'] ?></td>
+                                                <td>: <?= 'Rp. ' . number_format($d['jumlah'], 0, ',', '.') ?></td>
+                                            </tr> -->
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                                <br>
+                                Total pembayaran : <b><?= 'Rp. ' . number_format($sum, 0, ',', '.') ?>,-</b>
+                            </div>
+                          <?php endif ?>
+                            <div class="col-sm-12">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Foto Bukti Bayar</div>
+                                                <span><?= $user['img_bukti'] ?></span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <img src="<?php if (!empty($user['img_bukti'])) {
+                                                                echo base_url('assets/img/data/' . $user['img_bukti']);
+                                                            } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <?php if ($user['sts_pmb']  == '2') : ?>
+                                    <a target="_blank" href="<?= base_url('laporan/cetak_invoice?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Invoice</a>
+                                    <a target="_blank" href="<?= base_url('laporan/cetak_kartu?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Kartu</a>
+                               
+                                <?php elseif ($user['sts_pmb']  == '1') : ?>
+                                    <p><strong>Terimakasih Telah Melakukan Pembayaran</strong> <hr>Sedang Menunggu Proses Verfikasi</p>
+                                   
+                            <?php else : ?>
+                                  <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#payModal2">Klik Untuk Pembayaran</a>
+                                </div>
+                    </div>
+                    <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-image fa-fw"></i> <b>Data Foto</b></h6>
+                            </div>
                             <div class="card-body">
                                 <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card border-left-success shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Foto siswa</div>
+                                                        <span><?= $user['img_siswa'] ?></span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <img src="<?php if (!empty($user['img_siswa'])) {
+                                                                        echo base_url('assets/img/data/' . $user['img_siswa']);
+                                                                    } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="card border-left-info shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Foto KK</div>
+                                                        <span><?= $user['img_kk'] ?></span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <img src="<?php if (!empty($user['img_kk'])) {
+                                                                        echo base_url('assets/img/data/' . $user['img_kk']);
+                                                                    } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="card border-left-primary shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Foto Ijazah</div>
+                                                        <span><?= $user['img_ijazah'] ?></span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <img src="<?php if (!empty($user['img_ijazah'])) {
+                                                                        echo base_url('assets/img/data/' . $user['img_ijazah']);
+                                                                    } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="card border-left-warning shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Foto Akte / KTP</div>
+                                                        <span><?= $user['img_ktp'] ?></span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <img src="<?php if (!empty($user['img_ktp'])) {
+                                                                        echo base_url('assets/img/data/' . $user['img_ktp']);
+                                                                    } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                  <?php endif ?>
+                        <!-- Payment Modal-->
+                        <div class="modal fade" id="payModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg col-8" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-primary text-center" id="exampleModalLabel">Informasi Pembayaran Daftar Ulang</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table style="font-size: 14px;" cellpadding="6">
+                                            <tbody>
+                                                <tr>
+                                                    <td>  
+                                                        <h5>Nama Bank</h5>
+                                                        <h5>Nomor Rekening</h5>
+                                                    </td>
+                                                    <td>
+                                                  
+                                                        <h5>: BANK BRI (BANK RAKYAT INDONESIA)</h5>
+                                                        <h5>: 0387-01-001235-30-9</h5>
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        <h5>Atas Nama</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5>: Yayasan Husada Bogor</h5>
+                                                    </td>
+                                                </tr>
+                                                <?php $sum = 0;
+                                                foreach ($pembayaran as $d) : ?>
+                                                    <?php $sum += $d['jumlah']; ?>
+                                                    <tr>
+                                                        <td>
+                                                            <h5> Jumlah Yang Harus dibayar</h5>
+                                                        </td>
+                                                        <td>
+                                                            <h5>: <?= 'Rp.' . number_format($d['jumlah'], 0, ',', '.') ?></h5>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach ?>
+                                            </tbody>
+
+                                        </table>
+                                        <?= form_open_multipart('pmb/pmb'); ?>
+                                        <div class="form-group row">
+                                            <div class="col-lg-auto text-center">
+                                                <img src="<?php if (!empty($user['img_bukti'])) {
+                                                                echo base_url('assets/img/data/' . $user['img_bukti']);
+                                                            } ?>" width="100" height="85" id="preview5" class="img-thumbnail mt-3">
+                                            </div>
+                                            <div class="col-lg-auto">
+                                                <input type="hidden" name="id" value="<?= $user['id'] ?>">
+
+                                                <input hidden type="file" name="img_bukti" class="file5" accept="image/*" id="imgInp5">
+                                                <div class="input-group my-3">
+                                                    <input type="text" class="form-control" disabled placeholder="Foto Bukti" id="file5">
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="browse5 btn btn-primary">Browse</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div id="jenis_pay"></div> -->
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                                            <button class="btn btn-success" type="submit"><i class=" bi bi-credit-card"></i> Upload Bukti Bayar</button>
+                                        </div>
+
+                                        </form>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="modal fade" id="biodataModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg col-8" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-primary text-center" id="exampleModalLabel">Form Biodata PMB</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                       <div class="row">
                                     <div class="col-md-6 mb-4 mb-md-0">
                                 
                                     <table class="table" style="font-size: 14px;" cellpadding="3">
@@ -369,166 +642,11 @@
                             
                             </div>
          
-                        </div>
-                           <?php endif ?>    
-                    </div>    
-                 
-                <div class="col-lg-4 py-4 p0 mx-auto">
-                    <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-list-alt fa-fw"></i> <b>Informasi Daftar Ulang</b></h6>
-                            </div>
-                            <div class="card-body">
-                                <table style="font-size: 14px;" cellpadding="3">
-                                     <table class="table" style="font-size: 10;" cellpadding="2">
-                            <?php if ($user['sts_pmb']  == '2') : ?>
-                                  <tbody>
-                                                <tr>
-                                                    <td>Tahun Ajaran</td>
-                                                
-                                                    <td>: <b><?= $verfikasi['tahun'] ?></b></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Tanggal Tes</td>
-                                                    <td>: <?= $verfikasi['tgl_tes'] ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Jadwal Tes</td>
-                                              
-                                                    <td>: <?= $verfikasi['tempat_tes'] ?> </td>
-                                                  
-                                                </tr>
-                                                <tr>
-                                              
-                                       
-                                                <!-- <tr>
-                                                    <td>Email</td>
-                                                    <td>: <?= $user['email'] ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>NISN</td>
-                                                    <td>: <?= $user['nis'] ?></td>
-                                                </tr> -->
-                                            </tbody>
-                                        </table>
-                                <?php else : ?>
-                                <tbody>
-                                        <?php $sum = 0;
-                                        foreach ($pembayaran as $d) : ?>
-                                            <?php $sum += $d['jumlah']; ?>
-                                            <tr>
-                                                <td><?= $d['nama'] ?></td>
-                                                <td>: <?= 'Rp. ' . number_format($d['jumlah'], 0, ',', '.') ?></td>
-                                            </tr>
-                                        <?php endforeach ?>
-                                    </tbody>
-                                </table>
-                                <br>
-                                Total pembayaran : <b><?= 'Rp. ' . number_format($sum, 0, ',', '.') ?>,-</b>
-                            </div>
-                          <?php endif ?>
-                            <div class="col-sm-12">
-                                <div class="card border-left-warning shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Foto Bukti Bayar</div>
-                                                <span><?= $user['img_bukti'] ?></span>
-                                            </div>
-                                            <div class="col-auto">
-                                                <img src="<?php if (!empty($user['img_bukti'])) {
-                                                                echo base_url('assets/img/data/' . $user['img_bukti']);
-                                                            } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <?php if ($user['sts_pmb']  == '2') : ?>
-                                    <a target="_blank" href="<?= base_url('laporan/cetak_invoice?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Invoice</a>
-                                <?php elseif ($user['sts_pmb']  == '1') : ?>
-                                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#" disabled> Menungggu Verfikasi</a>
-                                <?php elseif ($user['sts_pmb']  == '0') : ?>
-
-                                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#payModal">Klik Untuk Pembayaran</a>
-                          
-
-                            </div>
-                    </div>
-
-                        <!-- Payment Modal-->
-                        <div class="modal fade" id="payModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg col-8" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title text-primary text-center" id="exampleModalLabel">Informasi Pembayaran Daftar Ulang</h5>
-                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true"></span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <table style="font-size: 14px;" cellpadding="6">
-                                            <tbody>
-                                                <tr>
-                                                    <td>  
-                                                        <h5>Nama Bank</h5>
-                                                        <h5>Nomor Rekening</h5>
-                                                    </td>
-                                                    <td>
-                                                  
-                                                        <h5>: BANK BRI (BANK RAKYAT INDONESIA)</h5>
-                                                        <h5>: 0387-01-001235-30-9</h5>
-                                                    </td>
-
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-                                                        <h5>Atas Nama</h5>
-                                                    </td>
-                                                    <td>
-                                                        <h5>: Yayasan Husada Bogor</h5>
-                                                    </td>
-                                                </tr>
-                                                <?php $sum = 0;
-                                                foreach ($pembayaran as $d) : ?>
-                                                    <?php $sum += $d['jumlah']; ?>
-                                                    <tr>
-                                                        <td>
-                                                            <h5> Jumlah Yang Harus dibayar</h5>
-                                                        </td>
-                                                        <td>
-                                                            <h5>: <?= 'Rp.' . number_format($d['jumlah'], 0, ',', '.') ?></h5>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach ?>
-                                            </tbody>
-
-                                        </table>
-                                        <?= form_open_multipart('pmb/pmb'); ?>
-                                        <div class="form-group row">
-                                            <div class="col-lg-auto text-center">
-                                                <img src="<?php if (!empty($user['img_bukti'])) {
-                                                                echo base_url('assets/img/data/' . $user['img_bukti']);
-                                                            } ?>" width="100" height="85" id="preview5" class="img-thumbnail mt-3">
-                                            </div>
-                                            <div class="col-lg-auto">
-                                                <input type="hidden" name="id" value="<?= $user['id'] ?>">
-
-                                                <input hidden type="file" name="img_bukti" class="file5" accept="image/*" id="imgInp5">
-                                                <div class="input-group my-3">
-                                                    <input type="text" class="form-control" disabled placeholder="Foto Bukti" id="file5">
-                                                    <div class="input-group-append">
-                                                        <button type="button" class="browse5 btn btn-primary">Browse</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- <div id="jenis_pay"></div> -->
+                    
+                                <!-- <div id="jenis_pay"></div> -->
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                                            <button class="btn btn-success" type="submit"><i class=" bi bi-credit-card"></i> Upload Bukti Bayar</button>
+
                                         </div>
 
                                         </form>
@@ -538,90 +656,6 @@
                                 </div>
                             </div>
                         </div>
-     
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-image fa-fw"></i> <b>Data Foto</b></h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="card border-left-success shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Foto siswa</div>
-                                                        <span><?= $user['img_siswa'] ?></span>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <img src="<?php if (!empty($user['img_siswa'])) {
-                                                                        echo base_url('assets/img/data/' . $user['img_siswa']);
-                                                                    } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="card border-left-info shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Foto KK</div>
-                                                        <span><?= $user['img_kk'] ?></span>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <img src="<?php if (!empty($user['img_kk'])) {
-                                                                        echo base_url('assets/img/data/' . $user['img_kk']);
-                                                                    } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="card border-left-primary shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Foto Ijazah</div>
-                                                        <span><?= $user['img_ijazah'] ?></span>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <img src="<?php if (!empty($user['img_ijazah'])) {
-                                                                        echo base_url('assets/img/data/' . $user['img_ijazah']);
-                                                                    } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="card border-left-warning shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Foto Akte / KTP</div>
-                                                        <span><?= $user['img_ktp'] ?></span>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <img src="<?php if (!empty($user['img_ktp'])) {
-                                                                        echo base_url('assets/img/data/' . $user['img_ktp']);
-                                                                    } ?>" width="100" height="85" id="preview1" class="img-thumbnail">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                  <?php endif ?>
                 </div>
                     <!-- <div class="col-lg-4 py-10 p0 mx-auto">
                         <div class="card-body bg-white rounded ml-3 p-4 shadow">
