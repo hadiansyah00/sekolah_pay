@@ -300,8 +300,8 @@
                             </div>
                             <div class="card-footer">
                                 <?php if ($user['sts_pmb']  == '2') : ?>
-                                    <a target="_blank" href="<?= base_url('laporan/cetak_invoice?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Invoice</a>
-                                    <a target="_blank" href="<?= base_url('laporan/cetak_kartu?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Kartu</a>
+                                    <!-- <a target="_blank" href="<?= base_url('laporan/cetak_invoice?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Invoice</a> -->
+                                    <a target="_blank" href="<?= base_url('laporan/cetak_kartu?id=' . $this->secure->encrypt($user['id'])) ?>" class="btn btn-info"><i class="bi bi-printer"></i> Cetak Kartu Tes</a>
                                
                                 <?php elseif ($user['sts_pmb']  == '1') : ?>
                                     <p><strong>Terimakasih Telah Melakukan Pembayaran</strong> <hr>Sedang Menunggu Proses Verfikasi</p>

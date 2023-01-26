@@ -10,9 +10,7 @@ class Pmb extends CI_Controller
         $this->load->model('M_payment');
         $this->load->model('Main_model');
 
-            require APPPATH.'libraries/phpmailer/src/Exception.php';
-            require APPPATH.'libraries/phpmailer/src/PHPMailer.php';
-            require APPPATH.'libraries/phpmailer/src/SMTP.php';
+           
     }
 
     public function index()
@@ -114,7 +112,7 @@ class Pmb extends CI_Controller
             'protocol'  => 'smtp',
             'smtp_host' => 'smtp.gmail.com', // atau smptp lainnya                
             'smtp_user' => 'admin_workspace@sbh.ac.id',  // Email gmail admin aplikasi
-            'smtp_pass'   => 'pbiksimkrbtwwhfe',  // Password Gmail atau Sandi Aplikasi Gmail
+            'smtp_pass'   => 'jqnqytbsgmchxtwc',  // Password Gmail atau Sandi Aplikasi Gmail
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
             'crlf'    => "\r\n",
@@ -129,8 +127,8 @@ class Pmb extends CI_Controller
         if ($type == 'verify') {
             $this->email->subject('Verfikasi Akun');
             $this->email->message(' Konfirmasi Aktivasi Akun anda ' 
-             . $nama . ': <a href="' . base_url() . 'pmb/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"> Aktivasi Akun </a> 
-            <br> ');
+             . $nama . ': <a href="' . base_url() . 'pmb/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"> Aktivasi Akun <br>_attachments </a> 
+             ');
         } else if ($type == 'forgot') {
             $this->email->subject('Reset Password');
             $this->email->message('Click this link to reset your password  ' . $nama . ': <a href="' . base_url() . 'pmb/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');

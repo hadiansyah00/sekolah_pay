@@ -7,7 +7,7 @@
 
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
-                    <a href="<?= base_url('auth'); ?>" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-person fa-sm text-white-50"></i> Login siswa</a>
+                    <!-- <a href="<?= base_url('auth'); ?>" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-person fa-sm text-white-50"></i> Login siswa</a> -->
                     <!-- Nested Row within Card Body -->
                     <div class="row">
                         <div class="col-lg-6 d-none d-lg-block">

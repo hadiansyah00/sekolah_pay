@@ -100,6 +100,14 @@
                                     <label for="staticEmail">Link Twitter</label>
                                     <input type="text" class="form-control" id="link_tw" name="link_tw" value="<?= $d['link_tw'] ?>" placeholder="Link Twitter">
                                 </div>
+                                  <div class="form-group row">
+                                    <label for="staticEmail">Link WhatsApp</label>
+                                    <input type="text" class="form-control" id="link_wa" name="link_wa" value="<?= $d['link_wa'] ?>" placeholder="Link WhatsApp">
+                                </div>
+                                  <div class="form-group row">
+                                    <label for="staticEmail">Link Youtube</label>
+                                <input type="text" class="form-control" id="link_yt" name="link_yt" value="<?= $d['link_yt'] ?>" placeholder="Link Yotube">
+                                </div>
 
                             </div>
                             <div class="pt-3 form-group row">

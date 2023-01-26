@@ -260,6 +260,9 @@
                                                 <option <?php if ($user['pek_ayah'] == "PNS") {
                                                             echo "selected='selected'";
                                                         } ?> value="PNS">PNS</option>
+                                                        <option <?php if ($user['pek_wali'] == "Lainnya") {
+                                                            echo "selected='selected'";
+                                                        } ?> value="Lainnya">Lainnya</option>
                                             </select>
                                             <?= form_error('pek_ayah', '<small class="text-danger pl-3">', ' </small>') ?>
                                         </div>
@@ -292,6 +295,9 @@
                                                 <option <?php if ($user['pek_ibu'] == "PNS") {
                                                             echo "selected='selected'";
                                                         } ?> value="PNS">PNS</option>
+                                                        <option <?php if ($user['pek_wali'] == "Lainnya") {
+                                                            echo "selected='selected'";
+                                                        } ?> value="Lainnya">Lainnya</option>
                                                 <?= form_error('pek_ibu', '<small class="text-danger pl-3">', ' </small>') ?>
                                             </select>
                                         </div>
@@ -324,6 +330,9 @@
                                                 <option <?php if ($user['pek_wali'] == "PNS") {
                                                             echo "selected='selected'";
                                                         } ?> value="PNS">PNS</option>
+                                                        <option <?php if ($user['pek_wali'] == "Lainnya") {
+                                                            echo "selected='selected'";
+                                                        } ?> value="Lainnya">Lainnya</option>
                                             </select>
                                         </div>
 
@@ -383,7 +392,7 @@
                                                             <div class="form-group">
                                                                 <label>Pilih  Kelas</label>
                                                                 <select class="form-control" id="pendidikan" name="pendidikan">
-                                                                    <option value disabled>- Pilih Kelas -</option>
+                                                                    <option>- Pilih Kelas -</option>
                                                                     <?php foreach ($pendidikan as $row) : ?>
 
                                                                         <option <?php if ($user['id_pend'] == $row['id']) {

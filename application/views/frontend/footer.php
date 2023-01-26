@@ -31,13 +31,17 @@
               <?php if (!empty($web['link_fb'])) : ?>
                 <a target="_blank" href="<?= $web['link_fb'] ?>" class="facebook"><i class="bi bi-facebook"></i></a>
               <?php endif ?>
-
               <?php if (!empty($web['link_tw'])) : ?>
                 <a target="_blank" href="<?= $web['link_tw'] ?>" class="twitter"><i class="bi bi-twitter"></i></a>
               <?php endif ?>
-
               <?php if (!empty($web['link_ig'])) : ?>
                 <a target="_blank" href="<?= $web['link_ig'] ?>" class="instagram"><i class="bi bi-instagram bx bxl-instagram"></i></a>
+                    <?php endif ?>
+                <?php if (!empty($web['link_yt'])) : ?>
+                <a target="_blank" href="<?= $web['link_yt'] ?>" class="youtube"><i class="bi bi-youtube bx bxl-youtube"></i></a>
+                     <?php endif ?>
+                <?php if (!empty($web['link_wa'])) : ?>
+                <a target="_blank" href="<?= $web['link_wa'] ?>" class="whatsapp"><i class="bi bi-whatsapp bx bxl-whatsapp"></i></a>
               <?php endif ?>
             </div>
           </div>

@@ -902,7 +902,9 @@ class Update extends CI_Controller
         $data = [
             'link_fb' => $this->input->post('link_fb'),
             'link_ig' => $this->input->post('link_ig'),
-            'link_tw' => $this->input->post('link_tw')
+            'link_tw' => $this->input->post('link_tw'),
+            'link_wa' => $this->input->post('link_wa'),
+            'link_yt' => $this->input->post('link_yt')
         ];
         $this->db->where('id', $id);
         $this->db->update('website', $data);
