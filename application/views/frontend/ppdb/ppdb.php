@@ -1,5 +1,5 @@
 <!-- Custom styles for this template-->
-
+<?php echo $script_captcha ?>
 
 <style type="text/css">
     img[src=""] {
@@ -90,7 +90,9 @@
                                                 <input type="number" class="form-control" id="no_hp" name="no_hp" placeholder="Nomor Hp" value="<?= set_value('no_hp') ?>" require>
                                                 <?= form_error('no_hp', '<small class="text-danger pl-3">', ' </small>') ?>
                                             </div>
-
+                                            <div class="form-group">
+                                                <?= $captcha ?>
+                                            </div>
                                             <!-- <div class="form-group">
                                                 <label>Tahun Masuk</label>
                                                 <select class="form-control" id="thn_msk" name="thn_msk">

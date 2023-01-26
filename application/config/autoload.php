@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+// $autoload['config'] = array('recaptcha');
+// $autoload['libraries'] = array('recaptcha');
 /*
 | -------------------------------------------------------------------
 | AUTO-LOADER
@@ -58,7 +59,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('email', 'session', 'database', 'form_validation', 'curl', 'secure');
+$autoload['libraries'] = array('email', 'session', 'database', 'form_validation', 'curl', 'secure','recaptcha');
 
 /*
 | -------------------------------------------------------------------
@@ -102,7 +103,7 @@ $autoload['helper'] = array('url', 'file', 'text', 'inflector', 'form', 'securit
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('arc');
+$autoload['config'] = array('arc','recaptcha');
 
 /*
 | -------------------------------------------------------------------

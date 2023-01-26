@@ -6,9 +6,10 @@ class Pmb extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('form_validation');
+        $this->load->library('form_validation','recaptcha');
         $this->load->model('M_payment');
         $this->load->model('Main_model');
+
 
            
     }
@@ -24,7 +25,10 @@ class Pmb extends CI_Controller
         $data['pendidikan'] = $this->db->get('data_pendidikan')->result_array();
         $this->db->where('period_status', 1);
         $data['thn_msk'] = $this->db->get('period')->result_array();
-
+        $data = array('captcha'=>$this->recaptcha->getWidget(),
+                'script_captcha'=>$this->recaptcha->getScriptTag(),
+            );
+                
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[pmb.email]', [
             'is_unique' => 'Email ini sudah terdaftar!',
@@ -34,7 +38,10 @@ class Pmb extends CI_Controller
             'min_length' => 'Password terlalu pendek!',
             'required' => 'Password tidak boleh kosong!'
         ]);
-        if ($this->form_validation->run() == false) {
+        $recaptcha = $this->input->post('g-recaptcha-response');
+        $response = $this->recaptcha->verifyResponse($recaptcha);
+        if ($this->form_validation->run() == false || !isset($response['success']) || $response['success'] <> true)
+         {
             $this->load->view('template/auth');
             $this->load->view('frontend/ppdb/ppdb', $data);
         } else {
