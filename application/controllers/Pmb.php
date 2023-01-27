@@ -188,8 +188,13 @@ class Pmb extends CI_Controller
         $this->load->model('Auth_model', 'auth');
         $this->form_validation->set_rules('email', 'Email', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
-
-        if ($this->form_validation->run() == false) {
+            $data = array('captcha'=>$this->recaptcha->getWidget(),
+                'script_captcha'=>$this->recaptcha->getScriptTag(),
+            );
+        $recaptcha = $this->input->post('g-recaptcha-response');
+        $response = $this->recaptcha->verifyResponse($recaptcha);
+        if ($this->form_validation->run() == false || !isset($response['success']) || $response['success'] <> true)
+         {
             $data['menu'] = 'home';
             $data['web'] =  $this->db->get('website')->row_array();
             $data['home'] =  $this->db->get('home')->row_array();

@@ -1,5 +1,5 @@
 <!-- Custom styles for this template-->
-
+<?php echo $script_captcha ?>
 <main id="main" style="padding-top: 30px;">
     <!-- ======= Breadcrumbs ======= -->
 
@@ -44,6 +44,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                     <div class="form-group">
+                                                <?= $captcha ?>
+                                            </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
                                         <b>Login</b>
                                     </button>
