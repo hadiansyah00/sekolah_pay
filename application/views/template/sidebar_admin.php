@@ -67,7 +67,7 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
             </div>
             </li> -->
 
-            <!-- <?php if ($menu == 'menu-9') : ?>
+            <?php if ($menu == 'menu-9') : ?>
                 <li class="nav-item active">
                 <?php else : ?>
                 <li class="nav-item">
@@ -101,7 +101,7 @@ $notif_kontak = $this->db->get_where('kontak', ['status' => 1])->num_rows();
                             <a class="collapse-item" href="<?= base_url('admin/absen_pegawai'); ?>">Absensi Pegawai</a>
                         </div>
                     </div>
-                    </li> -->
+                    </li> 
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <!-- <?php if ($menu == 'menu-3') : ?>

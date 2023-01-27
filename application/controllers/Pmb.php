@@ -113,13 +113,13 @@ class Pmb extends CI_Controller
     private function _sendEmail($token, $type)
     {
         $nama = $this->input->post('nama');
-        $config = [
+       $config = [
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
             'protocol'  => 'smtp',
             'smtp_host' => 'smtp.gmail.com', // atau smptp lainnya                
-            'smtp_user' => 'admin_workspace@sbh.ac.id',  // Email gmail admin aplikasi
-            'smtp_pass'   => 'jqnqytbsgmchxtwc',  // Password Gmail atau Sandi Aplikasi Gmail
+            'smtp_user' => 'pmb@sbh.ac.id',  // Email gmail admin aplikasi
+            'smtp_pass'   => 'oordqaidwyefpwyt',  // Password Gmail atau Sandi Aplikasi Gmail
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
             'crlf'    => "\r\n",
@@ -128,7 +128,7 @@ class Pmb extends CI_Controller
         ];
         $this->load->library('email', $config);
         $this->email->initialize($config);
-        $this->email->from('admin_workspace@sbh.ac.id', 'STIKes Bogor Husada');
+        $this->email->from('pmb@sbh.ac.id', 'STIKes Bogor Husada');
         $this->email->to($this->input->post('email'));
 
         if ($type == 'verify') {

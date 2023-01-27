@@ -307,7 +307,7 @@
                                     <p><strong>Terimakasih Telah Melakukan Pembayaran</strong> <hr>Sedang Menunggu Proses Verfikasi</p>
                                    
                             <?php else : ?>
-                                  <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#payModal2">Klik Untuk Pembayaran</a>
+                                  <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#payModal">Klik Untuk Pembayaran</a>
                                 </div>
                     </div>
                     <div class="card shadow mb-4">

@@ -8,6 +8,7 @@ class Update extends CI_Controller
         parent::__construct();
         $this->load->helper('tgl_indo');
         $this->load->model('Kredit_model');
+        $this->load->model('Main_model');
     }
 
     public function update_kelas()
@@ -917,74 +918,17 @@ class Update extends CI_Controller
         redirect('admin/website');
     }
 
-public function kirim_mail($id)
- {
-   // PHPMailer object
-   $response = false;
-   $mail = new PHPMailer();
-
-   // SMTP configuration
-  
-   $mail->isSMTP();
-   $mail->Host     = 'smtp.gmail.com';
-   $mail->SMTPAuth = true;
-   $mail->Username = 'admin_workspace@sbh.ac.id'; // user email anda
-   $mail->Password = 'pbiksimkrbtwwhfe'; // diisi dengan App Password yang sudah di generate
-   $mail->SMTPSecure = 'ssl';
-   $mail->Port     = 465;
-
-   $mail->setFrom('ari210393@gmail.com', 'AYONGODING.COM'); // user email anda
-   $mail->addReplyTo('ari210393@gmail.com', ''); //user email anda
-
-   // Email subject
-   $mail->Subject = 'SMTP CodeIgniter | ayongoding.com'; //subject email
-
-   // Add a recipient
-   $mail->addAddress($this->input->post('email')); //email tujuan pengiriman email
-
-   // Set email format to HTML
-   $mail->isHTML(true);
-
-   // Email body content
-   $mailContent = "<p>Hallo <b>".$this->input->post('nama')."</b> berikut ini adalah komentar Anda:</p>
-   <table>
-     <tr>
-       <td>Nama</td>
-       <td>:</td>
-       <td>".$this->input->post('nama')."</td>
-     </tr>
-     <tr>
-       <td>Website</td>
-       <td>:</td>
-       <td>".$this->input->post('website')."</td>
-     </tr>
-     <tr>
-       <td>Komentar</td>
-       <td>:</td>
-       <td>".$this->input->post('komentar')."</td>
-     </tr>
-   </table>
-   <p>Terimakasih <b>".$this->input->post('nama')."</b> telah memberi komentar.</p>"; // isi email
-   $mail->Body = $mailContent;
-
-   // Send email
-   if(!$mail->send()){
-     echo 'Message could not be sent.';
-     echo 'Mailer Error: ' . $mail->ErrorInfo;
-   }else{
-     echo 'Message has been sent';
-   }
- }
 
 
-    private function ppdbEmail($id)
+
+    private function kirim_mail($id)
     {
         $data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
         $data['web'] =  $this->db->get('website')->row_array();
 
         $data['ppdb'] =  $this->db->get_where('pmb', ['id' => $id])->row_array();
-        $email = $data['pmb']['email'];
-
+        // $email = $data['pmb']['email'];
+        $email= $this->Main_model->getDataPMB('email');
         $web = $data['web'];
 
         $esen =  $this->db->get('email_sender')->row_array();
@@ -997,7 +941,7 @@ public function kirim_mail($id)
             'smtp_port' => $esen['port'],
             'mailtype'  => 'html',
             'charset'   => $esen['charset'],
-            'newline'   => "\r\n"
+
 
         ];
         $this->load->library('email', $config);
@@ -1056,7 +1000,7 @@ Untuk pengumuman PMB akan di infokan melalui website :
 Terimakasih.';
         // wa_api($no, $pesan);
 $this->kirim_mail($id);
-        $this->send($id);
+        $this->email->send($id);
         $this->session->set_flashdata('messageInfo', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data ppdb berhasil di konfirmasi.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
