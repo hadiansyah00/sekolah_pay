@@ -2735,7 +2735,7 @@ class Admin extends CI_Controller
     public function pmb()
     {
         $data['menu'] = 'pmb';
-        $data['title'] = 'Daftar PMB';
+        $data['title'] = 'Data PMB';
         $data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email')])->row_array();
         $data['web'] =  $this->db->get('website')->row_array();
 
