@@ -15,7 +15,9 @@ class Admin extends CI_Controller
         //sess_expired();
         $users = $this->session->userdata('email');
         $this->load->model(['Main_model', 'Export_model', 'Import_model']);
-        $this->load->helper(['tgl_indo', 'string']);
+        $this->load->helper('tgl_indo');
+        $this->load->library('Pdf');
+        $this->load->model('Main_model');
         $this->load->library('email');
 
         $user = $this->db->get_where('karyawan', ['email' => $users])->row_array();
