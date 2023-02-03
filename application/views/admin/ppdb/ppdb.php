@@ -22,8 +22,9 @@
                                     <th scope="col">NISN</th>
                                     <th scope="col">Alamat</th>
                                     <th scope="col">Tanggal Lahir</th>
+                                    <th scope="col">Status Akun</th>
                                     <th scope="col">Invoice</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Status PMB</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -49,6 +50,14 @@
                                             </span>
                                         </td>
                                         <td>
+                                            <?php if ($d['is_active']  == '0') : ?>
+                                                <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Belum Aktif</span>
+                                            <?php elseif ($d['is_active']  == '1') : ?>
+                                                <span class="badge badge-success badge-pill disabled" aria-disabled="true">Aktif</span>
+                                    
+                                            <?php endif ?>
+                                        </td>
+                                         <td>
                                             <?php if ($d['sts_pmb']  == '0') : ?>
                                                 <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Belum Bayar</span>
                                             <?php elseif ($d['sts_pmb']  == '2') : ?>
@@ -56,6 +65,7 @@
                                                 <a target="_blank" href="<?= base_url('laporan/cetak_kartu_admin?id=' . $this->secure->encrypt($d['id'])) ?>" class="badge badge-info"><i class="fa fa-print"></i> Cetak kartu</a>
                                             <?php endif ?>
                                         </td>
+                                        
                                         <td>
                                             <?php if ($d['status']  == '0') : ?>
                                                 <span class="badge badge-warning badge-pill disabled" aria-disabled="true">Pending</span>

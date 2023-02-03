@@ -182,9 +182,9 @@ class Pmb extends CI_Controller
 
     public function login()
     {
-        if ($this->session->userdata('email')) {
-            redirect('pmb/login');
-        }
+        // if ($this->session->userdata('email')) {
+        //     redirect('pmb/login');
+        // }
         $this->load->model('Auth_model', 'auth');
         $this->form_validation->set_rules('email', 'Email', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
