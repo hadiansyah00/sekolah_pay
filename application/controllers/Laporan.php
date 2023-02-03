@@ -329,9 +329,7 @@ class Laporan extends CI_Controller
     }
     public function cetak_kartu_admin()
     {
-        $this->load->helper('tgl_indo');
-        $this->load->library('Pdf');
-        $this->load->model('Main_model');
+ 
         $data['title'] = 'Kartu Tes PMB';
         $data['web'] =  $this->db->get('website')->row_array();
         $id     = $this->input->get('id');
