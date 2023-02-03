@@ -53,7 +53,7 @@
                                                 <span class="badge badge-danger badge-pill disabled" aria-disabled="true">Belum Bayar</span>
                                             <?php elseif ($d['sts_pmb']  == '2') : ?>
                                                 <span class="badge badge-success badge-pill disabled" aria-disabled="true">Lunas</span>
-                                                <a target="_blank" href="<?= base_url('laporan/cetak_kartu?id=' . $this->secure->encrypt($d['id'])) ?>" class="badge badge-info"><i class="fa fa-print"></i> Cetak kartu</a>
+                                                <a target="_blank" href="<?= base_url('laporan/cetak_kartu_admin?id=' . $this->secure->encrypt($d['id'])) ?>" class="badge badge-info"><i class="fa fa-print"></i> Cetak kartu</a>
                                             <?php endif ?>
                                         </td>
                                         <td>

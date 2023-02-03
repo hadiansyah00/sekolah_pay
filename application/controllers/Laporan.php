@@ -327,4 +327,23 @@ class Laporan extends CI_Controller
 
         $this->pdf->load_view('laporan/kartu_pmb', $data);
     }
+    public function cetak_kartu_admin()
+    {
+        $this->load->helper('tgl_indo');
+        $this->load->library('Pdf');
+        $this->load->model('Main_model');
+        $data['title'] = 'Kartu Tes PMB';
+        $data['web'] =  $this->db->get('website')->row_array();
+        $id     = $this->input->get('id');
+        $id = $this->secure->decrypt($id);
+        $data['user'] = $this->db->get_where('pmb', ['id' => $id])->row_array();
+        $data['pembayaran'] = $this->db->get('data_pembayaran')->result_array();
+
+        // $data['pay'] = $this->db->get_where('data_pembayaran', ['jenis' => 'PPDB'])->result_array();
+        $data['verfikasi2'] = $this->Main_model->getDataPMB2();
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = 'kartu_pmb_2' . $data['user']['nama'] . '.pdf';
+
+        $this->pdf->load_view('laporan/kartu_pmb_admin', $data);
+    }
 }
