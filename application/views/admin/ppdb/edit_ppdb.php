@@ -338,12 +338,12 @@
                             <div class="form-group">
                                 <label>NIK</label>
                                 <input type="hidden" name="id" value="<?= $siswa['id'] ?>">
-                                <input type="number" class="form-control" readonly id="nik" name="nik" placeholder="Nomor Induk Kependudukan" value="<?= $siswa['nik'] ?>" require>
+                                <input type="number" class="form-control"  id="nik" name="nik" placeholder="Nomor Induk Kependudukan" value="<?= $siswa['nik'] ?>" require>
                                 <?= form_error('nik', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                             <div class="form-group">
                                 <label>NISN</label>
-                                <input type="text" readonly class="form-control" id="nis" name="nis" placeholder="Nomor Induk siswa" value="<?= $siswa['nis'] ?>" require>
+                                <input type="text"  class="form-control" id="nis" name="nis" placeholder="Nomor Induk siswa" value="<?= $siswa['nis'] ?>" require>
                                 <?= form_error('nis', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                             <div class="form-group">
@@ -452,7 +452,7 @@
 
                             <div class="form-group">
                                 <label>Pekerjaan Ayah</label>
-                                <select readonly class="form-control" id="pek_ayah" name="pek_ayah" value="<?= $siswa['pek_ayah'] ?>">
+                                <select  class="form-control" id="pek_ayah" name="pek_ayah" value="<?= $siswa['pek_ayah'] ?>">
                                     <option value="">- Pekerjaan Ayah -</option>
                                     <option <?php if ($siswa['pek_ayah'] == "Wiraswasta") {
                                                 echo "selected='selected'";
@@ -481,7 +481,7 @@
 
                             <div class="form-group">
                                 <label>Pekerjaan Ibu</label>
-                                <select readonly class="form-control" id="pek_ibu" name="pek_ibu" value="<?= $siswa['pek_ibu'] ?>">
+                                <select  class="form-control" id="pek_ibu" name="pek_ibu" value="<?= $siswa['pek_ibu'] ?>">
                                     <option value="">- Pekerjaan Ibu -</option>
                                     <option <?php if ($siswa['pek_ibu'] == "Ibu Rumah Tangga") {
                                                 echo "selected='selected'";
@@ -513,7 +513,7 @@
 
                             <div class="form-group">
                                 <label>Pekerjaan Wali</label>
-                                <select readonly class="form-control" id="pek_wali" name="pek_wali">
+                                <select  class="form-control" id="pek_wali" name="pek_wali">
                                     <option value="">- Pekerjaan Wali -</option>
                                     <option <?php if ($siswa['pek_wali'] == "Tidak ada wali") {
                                                 echo "selected='selected'";
@@ -544,7 +544,7 @@
 
                             <div class="form-group">
                                 <label>Penghasilan Ortu / Wali</label>
-                                <select readonly class="form-control" id="peng_ortu" name="peng_ortu">
+                                <select  class="form-control" id="peng_ortu" name="peng_ortu">
                                     <option value="">- Penghasilan / Bulan -</option>
                                     <option <?php if ($siswa['peng_ortu'] == "< Rp.1.000.000") {
                                                 echo "selected='selected'";
@@ -571,7 +571,7 @@
 
                             <div class="form-group">
                                 <label>Nomor Telepon Ortu / Wali</label>
-                                <input readonly type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Nomor Telepon" value="<?= $siswa['no_telp'] ?>">
+                                <input  type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Nomor Telepon" value="<?= $siswa['no_telp'] ?>">
                                 <?= form_error('no_telp', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
 
@@ -583,7 +583,7 @@
 
                             <div class="form-group">
                                 <label>Sekolah Asal</label>
-                                <input readonly type="text" class="form-control" id="sekolah_asal" name="sekolah_asal" placeholder="Sekolah Asal" value="<?= $siswa['sekolah_asal'] ?>">
+                                <input  type="text" class="form-control" id="sekolah_asal" name="sekolah_asal" placeholder="Sekolah Asal" value="<?= $siswa['sekolah_asal'] ?>">
                                 <?= form_error('sekolah_asal', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
 
@@ -591,7 +591,7 @@
 
                             <div class="form-group">
                                 <label>Tahun Lulus Sekolah</label>
-                                <input readonly type="number" class="form-control" id="thn_lls" name="thn_lls" placeholder="Tahun Lulus" value="<?= $siswa['thn_lls'] ?>">
+                                <input  type="number" class="form-control" id="thn_lls" name="thn_lls" placeholder="Tahun Lulus" value="<?= $siswa['thn_lls'] ?>">
                                 <?= form_error('thn_lls', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
 
@@ -621,7 +621,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Kelas</label>
-                                                    <select readonly class="form-control" id="pendidikan" name="pendidikan">
+                                                    <select  class="form-control" id="pendidikan" name="pendidikan">
                                                         <option>- Pilih Kelas -</option>
                                                         <?php foreach ($pendidikan as $row) : ?>
 
@@ -653,7 +653,7 @@
                                             <div id="jurus" class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Program Studi</label>
-                                                    <select readonly class="form-control" id="jurusan" name="jurusan">
+                                                    <select  class="form-control" id="jurusan" name="jurusan">
                                                         <option>- Pilih Prodi -</option>
                                                         <?php foreach ($jurusan as $s) : ?>
 
