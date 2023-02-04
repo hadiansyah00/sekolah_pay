@@ -348,12 +348,12 @@
                             </div>
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
-                                <input readonly type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" value="<?= $siswa['nama'] ?>" require>
+                                <input  type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" value="<?= $siswa['nama'] ?>" require>
                                 <?= form_error('nama', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input readonly type="text" class="form-control" id="email" name="email" placeholder="Email" value="<?= $siswa['email'] ?>" require>
+                                <input  type="text" class="form-control" id="email" name="email" placeholder="Email" value="<?= $siswa['email'] ?>" require>
                                 <?= form_error('email', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
 
@@ -364,12 +364,12 @@
 
                             <div class="form-group">
                                 <label>Nomor Hp</label>
-                                <input readonly type="number" class="form-control" id="no_hp" name="no_hp" placeholder="Nomor Hp" value="<?= $siswa['no_hp'] ?>" require>
+                                <input  type="number" class="form-control" id="no_hp" name="no_hp" placeholder="Nomor Hp" value="<?= $siswa['no_hp'] ?>" require>
                                 <?= form_error('no_hp', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="jk" class="col-form-label">Jenis Kelamin :</label>
-                                <select readonly class="form-control" id="jk" name="jk">
+                                <select  class="form-control" id="jk" name="jk">
                                     <option value="">- Jenis Kelamin -</option>
                                     <option <?php if ($siswa['jk'] == "L") {
                                                 echo "selected='selected'";
@@ -381,17 +381,17 @@
                             </div>
                             <div class="form-group">
                                 <label>Tempat Lahir</label>
-                                <input readonly type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?= $siswa['tempat_lahir'] ?>">
+                                <input  type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?= $siswa['tempat_lahir'] ?>">
                                 <?= form_error('tempat_lahir', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Tanggal Lahir</label>
-                                <input readonly type="date" class="form-control" id="ttl" name="ttl" value="<?= $siswa['ttl'] ?>">
+                                <input  type="date" class="form-control" id="ttl" name="ttl" value="<?= $siswa['ttl'] ?>">
                                 <?= form_error('ttl', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Provinsi</label>
-                                <select readonly class="form-control" id="prov" name="prov">
+                                <select  class="form-control" id="prov" name="prov">
                                     <?php foreach ($prov as $v) : ?>
                                         <option <?php if ($siswa['prov'] == $v['nama']) {
                                                     echo "selected='selected'";
@@ -402,7 +402,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Kota / Kabupaten</label>
-                                <select readonly class="form-control" id="kab" name="kab">
+                                <select  class="form-control" id="kab" name="kab">
                                     <option value="<?= $siswa['kab']; ?>"><?= $siswa['kab']; ?></option>
                                     <option>- Pilih provinsi dahulu -</option>
                                 </select>
@@ -410,7 +410,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Kecamatan</label>
-                                <select readonly class="form-control" id="kec" name="kec">
+                                <select  class="form-control" id="kec" name="kec">
                                     <option value="<?= $siswa['kec']; ?>"><?= $siswa['kec']; ?></option>
                                     <option value="">- Pilih kabupaten / kota dahulu -</option>
                                 </select>
@@ -426,23 +426,23 @@
                             </div> -->
                             <div class="form-group">
                                 <label>Alamat</label>
-                                <textarea readonly type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat"><?= $siswa['alamat'] ?></textarea>
+                                <textarea  type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat"><?= $siswa['alamat'] ?></textarea>
                                 <?= form_error('alamat', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Nama Ayah</label>
-                                <input  readonly type="text" class="form-control" id="nama_ayah" name="nama_ayah" placeholder="Nama Orang Tua" value="<?= $siswa['nama_ayah'] ?>">
+                                <input  reaonly type="text" class="form-control" id="nama_ayah" name="nama_ayah" placeholder="Nama Orang Tua" value="<?= $siswa['nama_ayah'] ?>">
                                 <?= form_error('nama_ayah', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Nama Ibu</label>
-                                <input readonly type="text" class="form-control" id="nama_ibu" name="nama_ibu" placeholder="Nama Orang Tua" value="<?= $siswa['nama_ibu'] ?>">
+                                <input  type="text" class="form-control" id="nama_ibu" name="nama_ibu" placeholder="Nama Orang Tua" value="<?= $siswa['nama_ibu'] ?>">
                                 <?= form_error('nama_ibu', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
 
                             <div class="form-group">
                                 <label>Nama Wali</label>
-                                <input readonly type="text" class="form-control" id="nama_wali" name="nama_wali" placeholder="Nama Wali" value="<?= $siswa['nama_wali'] ?>">
+                                <input  type="text" class="form-control" id="nama_wali" name="nama_wali" placeholder="Nama Wali" value="<?= $siswa['nama_wali'] ?>">
                                 <small class="text-info">* Kosongkan jika tidak ada.</small>
                             </div>
 
